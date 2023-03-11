@@ -194,7 +194,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-03-11 10:57:13 / 修改时间：17:00:53" itemprop="dateCreated datePublished" datetime="2023-03-11T10:57:13+08:00">2023-03-11</time>
+              <time title="创建时间：2023-03-11 10:57:13 / 修改时间：17:08:13" itemprop="dateCreated datePublished" datetime="2023-03-11T10:57:13+08:00">2023-03-11</time>
             </span>
 
           
@@ -220,7 +220,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="一、enum"><a href="#一、enum" class="headerlink" title="一、enum"></a>一、enum</h1><h2 id="1-1案例引入"><a href="#1-1案例引入" class="headerlink" title="1.1案例引入"></a>1.1案例引入</h2><p>现在我们要定义一个Season类，来创建一年四季。</p>
+          <h1 id="一、enumsbsbs"><a href="#一、enumsbsbs" class="headerlink" title="一、enumsbsbs"></a>一、enumsbsbs</h1><h2 id="1-1案例引入"><a href="#1-1案例引入" class="headerlink" title="1.1案例引入"></a>1.1案例引入</h2><p>现在我们要定义一个Season类，来创建一年四季。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public class EnumReview &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Season Spring = new Season(&quot;春天&quot;);</span><br><span class="line">        Season Summer = new Season(&quot;夏天&quot;);</span><br><span class="line">        Season Autumn = new Season(&quot;秋天&quot;);</span><br><span class="line">        Season Winter = new Season(&quot;冬天&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Season&#123;</span><br><span class="line">    private String name;</span><br><span class="line"></span><br><span class="line">    public Season(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setName(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><strong><u>显然，我么这样写能完成需求，但是季节一共就4个，就只有春夏秋冬，new完这4个季节，我们还可以new一些奇怪的季节。</u></strong></p>
