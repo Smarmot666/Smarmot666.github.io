@@ -169,6 +169,115 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/17/lanqiaomoni/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="郑政祺">
+      <meta itemprop="description" content="天道酬勤">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="机智的土拨鼠">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/03/17/lanqiaomoni/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-03-17 16:16:27 / 修改时间：16:18:59" itemprop="dateCreated datePublished" datetime="2023-03-17T16:16:27+08:00">2023-03-17</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>2.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <hr>
+<h2 id="title-蓝桥杯模拟赛题解"><a href="#title-蓝桥杯模拟赛题解" class="headerlink" title="title:蓝桥杯模拟赛题解"></a>title:蓝桥杯模拟赛题解</h2><h1 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h1><p><strong>问题描述</strong><br>　　请找到一个大于 2022 的最小数，这个数转换成十六进制之后，所有的数位（不含前导 0）都为字母（A 到 F）。<br>　　请将这个数的十进制形式作为答案提交。<br><strong>答案提交</strong><br>　　这是一道结果填空的题，你只需要算出结果后提交即可。本题的结果为一个整数，在提交答案时只填写这个整数，填写多余的内容将无法得分。</p>
+<hr>
+<p><strong>方法一：</strong></p>
+<blockquote>
+<p>2022 转十六进制 7E6</p>
+<p>这是一道填空题，最笨的方法，拿着计算器一个一个数出来，看哪一个数最先为AAA。</p>
+</blockquote>
+<p><strong>方法二：</strong></p>
+<blockquote>
+<p>通过编程来找。</p>
+<p><strong>思路</strong>：循环2022以后的数，看哪一个最先 转为十六进制后就全为字母</p>
+<p>如何一个十进制数转为十六进制呢？</p>
+<p>使用短除法~</p>
+<p>如：2022 % 16 &#x3D; 6， 2022 &#x2F; 16 &#x3D;  126</p>
+<p>​		126 % 16 &#x3D; E(14),  126 &#x2F; 16 &#x3D; 7</p>
+<p>​		7 % 16 &#x3D; 7,  7 &#x2F; 16 &#x3D; 0</p>
+<p>最后将取模的数从下当上写出来， 所以 2022转为十六进制就为7E6了</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">is_Full</span><span class="params">(<span class="type">int</span> n)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">//如果满足每一位都是字母那就返回1，否则返回0</span></span><br><span class="line">	<span class="keyword">while</span> (n)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//检查每一位是否为字母，如果为数字直接结束</span></span><br><span class="line">		<span class="type">int</span> tmp = n % <span class="number">16</span>;</span><br><span class="line">		<span class="keyword">if</span> (tmp &gt;= <span class="number">0</span> &amp;&amp; tmp &lt; <span class="number">10</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		n /= <span class="number">16</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> n = <span class="number">2023</span>;</span><br><span class="line">	<span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (is_Full(n))</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="comment">//一旦找到某一个满足全是字母的数，直接结束</span></span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		n++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>, n);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h1><p><strong>问题描述</strong><br>　　在 Excel 中，列的名称使用英文字母的组合。前 26 列用一个字母，依次为 A 到 Z，接下来 26*26 列使用两个字母的组合，依次为 AA 到 ZZ。<br>　　请问第 2022 列的名称是什么？<br><strong>答案提交</strong><br>　　这是一道结果填空的题，你只需要算出结果后提交即可。本题的结果为一个由大写字母组成的字符串，在提交答案时只填写这个字符串，填写多余的内容将无法得分。</p>
+<blockquote>
+<p>介不就一道二十六进制的题。</p>
+<p>满Z就进位A。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> n = <span class="number">2022</span>;</span><br><span class="line">	<span class="keyword">while</span> (n)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//%c打印字符，即后面可以跟一个数字，然后会输出相应ASCII值的字符</span></span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%c &quot;</span>, n % <span class="number">26</span> + (<span class="string">&#x27;A&#x27;</span> - <span class="number">1</span>));</span><br><span class="line">		n /= <span class="number">26</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果为TYB，需要将结果反过来即BYT，因为每次都是先得到个位再十位……</p>
+<h1 id="第三题"><a href="#第三题" class="headerlink" title="第三题"></a>第三题</h1><p><strong>问题描述</strong><br>　　对于一个日期，我们可以计算出年份的各个数位上的数字之和，也可以分别计算月和日的各位数字之和。请问从 1900 年 1 月 1 日至 9999 年 12 月 31 日，总共有多少天，年份的数位数字之和等于月的数位数字之和加日的数位数字之和。<br>　　例如，2022年11月13日满足要求，因为 2+0+2+2&#x3D;(1+1)+(1+3) 。<br>　　请提交满足条件的日期的总数量。<br><strong>答案提交</strong><br>　　这是一道结果填空的题，你只需要算出结果后提交即可。本题的结果为一个整数，在提交答案时只填写这个整数，填写多余的内容将无法得分。</p>
+<blockquote>
+<p>这题就老老实实的编程算了~不然得数到结束</p>
+<p>技巧：我们可以创建一个月份数组，存入每个对应的天数</p>
+<p>思路：枚举每个日期，看是否满足咯，记得要判断是否为闰年</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">is_LeapYear</span><span class="params">(<span class="type">int</span> year)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> ((year % <span class="number">4</span> == <span class="number">0</span> &amp;&amp; year % <span class="number">100</span> != <span class="number">0</span>) || (year % <span class="number">400</span> == <span class="number">0</span>))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//得到每位之和</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">getSum</span><span class="params">(<span class="type">int</span> year)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (year)</span><br><span class="line">	&#123;</span><br><span class="line">		ans += year % <span class="number">10</span>;</span><br><span class="line">		year /= <span class="number">10</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> month[<span class="number">13</span>] = &#123; <span class="number">0</span>,</span><br><span class="line">			<span class="number">31</span>,<span class="number">28</span>,<span class="number">31</span>,</span><br><span class="line">			<span class="number">30</span>,<span class="number">31</span>,<span class="number">30</span>,</span><br><span class="line">			<span class="number">31</span>,<span class="number">31</span>,<span class="number">30</span>,</span><br><span class="line">			<span class="number">31</span>,<span class="number">30</span>,<span class="number">31</span> &#125;;</span><br><span class="line">	<span class="comment">//用来计数，得到结果</span></span><br><span class="line">	<span class="type">int</span> count = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1900</span>; i &lt;= <span class="number">9999</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//先判断这年是不是闰年</span></span><br><span class="line">		month[<span class="number">2</span>] = is_LeapYear(i) ? <span class="number">29</span> : <span class="number">28</span>;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//得到这年上的数字之和</span></span><br><span class="line">		<span class="type">int</span> year = getSum(i);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//得到月和日的数字之和</span></span><br><span class="line">		<span class="type">int</span> Mon_Day = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= <span class="number">12</span>; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">1</span>; k &lt;= month[j]; k++)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="comment">//计算月份和日每位数字之和~</span></span><br><span class="line">				<span class="type">int</span> tmp = getSum(j) + getSum(k);</span><br><span class="line">				<span class="keyword">if</span> (tmp == year)</span><br><span class="line">					count++;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>, count);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/13/school_riew/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -192,23 +301,29 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2023-03-13 18:23:01 / 修改时间：18:23:56" itemprop="dateCreated datePublished" datetime="2023-03-13T18:23:01+08:00">2023-03-13</time>
+              <time title="创建时间：2023-03-13 18:23:01" itemprop="dateCreated datePublished" datetime="2023-03-13T18:23:01+08:00">2023-03-13</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-03-15 22:09:28" itemprop="dateModified" datetime="2023-03-15T22:09:28+08:00">2023-03-15</time>
+              </span>
 
           
             <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>3.4k</span>
+              <span>4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
-              <span>3 分钟</span>
+              <span>4 分钟</span>
             </span>
 
         </div>
@@ -316,6 +431,22 @@
 <p>C语言的难度对于本体在于如何读取这个迷宫，需要注意缓存区中的换行符。</p>
 <p><strong>代码</strong></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">//存放迷宫</span></span><br><span class="line">	<span class="type">char</span> arr[<span class="number">1001</span>][<span class="number">1001</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">	<span class="type">int</span> n = <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">	<span class="comment">//清空缓存区中\n</span></span><br><span class="line">	getchar();</span><br><span class="line">	<span class="comment">//用来记录#的位置</span></span><br><span class="line">	<span class="type">int</span> s_i = <span class="number">0</span>;</span><br><span class="line">	<span class="type">int</span> s_j = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//用来记录$的位置</span></span><br><span class="line">	<span class="type">int</span> e_i = <span class="number">0</span>;</span><br><span class="line">	<span class="type">int</span> e_j = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//读入迷宫</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; n; j++)</span><br><span class="line">		&#123;</span><br><span class="line"></span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">&quot;%c&quot;</span>, &amp;arr[i][j]);</span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span> (arr[i][j] == <span class="string">&#x27;#&#x27;</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				s_i = i;</span><br><span class="line">				s_j = j;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (arr[i][j] == <span class="string">&#x27;$&#x27;</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				e_i = i;</span><br><span class="line">				e_j = j;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//清空缓存区中\n</span></span><br><span class="line">		getchar();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//abs函数是用来取绝对值的</span></span><br><span class="line">	<span class="type">int</span> ans = <span class="built_in">abs</span>(s_i - e_i) + <span class="built_in">abs</span>(s_j - e_j);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>, ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="4-数列求值"><a href="#4-数列求值" class="headerlink" title="4.数列求值"></a><strong>4.数列求值</strong></h2><p>给定数列1,1,1,3,5,9,17,…，从第4项开始，每项都是前3项的和。求第20190324项的最后4位数字。</p>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a><strong>思路：</strong></h3><p>斐波那契数列的改版：因此依葫芦画瓢，使用递归来写。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">Fib</span><span class="params">(<span class="type">int</span> n)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (n == <span class="number">1</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span> (n == <span class="number">2</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span> (n == <span class="number">3</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span> (n &gt; <span class="number">3</span>)</span><br><span class="line">		<span class="keyword">return</span> Fib(n - <span class="number">1</span>) + Fib(n - <span class="number">2</span>) + Fib(n - <span class="number">3</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但是因为递归的太深，所以需要求解的时间很长，因此在比赛中肯定是不能过得，因此我们要考虑用空间换时间。</p>
+<hr>
+<p>利用一个数组存储前n项的和，代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> arr[<span class="number">100</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">arr[n] = arr[n - <span class="number">1</span>] + arr[n - <span class="number">2</span>] + arr[n - <span class="number">3</span>];</span><br></pre></td></tr></table></figure>
+
+<p><strong>但是</strong>！对于这道题依旧行不通，<u><strong>因为他要让你存储第20190324个数，需要巨大的空间</strong></u>，在main函数中创建这个数组，程序会崩溃。但你可以**<u>将这个数组写在main函数外，写成全局变量数组。</u>**</p>
+<p><strong>但是！</strong>就算你开辟了这个很大的数组，你依旧过不了这题，因为当你傻乎乎的求解时，<em><strong>斐波那契数列的增长很快</strong></em>，不一会就会超出整形的范围，就会得到意想不到的数。不过这题给你了提示，<strong>让你求最后4位数，所以你每次只要关注当前数的后4位</strong>。</p>
+<p><strong>补充：</strong>要得到一个数的后i位，就要对这个数取模% 10 ^ i </p>
+<h3 id="最终代码如下："><a href="#最终代码如下：" class="headerlink" title="最终代码如下："></a>最终代码如下：</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
 
 
       
@@ -506,7 +637,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -554,19 +685,19 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">5k</span>
+    <span title="站点总字数">8k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">5 分钟</span>
+    <span title="站点阅读时长">8 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共2.3k字</span>
+  <span class="post-count">博客全站共3.8k字</span>
 </div>
 
 
