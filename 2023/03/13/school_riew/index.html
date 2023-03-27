@@ -16,12 +16,12 @@
   <meta name="author" content="郑政祺">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1.闰年问题描述 给定一个年份，判断这一年是不是闰年。当以下情况之一满足时，这一年是闰年：  年份是4的倍数而不是100的倍数； 年份是400的倍数。其他的年份都不是闰年。  输入格式输入包含一个整数y，表示当前的年份。 输出格式输出一行，如果给定的年份是闰年，则输出yes，否则输出no。 说明：当试题指定你输出一个字符串作为结果（比如本题的yes或者no，你需要严格按照试题中给定的大小写，写错大">
+    <meta name="description" content="1.闰年 问题描述 给定一个年份，判断这一年是不是闰年。当以下情况之一满足时，这一年是闰年：  年份是4的倍数而不是100的倍数； 年份是400的倍数。 其他的年份都不是闰年。  输入格式 输入包含一个整数y，表示当前的年份。 输出格式 输出一行，如果给定的年份是闰年，则输出yes，否则输出no。 说明：当试题指定你输出一个字符串作为结果（比如本题的yes或者no，你需要严格按照试题中给定的大小写">
 <meta property="og:type" content="article">
 <meta property="og:title" content="3_12题解">
 <meta property="og:url" content="http://example.com/2023/03/13/school_riew/index.html">
 <meta property="og:site_name" content="机智的土拨鼠">
-<meta property="og:description" content="1.闰年问题描述 给定一个年份，判断这一年是不是闰年。当以下情况之一满足时，这一年是闰年：  年份是4的倍数而不是100的倍数； 年份是400的倍数。其他的年份都不是闰年。  输入格式输入包含一个整数y，表示当前的年份。 输出格式输出一行，如果给定的年份是闰年，则输出yes，否则输出no。 说明：当试题指定你输出一个字符串作为结果（比如本题的yes或者no，你需要严格按照试题中给定的大小写，写错大">
+<meta property="og:description" content="1.闰年 问题描述 给定一个年份，判断这一年是不是闰年。当以下情况之一满足时，这一年是闰年：  年份是4的倍数而不是100的倍数； 年份是400的倍数。 其他的年份都不是闰年。  输入格式 输入包含一个整数y，表示当前的年份。 输出格式 输出一行，如果给定的年份是闰年，则输出yes，否则输出no。 说明：当试题指定你输出一个字符串作为结果（比如本题的yes或者no，你需要严格按照试题中给定的大小写">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-03-13T10:23:01.147Z">
 <meta property="article:modified_time" content="2023-03-15T14:09:28.694Z">
@@ -247,7 +247,7 @@
         
         
         
-          34 分钟
+          33 分钟
         
       </span>
     
@@ -311,26 +311,28 @@
             
               <div class="markdown-body">
                 
-                <h2 id="1-闰年"><a href="#1-闰年" class="headerlink" title="1.闰年"></a><strong>1.闰年</strong></h2><p>问题描述</p>
+                <h2 id="1-闰年"><strong>1.闰年</strong></h2>
+<p>问题描述</p>
 <p>给定一个年份，判断这一年是不是闰年。当以下情况之一满足时，这一年是闰年：</p>
 <ol>
 <li>年份是4的倍数而不是100的倍数；</li>
-<li>年份是400的倍数。<br>其他的年份都不是闰年。</li>
+<li>年份是400的倍数。<br>
+其他的年份都不是闰年。</li>
 </ol>
-<p><strong>输入格式</strong><br>输入包含一个整数y，表示当前的年份。</p>
-<p><strong>输出格式</strong><br>输出一行，如果给定的年份是闰年，则输出yes，否则输出no。</p>
+<p><strong>输入格式</strong><br>
+输入包含一个整数y，表示当前的年份。</p>
+<p><strong>输出格式</strong><br>
+输出一行，如果给定的年份是闰年，则输出yes，否则输出no。</p>
 <p>说明：当试题指定你输出一个字符串作为结果（比如本题的yes或者no，你需要严格按照试题中给定的大小写，写错大小写将不得分。</p>
 <p><strong>思路：</strong></p>
-<p>按照题目描述输出即可。**<u>四年一润且百年不润 或 四百年一润</u>**</p>
+<p>按照题目描述输出即可。<strong><u>四年一润且百年不润 或 四百年一润</u></strong></p>
 <p>因此可以得出这样的表达式：</p>
-<p><strong>(year % 4 &#x3D;&#x3D; 0 &amp;&amp; year % 100 !&#x3D; 0) || (year % 400 &#x3D;&#x3D; 0)</strong></p>
+<p><strong>(year % 4 == 0 &amp;&amp; year % 100 != 0) || (year % 400 == 0)</strong></p>
 <p>之后结合if语句判断即可~</p>
 <p><strong>代码</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">int</span> year = <span class="hljs-number">0</span>;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;year);<br>    <br>    <span class="hljs-comment">//如果表达式为真，则执行输出yes</span><br>    <span class="hljs-keyword">if</span>((year % <span class="hljs-number">4</span> == <span class="hljs-number">0</span> &amp;&amp; year % <span class="hljs-number">100</span> != <span class="hljs-number">0</span>) || (year % <span class="hljs-number">400</span> == <span class="hljs-number">0</span>))<br>    &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;yes&quot;</span>);<br>    &#125;<br>    <span class="hljs-keyword">else</span><br>    &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;no&quot;</span>);<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-
-
-<h2 id="2-找素数"><a href="#2-找素数" class="headerlink" title="2.找素数"></a><strong>2.找素数</strong></h2><p>输入一个正整数n，计算输出小于n的最大素数</p>
+<h2 id="2-找素数"><strong>2.找素数</strong></h2>
+<p>输入一个正整数n，计算输出小于n的最大素数</p>
 <p><strong>思路：</strong></p>
 <p>抓住核心：<strong>小于n，最大，素数</strong></p>
 <p><u><strong>1.分析素数：大于1，只能被1和自身整除</strong></u></p>
@@ -338,42 +340,36 @@
 <p><u><strong>3.检查循环所枚举出来的数是否为素数</strong></u></p>
 <p><strong>代码</strong></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-comment">//检查它是不是素数,如果是则返回1，不是返回0</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">is_Prime</span><span class="hljs-params">(<span class="hljs-type">int</span> num)</span><br>&#123;<br>	<span class="hljs-comment">//循环2 - num-1 之间的数，看是否能被num整除，能整除则说明不是</span><br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">2</span>; j &lt;= num - <span class="hljs-number">1</span>; j++)<br>	&#123;<br>		<span class="hljs-keyword">if</span> (num % j == <span class="hljs-number">0</span>)<br>			<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>&#125;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-type">int</span> n = <span class="hljs-number">0</span>;<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;n);<br><br>	<span class="hljs-comment">//先得到小于n的数</span><br>	<br>	<span class="hljs-comment">//因为要最大，所以从后往前找</span><br>	<span class="hljs-comment">//但是因为要得到素数，而最小的素数是2，所以循环到2就行	</span><br>	<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">for</span> (i = n - <span class="hljs-number">1</span>; i &gt; <span class="hljs-number">2</span>; i--)<br>	&#123;<br>		<span class="hljs-comment">//判断是否为素数</span><br>		<span class="hljs-keyword">if</span> (is_Prime(i) == <span class="hljs-number">1</span>)<br>		&#123;<br>			<span class="hljs-comment">//如果当前数为素数，则一定是小于n的最大素数了</span><br>            <span class="hljs-comment">//中止循环即可~</span><br>			<span class="hljs-keyword">break</span>;<br>		&#125;<br>		<br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, i);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-
-
-<h2 id="6-爬楼梯"><a href="#6-爬楼梯" class="headerlink" title="6.爬楼梯"></a><strong>6.爬楼梯</strong></h2><p>假设你正在爬楼梯。需要 <code>n</code> 阶你才能到达楼顶。每次你可以爬 <code>1</code> 或 <code>2</code> 个台阶。你有多少种不同的方法可以爬到楼顶呢？</p>
+<h2 id="6-爬楼梯"><strong>6.爬楼梯</strong></h2>
+<p>假设你正在爬楼梯。需要 <code>n</code> 阶你才能到达楼顶。每次你可以爬 <code>1</code> 或 <code>2</code> 个台阶。你有多少种不同的方法可以爬到楼顶呢？</p>
 <p><strong>思路：</strong></p>
 <p>由于<strong>每次只能爬一个台阶或者两个台阶</strong>，因此<strong>第n阶台阶只能由第n-1阶台阶和n-2阶台阶到达</strong>。</p>
 <p>所以我们<strong>只要知道</strong>了爬到n-1阶台阶有多少中走法和n-2阶台阶有多少种走法，<strong>就能得到</strong>爬到n阶台阶有多少种走法。</p>
 <p>现用函数的形式表示n阶台阶的不同方法数：</p>
-<p>f(n) &#x3D; f(n - 1) + f(n - 2)。</p>
-<p>f(n - 1) &#x3D; f(n - 1 - 1) +f(n - 1 - 2)</p>
-<p>f(n - 2) &#x3D; f(n - 2 - 1) + f(n - 2 - 2)</p>
-<p>……</p>
+<p>f(n) = f(n - 1) + f(n - 2)。</p>
+<p>f(n - 1) = f(n - 1 - 1) +f(n - 1 - 2)</p>
+<p>f(n - 2) = f(n - 2 - 1) + f(n - 2 - 2)</p>
+<p>…</p>
 <p>我们会发现，每次操作都差不多，因此我们可以用<strong>递归解决问题</strong>(循环当然也可以)。</p>
 <p>但有<strong>两个特例</strong>：</p>
-<p>f(1) &#x3D; 1</p>
-<p>f(2) &#x3D; 2</p>
-<p>因为用上面的公式不符合，哪有走0阶台阶的- - </p>
+<p>f(1) = 1</p>
+<p>f(2) = 2</p>
+<p>因为用上面的公式不符合，哪有走0阶台阶的- -</p>
 <p><strong>代码：</strong></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">fun</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span><br>&#123;<br>    <span class="hljs-keyword">if</span>(n == <span class="hljs-number">1</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">if</span>(n == <span class="hljs-number">2</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">2</span>;<br>    <span class="hljs-keyword">if</span>(n &gt; <span class="hljs-number">2</span>)<br>        <span class="hljs-keyword">return</span> fun(n - <span class="hljs-number">1</span>) + fun(n - <span class="hljs-number">2</span>);<br>&#125;<br><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>    <span class="hljs-type">int</span> n = <span class="hljs-number">0</span>;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;n);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, fun(n));<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-
-
-<h2 id="7-逆序对"><a href="#7-逆序对" class="headerlink" title="7.逆序对"></a><strong>7.逆序对</strong></h2><p><code>逆序对</code></p>
-<p>在一个排列中，如果一对数的前后位置与大小顺序相反，即前面的数大于后面的数，那么它们就称为一个逆序。一个排列中逆序的总数就称为这个排列的逆序数。<br>如 <code>2 4 3 1 </code>中，<code> 2 1</code> ，<code>4 3</code> ，<code>4 1</code>，<code>3 1</code>是逆序，逆序数是 4 。给出一个整数序列，求该序列的逆序数。</p>
+<h2 id="7-逆序对"><strong>7.逆序对</strong></h2>
+<p><code>逆序对</code></p>
+<p>在一个排列中，如果一对数的前后位置与大小顺序相反，即前面的数大于后面的数，那么它们就称为一个逆序。一个排列中逆序的总数就称为这个排列的逆序数。<br>
+如 <code>2 4 3 1 </code>中，<code> 2 1</code> ，<code>4 3</code> ，<code>4 1</code>，<code>3 1</code>是逆序，逆序数是 4 。给出一个整数序列，求该序列的逆序数。</p>
 <p><strong>输入</strong></p>
-<p>第 1 行： $N$ ， $N$为序列的长度（ $N≤10000$ ）<br>第 2∼N+1 行：序列中的元素（$ 1≤A[i]≤10000 $）</p>
+<p>第 1 行： $N$ ， $N$为序列的长度（ $N≤10000$ ）<br>
+第 2∼N+1 行：序列中的元素（$ 1≤A[i]≤10000 $）</p>
 <p><strong>输出</strong></p>
 <p>输出逆序数</p>
 <p><strong>输入样例</strong></p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs">4<br>2<br>4<br>3<br>1<br></code></pre></td></tr></table></figure>
-
 <p><strong>输出样例</strong></p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">4<br></code></pre></td></tr></table></figure>
-
-
-
 <p><strong>思路：</strong></p>
 <p>抓住最重要的，<strong>前面的数大于后面的数</strong>！</p>
 <p>所以只要<strong>两个循环</strong>就可以解决了！</p>
@@ -381,10 +377,8 @@
 <p><strong>内循环</strong>：去当前等待比较的数后面寻找有没有它还大的数</p>
 <p><strong>代码</strong></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>    <span class="hljs-type">int</span> N = <span class="hljs-number">0</span>;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;N);<br>    <br>    <span class="hljs-comment">//创建数组存放这些数</span><br>    <span class="hljs-type">int</span> arr[<span class="hljs-number">100001</span>] = &#123; <span class="hljs-number">0</span> &#125;;<br>    <span class="hljs-comment">//读取这些数</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; N; i++)<br>    &#123;<br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;arr[i]);<br>    &#125;<br>    <br>    <span class="hljs-comment">//用来计数</span><br>    <span class="hljs-type">int</span> count = <span class="hljs-number">0</span>;<br>    <br>    <span class="hljs-comment">//外循环</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; N - <span class="hljs-number">1</span>; i++)<br>    &#123;<br>        <span class="hljs-comment">//内循环</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = i + <span class="hljs-number">1</span>; j &lt; Nl j++)<br>        &#123;<br>            <span class="hljs-comment">//开始判断,是否前面大于后面</span><br>            <span class="hljs-keyword">if</span>(arr[i] &gt; arr[j])<br>        		count++;<br>        &#125;<br>    &#125;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, count);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-
-
-<h2 id="9-宫殿距离"><a href="#9-宫殿距离" class="headerlink" title="9.宫殿距离"></a>9.宫殿距离</h2><p><code>搜索</code></p>
+<h2 id="9-宫殿距离">9.宫殿距离</h2>
+<p><code>搜索</code></p>
 <p>nxn的格子宫殿，包含一个起始点<code>#</code>，一个终止点<code>$</code>，其它点为<code>.</code></p>
 <p><strong>输入</strong></p>
 <p>第 1 行，一个数n，中间用空格隔开。 ($2≤n≤1000$)</p>
@@ -394,12 +388,8 @@
 <p>距离不包含起始位置，包含终止位置。</p>
 <p><strong>输入样例</strong></p>
 <figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc">5<br><span class="hljs-code">.....</span><br><span class="hljs-code">.#...</span><br><span class="hljs-code">.....</span><br><span class="hljs-code">.....</span><br><span class="hljs-code">....$</span><br></code></pre></td></tr></table></figure>
-
 <p><strong>输出样例</strong></p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">6<br></code></pre></td></tr></table></figure>
-
-
-
 <p><strong>思路：</strong></p>
 <p>别看这题在后面，其实装的，吓人的</p>
 <p><strong>不就是计算两点之间的距离嘛，只是不能斜着走</strong></p>
@@ -407,23 +397,20 @@
 <p>C语言的难度对于本体在于如何读取这个迷宫，需要注意缓存区中的换行符。</p>
 <p><strong>代码</strong></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-comment">//存放迷宫</span><br>	<span class="hljs-type">char</span> arr[<span class="hljs-number">1001</span>][<span class="hljs-number">1001</span>] = &#123; <span class="hljs-number">0</span> &#125;;<br>	<span class="hljs-type">int</span> n = <span class="hljs-number">0</span>;<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;n);<br>	<span class="hljs-comment">//清空缓存区中\n</span><br>	getchar();<br>	<span class="hljs-comment">//用来记录#的位置</span><br>	<span class="hljs-type">int</span> s_i = <span class="hljs-number">0</span>;<br>	<span class="hljs-type">int</span> s_j = <span class="hljs-number">0</span>;<br><br>	<span class="hljs-comment">//用来记录$的位置</span><br>	<span class="hljs-type">int</span> e_i = <span class="hljs-number">0</span>;<br>	<span class="hljs-type">int</span> e_j = <span class="hljs-number">0</span>;<br><br>	<span class="hljs-comment">//读入迷宫</span><br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++)<br>	&#123;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; n; j++)<br>		&#123;<br><br>			<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%c&quot;</span>, &amp;arr[i][j]);<br><br>			<span class="hljs-keyword">if</span> (arr[i][j] == <span class="hljs-string">&#x27;#&#x27;</span>)<br>			&#123;<br>				s_i = i;<br>				s_j = j;<br>			&#125;<br>			<span class="hljs-keyword">if</span> (arr[i][j] == <span class="hljs-string">&#x27;$&#x27;</span>)<br>			&#123;<br>				e_i = i;<br>				e_j = j;<br>			&#125;<br>		&#125;<br>		<span class="hljs-comment">//清空缓存区中\n</span><br>		getchar();<br>	&#125;<br><br>	<span class="hljs-comment">//abs函数是用来取绝对值的</span><br>	<span class="hljs-type">int</span> ans = <span class="hljs-built_in">abs</span>(s_i - e_i) + <span class="hljs-built_in">abs</span>(s_j - e_j);<br><br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, ans);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-
-
-<h2 id="4-数列求值"><a href="#4-数列求值" class="headerlink" title="4.数列求值"></a><strong>4.数列求值</strong></h2><p>给定数列1,1,1,3,5,9,17,…，从第4项开始，每项都是前3项的和。求第20190324项的最后4位数字。</p>
-<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a><strong>思路：</strong></h3><p>斐波那契数列的改版：因此依葫芦画瓢，使用递归来写。</p>
+<h2 id="4-数列求值"><strong>4.数列求值</strong></h2>
+<p>给定数列1,1,1,3,5,9,17,…，从第4项开始，每项都是前3项的和。求第20190324项的最后4位数字。</p>
+<h3 id="思路："><strong>思路：</strong></h3>
+<p>斐波那契数列的改版：因此依葫芦画瓢，使用递归来写。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">Fib</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span><br>&#123;<br>	<span class="hljs-keyword">if</span> (n == <span class="hljs-number">1</span>)<br>		<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">if</span> (n == <span class="hljs-number">2</span>)<br>		<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">if</span> (n == <span class="hljs-number">3</span>)<br>		<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">if</span> (n &gt; <span class="hljs-number">3</span>)<br>		<span class="hljs-keyword">return</span> Fib(n - <span class="hljs-number">1</span>) + Fib(n - <span class="hljs-number">2</span>) + Fib(n - <span class="hljs-number">3</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
-
 <p>但是因为递归的太深，所以需要求解的时间很长，因此在比赛中肯定是不能过得，因此我们要考虑用空间换时间。</p>
 <hr>
 <p>利用一个数组存储前n项的和，代码如下：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> arr[<span class="hljs-number">100</span>] = &#123; <span class="hljs-number">0</span> &#125;;<br>arr[n] = arr[n - <span class="hljs-number">1</span>] + arr[n - <span class="hljs-number">2</span>] + arr[n - <span class="hljs-number">3</span>];<br></code></pre></td></tr></table></figure>
-
 <p><strong>但是</strong>！对于这道题依旧行不通，<u><strong>因为他要让你存储第20190324个数，需要巨大的空间</strong></u>，在main函数中创建这个数组，程序会崩溃。但你可以**<u>将这个数组写在main函数外，写成全局变量数组。</u>**</p>
-<p><strong>但是！</strong>就算你开辟了这个很大的数组，你依旧过不了这题，因为当你傻乎乎的求解时，<em><strong>斐波那契数列的增长很快</strong></em>，不一会就会超出整形的范围，就会得到意想不到的数。不过这题给你了提示，<strong>让你求最后4位数，所以你每次只要关注当前数的后4位</strong>。</p>
-<p><strong>补充：</strong>要得到一个数的后i位，就要对这个数取模% 10 ^ i </p>
-<h3 id="最终代码如下："><a href="#最终代码如下：" class="headerlink" title="最终代码如下："></a>最终代码如下：</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c"><br></code></pre></td></tr></table></figure>
-
+<p>**但是！**就算你开辟了这个很大的数组，你依旧过不了这题，因为当你傻乎乎的求解时，<em><strong>斐波那契数列的增长很快</strong></em>，不一会就会超出整形的范围，就会得到意想不到的数。不过这题给你了提示，<strong>让你求最后4位数，所以你每次只要关注当前数的后4位</strong>。</p>
+<p>**补充：**要得到一个数的后i位，就要对这个数取模% 10 ^ i</p>
+<h3 id="最终代码如下：">最终代码如下：</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c"><br></code></pre></td></tr></table></figure>
 
                 
               </div>

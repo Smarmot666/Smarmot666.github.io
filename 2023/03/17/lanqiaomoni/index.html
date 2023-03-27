@@ -16,12 +16,12 @@
   <meta name="author" content="郑政祺">
   <meta name="keywords" content="">
   
-    <meta name="description" content="第一题问题描述　　请找到一个大于 2022 的最小数，这个数转换成十六进制之后，所有的数位（不含前导 0）都为字母（A 到 F）。　　请将这个数的十进制形式作为答案提交。答案提交　　这是一道结果填空的题，你只需要算出结果后提交即可。本题的结果为一个整数，在提交答案时只填写这个整数，填写多余的内容将无法得分。  方法一：  2022 转十六进制 7E6 这是一道填空题，最笨的方法，拿着计算器一个一个">
+    <meta name="description" content="第一题 问题描述 　　请找到一个大于 2022 的最小数，这个数转换成十六进制之后，所有的数位（不含前导 0）都为字母（A 到 F）。 　　请将这个数的十进制形式作为答案提交。 答案提交 　　这是一道结果填空的题，你只需要算出结果后提交即可。本题的结果为一个整数，在提交答案时只填写这个整数，填写多余的内容将无法得分。  方法一：  2022 转十六进制 7E6 这是一道填空题，最笨的方法，拿着计算">
 <meta property="og:type" content="article">
 <meta property="og:title" content="蓝桥杯模拟赛题解">
 <meta property="og:url" content="http://example.com/2023/03/17/lanqiaomoni/index.html">
 <meta property="og:site_name" content="机智的土拨鼠">
-<meta property="og:description" content="第一题问题描述　　请找到一个大于 2022 的最小数，这个数转换成十六进制之后，所有的数位（不含前导 0）都为字母（A 到 F）。　　请将这个数的十进制形式作为答案提交。答案提交　　这是一道结果填空的题，你只需要算出结果后提交即可。本题的结果为一个整数，在提交答案时只填写这个整数，填写多余的内容将无法得分。  方法一：  2022 转十六进制 7E6 这是一道填空题，最笨的方法，拿着计算器一个一个">
+<meta property="og:description" content="第一题 问题描述 　　请找到一个大于 2022 的最小数，这个数转换成十六进制之后，所有的数位（不含前导 0）都为字母（A 到 F）。 　　请将这个数的十进制形式作为答案提交。 答案提交 　　这是一道结果填空的题，你只需要算出结果后提交即可。本题的结果为一个整数，在提交答案时只填写这个整数，填写多余的内容将无法得分。  方法一：  2022 转十六进制 7E6 这是一道填空题，最笨的方法，拿着计算">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-03-17T08:16:27.559Z">
 <meta property="article:modified_time" content="2023-03-18T03:32:31.080Z">
@@ -236,7 +236,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.6k 字
+          5.4k 字
         
       </span>
     
@@ -247,7 +247,7 @@
         
         
         
-          47 分钟
+          46 分钟
         
       </span>
     
@@ -311,7 +311,12 @@
             
               <div class="markdown-body">
                 
-                <h1 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h1><p><strong>问题描述</strong><br>　　请找到一个大于 2022 的最小数，这个数转换成十六进制之后，所有的数位（不含前导 0）都为字母（A 到 F）。<br>　　请将这个数的十进制形式作为答案提交。<br><strong>答案提交</strong><br>　　这是一道结果填空的题，你只需要算出结果后提交即可。本题的结果为一个整数，在提交答案时只填写这个整数，填写多余的内容将无法得分。</p>
+                <h1>第一题</h1>
+<p><strong>问题描述</strong><br>
+　　请找到一个大于 2022 的最小数，这个数转换成十六进制之后，所有的数位（不含前导 0）都为字母（A 到 F）。<br>
+　　请将这个数的十进制形式作为答案提交。<br>
+<strong>答案提交</strong><br>
+　　这是一道结果填空的题，你只需要算出结果后提交即可。本题的结果为一个整数，在提交答案时只填写这个整数，填写多余的内容将无法得分。</p>
 <hr>
 <p><strong>方法一：</strong></p>
 <blockquote>
@@ -324,45 +329,88 @@
 <p><strong>思路</strong>：循环2022以后的数，看哪一个最先 转为十六进制后就全为字母</p>
 <p>如何一个十进制数转为十六进制呢？</p>
 <p>使用短除法~</p>
-<p>如：2022 % 16 &#x3D; 6， 2022 &#x2F; 16 &#x3D;  126</p>
-<p>​		126 % 16 &#x3D; E(14),  126 &#x2F; 16 &#x3D; 7</p>
-<p>​		7 % 16 &#x3D; 7,  7 &#x2F; 16 &#x3D; 0</p>
+<p>如：2022 % 16 = 6， 2022 / 16 =  126</p>
+<p>​		126 % 16 = E(14),  126 / 16 = 7</p>
+<p>​		7 % 16 = 7,  7 / 16 = 0</p>
 <p>最后将取模的数从下当上写出来， 所以 2022转为十六进制就为7E6了</p>
 </blockquote>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">is_Full</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span><br>&#123;<br>	<span class="hljs-comment">//如果满足每一位都是字母那就返回1，否则返回0</span><br>	<span class="hljs-keyword">while</span> (n)<br>	&#123;<br>		<span class="hljs-comment">//检查每一位是否为字母，如果为数字直接结束</span><br>		<span class="hljs-type">int</span> tmp = n % <span class="hljs-number">16</span>;<br>		<span class="hljs-keyword">if</span> (tmp &gt;= <span class="hljs-number">0</span> &amp;&amp; tmp &lt; <span class="hljs-number">10</span>)<br>		&#123;<br>			<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>		&#125;<br>		n /= <span class="hljs-number">16</span>;<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>&#125;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-type">int</span> n = <span class="hljs-number">2023</span>;<br>	<span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>)<br>	&#123;<br>		<span class="hljs-keyword">if</span> (is_Full(n))<br>		&#123;<br>			<span class="hljs-comment">//一旦找到某一个满足全是字母的数，直接结束</span><br>			<span class="hljs-keyword">break</span>;<br>		&#125;<br>		n++;<br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, n);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h1 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h1><p><strong>问题描述</strong><br>　　在 Excel 中，列的名称使用英文字母的组合。前 26 列用一个字母，依次为 A 到 Z，接下来 26*26 列使用两个字母的组合，依次为 AA 到 ZZ。<br>　　请问第 2022 列的名称是什么？<br><strong>答案提交</strong><br>　　这是一道结果填空的题，你只需要算出结果后提交即可。本题的结果为一个由大写字母组成的字符串，在提交答案时只填写这个字符串，填写多余的内容将无法得分。</p>
+<h1>第二题</h1>
+<p><strong>问题描述</strong><br>
+　　在 Excel 中，列的名称使用英文字母的组合。前 26 列用一个字母，依次为 A 到 Z，接下来 26*26 列使用两个字母的组合，依次为 AA 到 ZZ。<br>
+　　请问第 2022 列的名称是什么？<br>
+<strong>答案提交</strong><br>
+　　这是一道结果填空的题，你只需要算出结果后提交即可。本题的结果为一个由大写字母组成的字符串，在提交答案时只填写这个字符串，填写多余的内容将无法得分。</p>
 <blockquote>
 <p>介不就一道二十六进制的题。</p>
 <p>满Z就进位A。</p>
 </blockquote>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-type">int</span> n = <span class="hljs-number">2022</span>;<br>	<span class="hljs-keyword">while</span> (n)<br>	&#123;<br>		<span class="hljs-comment">//%c打印字符，即后面可以跟一个数字，然后会输出相应ASCII值的字符</span><br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%c &quot;</span>, n % <span class="hljs-number">26</span> + (<span class="hljs-string">&#x27;A&#x27;</span> - <span class="hljs-number">1</span>));<br>		n /= <span class="hljs-number">26</span>;<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>输出结果为TYB，需要将结果反过来即BYT，因为每次都是先得到个位再十位……</p>
-<h1 id="第三题"><a href="#第三题" class="headerlink" title="第三题"></a>第三题</h1><p><strong>问题描述</strong><br>　　对于一个日期，我们可以计算出年份的各个数位上的数字之和，也可以分别计算月和日的各位数字之和。请问从 1900 年 1 月 1 日至 9999 年 12 月 31 日，总共有多少天，年份的数位数字之和等于月的数位数字之和加日的数位数字之和。<br>　　例如，2022年11月13日满足要求，因为 2+0+2+2&#x3D;(1+1)+(1+3) 。<br>　　请提交满足条件的日期的总数量。<br><strong>答案提交</strong><br>　　这是一道结果填空的题，你只需要算出结果后提交即可。本题的结果为一个整数，在提交答案时只填写这个整数，填写多余的内容将无法得分。</p>
+<p>输出结果为TYB，需要将结果反过来即BYT，因为每次都是先得到个位再十位…</p>
+<h1>第三题</h1>
+<p><strong>问题描述</strong><br>
+　　对于一个日期，我们可以计算出年份的各个数位上的数字之和，也可以分别计算月和日的各位数字之和。请问从 1900 年 1 月 1 日至 9999 年 12 月 31 日，总共有多少天，年份的数位数字之和等于月的数位数字之和加日的数位数字之和。<br>
+　　例如，2022年11月13日满足要求，因为 2+0+2+2=(1+1)+(1+3) 。<br>
+　　请提交满足条件的日期的总数量。<br>
+<strong>答案提交</strong><br>
+　　这是一道结果填空的题，你只需要算出结果后提交即可。本题的结果为一个整数，在提交答案时只填写这个整数，填写多余的内容将无法得分。</p>
 <blockquote>
 <p>这题就老老实实的编程算了~不然得数到结束</p>
 <p>技巧：我们可以创建一个月份数组，存入每个对应的天数</p>
 <p>思路：枚举每个日期，看是否满足咯，记得要判断是否为闰年</p>
 </blockquote>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">is_LeapYear</span><span class="hljs-params">(<span class="hljs-type">int</span> year)</span><br>&#123;<br>	<span class="hljs-keyword">if</span> ((year % <span class="hljs-number">4</span> == <span class="hljs-number">0</span> &amp;&amp; year % <span class="hljs-number">100</span> != <span class="hljs-number">0</span>) || (year % <span class="hljs-number">400</span> == <span class="hljs-number">0</span>))<br>	&#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-comment">//得到每位之和</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">getSum</span><span class="hljs-params">(<span class="hljs-type">int</span> year)</span><br>&#123;<br>	<span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">while</span> (year)<br>	&#123;<br>		ans += year % <span class="hljs-number">10</span>;<br>		year /= <span class="hljs-number">10</span>;<br>	&#125;<br>	<span class="hljs-keyword">return</span> ans;<br>&#125;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-type">int</span> month[<span class="hljs-number">13</span>] = &#123; <span class="hljs-number">0</span>,<br>			<span class="hljs-number">31</span>,<span class="hljs-number">28</span>,<span class="hljs-number">31</span>,<br>			<span class="hljs-number">30</span>,<span class="hljs-number">31</span>,<span class="hljs-number">30</span>,<br>			<span class="hljs-number">31</span>,<span class="hljs-number">31</span>,<span class="hljs-number">30</span>,<br>			<span class="hljs-number">31</span>,<span class="hljs-number">30</span>,<span class="hljs-number">31</span> &#125;;<br>	<span class="hljs-comment">//用来计数，得到结果</span><br>	<span class="hljs-type">int</span> count = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1900</span>; i &lt;= <span class="hljs-number">9999</span>; i++)<br>	&#123;<br>		<span class="hljs-comment">//先判断这年是不是闰年</span><br>		month[<span class="hljs-number">2</span>] = is_LeapYear(i) ? <span class="hljs-number">29</span> : <span class="hljs-number">28</span>;<br><br>		<span class="hljs-comment">//得到这年上的数字之和</span><br>		<span class="hljs-type">int</span> year = getSum(i);<br><br>		<span class="hljs-comment">//得到月和日的数字之和</span><br>		<span class="hljs-type">int</span> Mon_Day = <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= <span class="hljs-number">12</span>; j++)<br>		&#123;<br>			<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> k = <span class="hljs-number">1</span>; k &lt;= month[j]; k++)<br>			&#123;<br>				<span class="hljs-comment">//计算月份和日每位数字之和~</span><br>				<span class="hljs-type">int</span> tmp = getSum(j) + getSum(k);<br>				<span class="hljs-keyword">if</span> (tmp == year)<br>					count++;<br>			&#125;<br>		&#125;<br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, count);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h1 id="第四题"><a href="#第四题" class="headerlink" title="第四题"></a>第四题</h1><p>问题描述<br>小蓝有 30 个数，分别为：99, 22, 51, 63, 72, 61, 20, 88, 40, 21, 63, 30, 11, 18, 99, 12, 93, 16, 7, 53, 64, 9, 28, 84, 34, 96, 52, 82, 51, 77 。<br>小蓝可以在这些数中取出两个序号不同的数，共有 30*29&#x2F;2&#x3D;435 种取法。<br>请问这 435 种取法中，有多少种取法取出的两个数的乘积大于等于 2022 。</p>
-<p>答案提交<br>这是一道结果填空的题，你只需要算出结果后提交即可。本题的结果为一个整数，在提交答案时只填写这个整数，填写多余的内容将无法得分。</p>
+<h1>第四题</h1>
+<p>问题描述<br>
+小蓝有 30 个数，分别为：99, 22, 51, 63, 72, 61, 20, 88, 40, 21, 63, 30, 11, 18, 99, 12, 93, 16, 7, 53, 64, 9, 28, 84, 34, 96, 52, 82, 51, 77 。<br>
+小蓝可以在这些数中取出两个序号不同的数，共有 30*29/2=435 种取法。<br>
+请问这 435 种取法中，有多少种取法取出的两个数的乘积大于等于 2022 。</p>
+<p>答案提交<br>
+这是一道结果填空的题，你只需要算出结果后提交即可。本题的结果为一个整数，在提交答案时只填写这个整数，填写多余的内容将无法得分。</p>
 <blockquote>
 <p>水题哦。直接上代码</p>
 </blockquote>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>    <span class="hljs-type">int</span> a[]=&#123;<span class="hljs-number">99</span>, <span class="hljs-number">22</span>, <span class="hljs-number">51</span>, <span class="hljs-number">63</span>, <span class="hljs-number">72</span>, <span class="hljs-number">61</span>, <span class="hljs-number">20</span>,<br>     <span class="hljs-number">88</span>, <span class="hljs-number">40</span>, <span class="hljs-number">21</span>, <span class="hljs-number">63</span>, <span class="hljs-number">30</span>, <span class="hljs-number">11</span>, <span class="hljs-number">18</span>, <span class="hljs-number">99</span>, <span class="hljs-number">12</span>,<br>      <span class="hljs-number">93</span>, <span class="hljs-number">16</span>, <span class="hljs-number">7</span>, <span class="hljs-number">53</span>, <span class="hljs-number">64</span>, <span class="hljs-number">9</span>, <span class="hljs-number">28</span>, <span class="hljs-number">84</span>, <span class="hljs-number">34</span>, <br>      <span class="hljs-number">96</span>, <span class="hljs-number">52</span>, <span class="hljs-number">82</span>, <span class="hljs-number">51</span>, <span class="hljs-number">77</span>&#125;;<br>    <span class="hljs-type">int</span> cnt=<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">30</span>;i++)<br>    &#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=i+<span class="hljs-number">1</span>;j&lt;<span class="hljs-number">30</span>;j++)<br>        &#123;<br>            <span class="hljs-keyword">if</span>(a[i]*a[j]&gt;=<span class="hljs-number">2022</span>)<br>            &#123;<br>                cnt++;<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, cnt);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125; <br></code></pre></td></tr></table></figure>
-
 <hr>
-<h1 id="第六题"><a href="#第六题" class="headerlink" title="第六题"></a>第六题</h1><p><strong>问题描述</strong><br>　　给定一天是一周中的哪天，请问 n 天后是一周中的哪天？<br><strong>输入格式</strong><br>　　输入第一行包含一个整数 w，表示给定的天是一周中的哪天，w 为 1 到 6 分别表示周一到周六，w 为 7 表示周日。<br>　　第二行包含一个整数 n。<br><strong>输出格式</strong><br>　　输出一行包含一个整数，表示 n 天后是一周中的哪天，1 到 6 分别表示周一到周六，7 表示周日。<br><strong>样例输入</strong><br>6<br>10<br><strong>样例输出</strong><br>2<br>评测用例规模与约定<br>　　对于所有评测用例，1 &lt;&#x3D; n &lt;&#x3D; 1000000。</p>
+<h1>第六题</h1>
+<p><strong>问题描述</strong><br>
+　　给定一天是一周中的哪天，请问 n 天后是一周中的哪天？<br>
+<strong>输入格式</strong><br>
+　　输入第一行包含一个整数 w，表示给定的天是一周中的哪天，w 为 1 到 6 分别表示周一到周六，w 为 7 表示周日。<br>
+　　第二行包含一个整数 n。<br>
+<strong>输出格式</strong><br>
+　　输出一行包含一个整数，表示 n 天后是一周中的哪天，1 到 6 分别表示周一到周六，7 表示周日。<br>
+<strong>样例输入</strong><br>
+6<br>
+10<br>
+<strong>样例输出</strong><br>
+2<br>
+评测用例规模与约定<br>
+　　对于所有评测用例，1 &lt;= n &lt;= 1000000。</p>
 <blockquote>
 <p>思路：给定一个整数w表明是周几，那不就是第几天嘛。让你算n天之后，只需要(w + n) % 7</p>
 </blockquote>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-type">int</span> w = <span class="hljs-number">0</span>;<br>	<span class="hljs-type">int</span> n = <span class="hljs-number">0</span>;<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d %d&quot;</span>, &amp;w, &amp;n);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, (w + n) % <span class="hljs-number">7</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
 <hr>
-<h1 id="第七题"><a href="#第七题" class="headerlink" title="第七题"></a>第七题</h1><p><strong>问题描述</strong><br>　　小蓝负责一块区域的信号塔安装，整块区域是一个长方形区域，建立坐标轴后，西南角坐标为 (0, 0)， 东南角坐标为 (W, 0)， 西北角坐标为 (0, H)， 东北角坐标为 (W, H)。其中 W, H 都是整数。<br>　　他在 n 个位置设置了信号塔，每个信号塔可以覆盖以自己为圆心，半径为 R 的圆形（包括边缘）。<br>　　为了对信号覆盖的情况进行检查，小蓝打算在区域内的所有横纵坐标为整数的点进行测试，检查信号状态。其中横坐标范围为 0 到 W，纵坐标范围为 0 到 H，总共测试 (W+1) * (H+1) 个点。<br>　　给定信号塔的位置，请问这 (W+1)*(H+1) 个点中有多少个点被信号覆盖。<br><strong>输入格式</strong><br>　　输入第一行包含四个整数 W, H, n, R，相邻整数之间使用一个空格分隔。<br>　　接下来 n 行，每行包含两个整数 x, y，表示一个信号塔的坐标。信号塔可能重合，表示两个信号发射器装在了同一个位置。<br><strong>输出格式</strong><br>　　输出一行包含一个整数，表示答案。<br><strong>样例输入</strong><br>10 10 2 5<br>0 0<br>7 0<br><strong>样例输出</strong><br>57<br>评测用例规模与约定<br>　　对于所有评测用例，1 &lt;&#x3D; W, H &lt;&#x3D; 100，1 &lt;&#x3D; n &lt;&#x3D; 100, 1 &lt;&#x3D; R &lt;&#x3D; 100, 0 &lt;&#x3D; x &lt;&#x3D; W, 0 &lt;&#x3D; y &lt;&#x3D; H。</p>
+<h1>第七题</h1>
+<p><strong>问题描述</strong><br>
+　　小蓝负责一块区域的信号塔安装，整块区域是一个长方形区域，建立坐标轴后，西南角坐标为 (0, 0)， 东南角坐标为 (W, 0)， 西北角坐标为 (0, H)， 东北角坐标为 (W, H)。其中 W, H 都是整数。<br>
+　　他在 n 个位置设置了信号塔，每个信号塔可以覆盖以自己为圆心，半径为 R 的圆形（包括边缘）。<br>
+　　为了对信号覆盖的情况进行检查，小蓝打算在区域内的所有横纵坐标为整数的点进行测试，检查信号状态。其中横坐标范围为 0 到 W，纵坐标范围为 0 到 H，总共测试 (W+1) * (H+1) 个点。<br>
+　　给定信号塔的位置，请问这 (W+1)*(H+1) 个点中有多少个点被信号覆盖。<br>
+<strong>输入格式</strong><br>
+　　输入第一行包含四个整数 W, H, n, R，相邻整数之间使用一个空格分隔。<br>
+　　接下来 n 行，每行包含两个整数 x, y，表示一个信号塔的坐标。信号塔可能重合，表示两个信号发射器装在了同一个位置。<br>
+<strong>输出格式</strong><br>
+　　输出一行包含一个整数，表示答案。<br>
+<strong>样例输入</strong><br>
+10 10 2 5<br>
+0 0<br>
+7 0<br>
+<strong>样例输出</strong><br>
+57<br>
+评测用例规模与约定<br>
+　　对于所有评测用例，1 &lt;= W, H &lt;= 100，1 &lt;= n &lt;= 100, 1 &lt;= R &lt;= 100, 0 &lt;= x &lt;= W, 0 &lt;= y &lt;= H。</p>
 <blockquote>
 <p>题目挺长的，但是细读会发现也就那样。</p>
 <p>思路：</p>
@@ -370,15 +418,40 @@
 <p>就将其对应二维数组的值改为1。最后再统计1的个数。</p>
 </blockquote>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-type">int</span> W, H, n, R;<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d %d %d %d&quot;</span>, &amp;W, &amp;H, &amp;n, &amp;R);<br>	<span class="hljs-comment">//创建一个二维数组</span><br>	<span class="hljs-comment">//因为不知道支不支持边长数组，就将数组开到最大</span><br>	<span class="hljs-type">int</span> arr[<span class="hljs-number">101</span>][<span class="hljs-number">101</span>] = &#123; <span class="hljs-number">0</span> &#125;;<br>	<br>	<span class="hljs-type">int</span> count = <span class="hljs-number">0</span>;<br>	<span class="hljs-comment">//对于每个信号塔进行预处理</span><br>	<span class="hljs-keyword">while</span> (n--)<br>	&#123;<br>		<span class="hljs-type">int</span> x, y;<br>		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d %d&quot;</span>, &amp;x, &amp;y);<br>		<br>		<span class="hljs-comment">//这里是&lt;=哦~</span><br>		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt;= H; i++)<br>		&#123;<br>			<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt;= W; j++)<br>			&#123;<br>				<span class="hljs-comment">//两点距离公式</span><br>				<span class="hljs-comment">//一个点的坐标:(j,i)</span><br>				<span class="hljs-comment">//信号塔坐标:  (y,x)</span><br>				<span class="hljs-keyword">if</span> ((x - i) * (x - i) + (y - j) * (y - j) &lt;= (R * R))<br>				&#123;					<br>					<span class="hljs-comment">//懒得再遍历一遍数组了，直接记录下有多少个1不就完事了~</span><br>					<span class="hljs-comment">//注意！如果被两个信号塔覆盖，应该只能算1次</span><br>					<span class="hljs-keyword">if</span> (arr[i][j] == <span class="hljs-number">0</span>)<br>						count++;<br><br>					arr[i][j] = <span class="hljs-number">1</span>;<br>				&#125;<br>			&#125;<br>		&#125;<br>	&#125;<br><br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, count);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
 <hr>
-<h1 id="第八题"><a href="#第八题" class="headerlink" title="第八题"></a>第八题</h1><p><strong>问题描述</strong><br>　　小蓝有一个 n * m 大小的矩形水域，小蓝将这个水域划分为 n 行 m 列，行数从 1 到 n 标号，列数从 1 到 m 标号。每行和每列的宽度都是单位 1 。<br>　　现在，这个水域长满了水草，小蓝要清理水草。<br>　　每次，小蓝可以清理一块矩形的区域，从第 r1 行（含）到第 r2 行（含）的第 c1 列（含）到 c2 列（含）。<br>　　经过一段时间清理后，请问还有多少地方没有被清理过。<br><strong>输入格式</strong><br>　　输入第一行包含两个整数 n, m，用一个空格分隔。<br>　　第二行包含一个整数 t ，表示清理的次数。<br>　　接下来 t 行，每行四个整数 r1, c1, r2, c2，相邻整数之间用一个空格分隔，表示一次清理。请注意输入的顺序。<br><strong>输出格式</strong><br>　　输出一行包含一个整数，表示没有被清理过的面积。<br><strong>样例输入</strong><br>2 3<br>2<br>1 1 1 3<br>1 2 2 2<br><strong>样例输出</strong><br>2<br><strong>样例输入</strong><br>30 20<br>2<br>5 5 10 15<br>6 7 15 9<br><strong>样例输出</strong><br>519<br>评测用例规模与约定<br>　　对于所有评测用例，1 &lt;&#x3D; r1 &lt;&#x3D; r2 &lt;&#x3D; n &lt;&#x3D; 100, 1 &lt;&#x3D; c1 &lt;&#x3D; c2 &lt;&#x3D; m &lt;&#x3D; 100, 0 &lt;&#x3D; t &lt;&#x3D; 100。</p>
+<h1>第八题</h1>
+<p><strong>问题描述</strong><br>
+　　小蓝有一个 n * m 大小的矩形水域，小蓝将这个水域划分为 n 行 m 列，行数从 1 到 n 标号，列数从 1 到 m 标号。每行和每列的宽度都是单位 1 。<br>
+　　现在，这个水域长满了水草，小蓝要清理水草。<br>
+　　每次，小蓝可以清理一块矩形的区域，从第 r1 行（含）到第 r2 行（含）的第 c1 列（含）到 c2 列（含）。<br>
+　　经过一段时间清理后，请问还有多少地方没有被清理过。<br>
+<strong>输入格式</strong><br>
+　　输入第一行包含两个整数 n, m，用一个空格分隔。<br>
+　　第二行包含一个整数 t ，表示清理的次数。<br>
+　　接下来 t 行，每行四个整数 r1, c1, r2, c2，相邻整数之间用一个空格分隔，表示一次清理。请注意输入的顺序。<br>
+<strong>输出格式</strong><br>
+　　输出一行包含一个整数，表示没有被清理过的面积。<br>
+<strong>样例输入</strong><br>
+2 3<br>
+2<br>
+1 1 1 3<br>
+1 2 2 2<br>
+<strong>样例输出</strong><br>
+2<br>
+<strong>样例输入</strong><br>
+30 20<br>
+2<br>
+5 5 10 15<br>
+6 7 15 9<br>
+<strong>样例输出</strong><br>
+519<br>
+评测用例规模与约定<br>
+　　对于所有评测用例，1 &lt;= r1 &lt;= r2 &lt;= n &lt;= 100, 1 &lt;= c1 &lt;= c2 &lt;= m &lt;= 100, 0 &lt;= t &lt;= 100。</p>
 <blockquote>
 <p>感觉水题一样的，跟上题差不多思路，依旧是创建一个二维数组，去找里面有多少个0——代表没被清理过的地方。</p>
 <p>搞懂上题这题打个哈哈就过~</p>
 </blockquote>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>    <span class="hljs-type">int</span> n, m, t;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d %d %d&quot;</span>, &amp;n, &amp;m, &amp;t);<br>    <span class="hljs-type">int</span> r1, c1, r2, c2;<br>    <span class="hljs-type">int</span> a[<span class="hljs-number">101</span>][<span class="hljs-number">101</span>] = &#123; <span class="hljs-number">0</span> &#125;;<br><br>    <span class="hljs-type">int</span> i, j;<br>    <span class="hljs-keyword">while</span> (t--)<br>    &#123;<br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d %d %d %d&quot;</span>, &amp;r1, &amp;c1, &amp;r2, &amp;c2);<br>        <span class="hljs-keyword">for</span> (i = r1; i &lt;= r2; i++)<br>        &#123;<br>            <span class="hljs-keyword">for</span> (j = c1; j &lt;= c2; j++)<br>            &#123;<br>                a[i][j] = <span class="hljs-number">1</span>;<br>            &#125;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-type">int</span> sum = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">1</span>; i &lt;= n; i++)<br>    &#123;<br>        <span class="hljs-keyword">for</span> (j = <span class="hljs-number">1</span>; j &lt;= m; j++)<br>        &#123;<br>            <span class="hljs-keyword">if</span> (a[i][j] == <span class="hljs-number">0</span>)<br>            &#123;<br>                sum++;<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, sum);<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
 
                 
               </div>
