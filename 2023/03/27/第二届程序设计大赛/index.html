@@ -24,7 +24,7 @@
 <meta property="og:description" content="1.闰年问题描述 给定一个年份，判断这一年是不是闰年。当以下情况之一满足时，这一年是闰年：  年份是4的倍数而不是100的倍数； 年份是400的倍数。其他的年份都不是闰年。  输入格式输入包含一个整数y，表示当前的年份。 输出格式输出一行，如果给定的年份是闰年，则输出yes，否则输出no。 说明：当试题指定你输出一个字符串作为结果（比如本题的yes或者no，你需要严格按照试题中给定的大小写，写错大">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-03-27T03:33:35.000Z">
-<meta property="article:modified_time" content="2023-03-27T03:35:55.030Z">
+<meta property="article:modified_time" content="2023-03-30T14:20:12.657Z">
 <meta property="article:author" content="郑政祺">
 <meta property="article:tag" content="SolveProblem">
 <meta name="twitter:card" content="summary_large_image">
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4k 字
+          6.2k 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
         
-          34 分钟
+          52 分钟
         
       </span>
     
@@ -412,7 +412,8 @@
 
 
 <h2 id="4-数列求值"><a href="#4-数列求值" class="headerlink" title="4.数列求值"></a><strong>4.数列求值</strong></h2><p>给定数列1,1,1,3,5,9,17,…，从第4项开始，每项都是前3项的和。求第20190324项的最后4位数字。</p>
-<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a><strong>思路：</strong></h3><p>斐波那契数列的改版：因此依葫芦画瓢，使用递归来写。</p>
+<p><strong>思路：</strong></p>
+<p>斐波那契数列的改版：因此依葫芦画瓢，使用递归来写。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">Fib</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span><br>&#123;<br>	<span class="hljs-keyword">if</span> (n == <span class="hljs-number">1</span>)<br>		<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">if</span> (n == <span class="hljs-number">2</span>)<br>		<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">if</span> (n == <span class="hljs-number">3</span>)<br>		<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">if</span> (n &gt; <span class="hljs-number">3</span>)<br>		<span class="hljs-keyword">return</span> Fib(n - <span class="hljs-number">1</span>) + Fib(n - <span class="hljs-number">2</span>) + Fib(n - <span class="hljs-number">3</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>但是因为递归的太深，所以需要求解的时间很长，因此在比赛中肯定是不能过得，因此我们要考虑用空间换时间。</p>
@@ -424,6 +425,72 @@
 <p><strong>但是！</strong>就算你开辟了这个很大的数组，你依旧过不了这题，因为当你傻乎乎的求解时，<em><strong>斐波那契数列的增长很快</strong></em>，不一会就会超出整形的范围，就会得到意想不到的数。不过这题给你了提示，<strong>让你求最后4位数，所以你每次只要关注当前数的后4位</strong>。</p>
 <p><strong>补充：</strong>要得到一个数的后i位，就要对这个数取模% 10 ^ i </p>
 <h3 id="最终代码如下："><a href="#最终代码如下：" class="headerlink" title="最终代码如下："></a>最终代码如下：</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c"><br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="3-泡泡世界"><a href="#3-泡泡世界" class="headerlink" title="3.泡泡世界"></a><strong>3.泡泡世界</strong></h2><p>小鱼儿吐泡泡，嘟嘟嘟冒出来。小鱼儿会吐出两种泡泡：大泡泡”O”，小泡泡”o”。 两个相邻的小泡泡会融成一个大泡泡,两个相邻的大泡泡会爆掉。 </p>
+<p><strong>输入</strong></p>
+<p>一行仅有’O’与’o’组成的字符串。</p>
+<p>保证字符串的长度不超过100。</p>
+<p><strong>输出</strong></p>
+<p>输出一行字符串代表小鱼儿吐出的泡泡经过融合以后所剩余的泡泡。</p>
+<p>合并顺序为自左向右合并。</p>
+<p><strong>输入样例</strong></p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">ooOOoooO</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>输出样例</strong></p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">oO</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>思路：</strong></p>
+<blockquote>
+<p>通过观察，我们可以发现，我们只需要关注当前泡泡的最右边的一个泡泡是什么，然后进行操作，符合栈的性质，因此可以用栈来做。</p>
+<p>因为C语言没有自带栈，所以就使用C++来解决.</p>
+</blockquote>
+<p><strong>最终代码：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stack&gt;</span></span><br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	string str;<br>	cin &gt;&gt; str;<br><br>	stack&lt;<span class="hljs-type">char</span>&gt; st;<br><br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; str.<span class="hljs-built_in">size</span>(); i++)<br>	&#123;<br>		<span class="hljs-comment">//如果此时栈里没泡泡</span><br>		<span class="hljs-keyword">if</span> (st.<span class="hljs-built_in">empty</span>())<br>			st.<span class="hljs-built_in">push</span>(str[i]);<br>		<span class="hljs-comment">//有泡泡</span><br>		<span class="hljs-keyword">else</span><br>		&#123;<br>			<span class="hljs-comment">//如果与栈顶的泡泡相等</span><br>			<span class="hljs-keyword">if</span> (st.<span class="hljs-built_in">top</span>() == str[i])<br>			&#123;<br>				<span class="hljs-comment">//如果栈顶是和当前都是&#x27;o&#x27;,则还需要判断栈顶下一个元素是否是&#x27;O&#x27;，</span><br>				<span class="hljs-comment">//如果是需要继续删除，如果不是直接插入</span><br>				<span class="hljs-keyword">if</span> (str[i] == <span class="hljs-string">&#x27;o&#x27;</span>)<br>				&#123;<br>					st.<span class="hljs-built_in">pop</span>();<br>					<span class="hljs-keyword">if</span> (!st.<span class="hljs-built_in">empty</span>() &amp;&amp; st.<span class="hljs-built_in">top</span>() == <span class="hljs-string">&#x27;O&#x27;</span>)<br>						st.<span class="hljs-built_in">pop</span>();<br>					<span class="hljs-keyword">else</span><br>						st.<span class="hljs-built_in">push</span>(<span class="hljs-string">&#x27;O&#x27;</span>);<br>				&#125;<br>				<span class="hljs-keyword">else</span><br>					st.<span class="hljs-built_in">pop</span>();<br>			&#125;<br>			<span class="hljs-comment">//如果不相等</span><br>			<span class="hljs-keyword">else</span><br>				st.<span class="hljs-built_in">push</span>(str[i]);<br>		&#125;<br>	&#125;<br><br>	<span class="hljs-comment">//由于栈中的元素顺序与答案是反着的，需要逆置一遍</span><br>	<span class="hljs-comment">//栈没有迭代器，只能手动逆置</span><br>	stack&lt;<span class="hljs-type">char</span>&gt; helpSt;<br>	<span class="hljs-keyword">while</span> (!st.<span class="hljs-built_in">empty</span>())<br>	&#123;<br>		helpSt.<span class="hljs-built_in">push</span>(st.<span class="hljs-built_in">top</span>());<br>		st.<span class="hljs-built_in">pop</span>();<br>	&#125;<br><br>	<span class="hljs-comment">//输出答案</span><br>	<span class="hljs-keyword">while</span> (!helpSt.<span class="hljs-built_in">empty</span>())<br>	&#123;<br>		cout &lt;&lt; helpSt.<span class="hljs-built_in">top</span>();<br>		helpSt.<span class="hljs-built_in">pop</span>();<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="8-机器人走方格"><a href="#8-机器人走方格" class="headerlink" title="8.机器人走方格"></a>8.机器人走方格</h2><p><code>dp</code> <code>组合数</code> <code>递推</code></p>
+<p>m×n 的方格，一个机器人从左上走到右下，只能向右或向下走。有多少种不同的走法？</p>
+<p>由于方法数量可能很大，只需要输出 $mod(10^9+7)$的结果。</p>
+<p><strong>输入</strong></p>
+<p>第 1 行，两个数m,n，中间用空格隔开。 ($2≤m,n≤10^6$)</p>
+<p><strong>输出</strong></p>
+<p>输出走法的数量$mod (10^9+7)$</p>
+<p><strong>输入样例</strong></p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">2 </span><span class="hljs-number">3</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>输出样例</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">3<br></code></pre></td></tr></table></figure>
+
+<p><strong>思路：</strong></p>
+<blockquote>
+<p>非常简单一道动态规划。</p>
+<p>动态规划三部曲：</p>
+<p>1、确定dp数组以及下标的含义。</p>
+<p>dp数组表示的是到第(i,j)位置有多少种走法。</p>
+<p>2、确定递推公式</p>
+<p>因为只能向右和向下走，所以只能从两个方向上走过来，相加即可.</p>
+<p>dp[i][j] &#x3D; dp[i - 1][j ] + dp[i][j - 1]</p>
+<p>3、dp数组如何初始化</p>
+<p>第一行只能从左走到右，所以只有1种走法</p>
+<p>第一列只能从上走到下，所以只有1中走法</p>
+</blockquote>
+<p><strong>代码：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;vector&gt;</span></span><br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-type">int</span> n, m;<br>	cin &gt;&gt; n &gt;&gt; m;<br><br>	<span class="hljs-comment">//dp数组表示的是到第(i, j)位置有多少种走法。</span><br>	<span class="hljs-comment">//直接全部初始化1，反正后面的会被覆盖</span><br>	vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">dp</span>(n, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(m, <span class="hljs-number">1</span>));<br>	<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; dp.<span class="hljs-built_in">size</span>(); i++)<br>		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt; dp[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>(); j++)<br>			<span class="hljs-comment">//确定递推公式</span><br>			dp[i][j] = dp[i - <span class="hljs-number">1</span>][j] + dp[i][j - <span class="hljs-number">1</span>];<br><br>	cout &lt;&lt; dp[n - <span class="hljs-number">1</span>][m - <span class="hljs-number">1</span>] % (<span class="hljs-built_in">pow</span>(<span class="hljs-number">10</span>, <span class="hljs-number">9</span>) + <span class="hljs-number">7</span>);<br><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>写到这里，能拿大部分的分数，但是由于题目故意将数据放大了，这样还是会超时。</p>
+<p>所以看看能不能优化。</p>
+<p>通过观察发现，其实就是组合数。</p>
+<p>从左上到右下，一共要走m - 1 + n - 1步，因为只能走两个方向，所以从m+n-2步中任选m-1步往下走。</p>
+<p>即：</p>
+</blockquote>
+
+
+<p><strong>最终代码如下：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-type">long</span> <span class="hljs-type">long</span> ans = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> x = n, y = <span class="hljs-number">1</span>; y &lt; m; ++x, ++y) <br>    &#123;<br>        ans = ans * x / y;<br>    &#125;<br>    cout &lt;&lt; ans % (<span class="hljs-built_in">pow</span>(<span class="hljs-number">10</span>, <span class="hljs-number">9</span>) + <span class="hljs-number">7</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
                 
