@@ -16,27 +16,24 @@
   <meta name="author" content="郑政祺">
   <meta name="keywords" content="">
   
-    <meta name="description" content="质数的定义 质数又称素数。质数是指在大于1的自然数中，除了1和它本身以外不再有其他因数的自然数。 1-N的质数 题目描述：  寻找1-N之间的所有质数。 将其输出出来。  方法一：朴素法 思路：  根据定义，只要循环2 - X-1 的数，看其是否是X的因数，如果都不是，那这个数就是素数。 可以优化，即找2 - 根号x的数。  123456789101112131415161718192021222">
+    <meta name="description" content="一、文件的分类 1.1程序文件  例如：源程序文件 即 .c文件 ​			可执行程序 即 .exe文件 ​			…  1.2数据文件  例如：PPT、word文档、Excel表格…  二、文件的打开与关闭 不使用文件相关操作的时候，数据的输入输出都是以终端为对象，即从终端的键盘输入数据，将内存中的运行结果输出到终端上。如下：  注意：输入输出都是站在内存的角度来看待的！  但是如果是对文件操作，同">
 <meta property="og:type" content="article">
-<meta property="og:title" content="筛质数">
-<meta property="og:url" content="http://example.com/2023/03/28/%E7%AD%9B%E8%B4%A8%E6%95%B0/index.html">
+<meta property="og:title" content="C语言文件操作">
+<meta property="og:url" content="http://example.com/2023/04/03/C%E8%AF%AD%E8%A8%80%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/index.html">
 <meta property="og:site_name" content="机智的土拨鼠">
-<meta property="og:description" content="质数的定义 质数又称素数。质数是指在大于1的自然数中，除了1和它本身以外不再有其他因数的自然数。 1-N的质数 题目描述：  寻找1-N之间的所有质数。 将其输出出来。  方法一：朴素法 思路：  根据定义，只要循环2 - X-1 的数，看其是否是X的因数，如果都不是，那这个数就是素数。 可以优化，即找2 - 根号x的数。  123456789101112131415161718192021222">
+<meta property="og:description" content="一、文件的分类 1.1程序文件  例如：源程序文件 即 .c文件 ​			可执行程序 即 .exe文件 ​			…  1.2数据文件  例如：PPT、word文档、Excel表格…  二、文件的打开与关闭 不使用文件相关操作的时候，数据的输入输出都是以终端为对象，即从终端的键盘输入数据，将内存中的运行结果输出到终端上。如下：  注意：输入输出都是站在内存的角度来看待的！  但是如果是对文件操作，同">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2023/03/28/%E7%AD%9B%E8%B4%A8%E6%95%B0/image-20230328215621016.png">
-<meta property="og:image" content="http://example.com/2023/03/28/%E7%AD%9B%E8%B4%A8%E6%95%B0/image-20230328222516619.png">
-<meta property="article:published_time" content="2023-03-28T13:31:48.000Z">
-<meta property="article:modified_time" content="2023-03-29T05:04:44.584Z">
+<meta property="article:published_time" content="2023-04-03T12:03:25.000Z">
+<meta property="article:modified_time" content="2023-04-03T12:53:28.360Z">
 <meta property="article:author" content="郑政祺">
-<meta property="article:tag" content="基础算法">
+<meta property="article:tag" content="C语言">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2023/03/28/%E7%AD%9B%E8%B4%A8%E6%95%B0/image-20230328215621016.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>筛质数 - 机智的土拨鼠</title>
+  <title>C语言文件操作 - 机智的土拨鼠</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -217,7 +214,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="筛质数"></span>
+            <span id="subtitle" data-typed-text="C语言文件操作"></span>
           
         </div>
 
@@ -228,8 +225,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-03-28 21:31" pubdate>
-          2023年3月28日 晚上
+        <time datetime="2023-04-03 20:03" pubdate>
+          2023年4月3日 晚上
         </time>
       </span>
     
@@ -240,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.5k 字
+          1.1k 字
         
       </span>
     
@@ -251,7 +248,7 @@
         
         
         
-          21 分钟
+          9 分钟
         
       </span>
     
@@ -310,103 +307,113 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">筛质数</h1>
+            <h1 style="display: none">C语言文件操作</h1>
             
             
               <div class="markdown-body">
                 
-                <h1>质数的定义</h1>
-<p>质数又称素数。质数是指在大于1的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%87%AA%E7%84%B6%E6%95%B0/385394?fromModule=lemma_inlink">自然数</a>中，除了1和它本身以外不再有其他<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%9B%A0%E6%95%B0/9539111?fromModule=lemma_inlink">因数</a>的自然数。</p>
-<h1>1-N的质数</h1>
-<p><strong>题目描述：</strong></p>
+                <h1>一、文件的分类</h1>
+<h2 id="1-1程序文件">1.1程序文件</h2>
 <blockquote>
-<p>寻找1-N之间的所有质数。</p>
-<p>将其输出出来。</p>
+<p>例如：源程序文件 即 .c文件</p>
+<p>​			可执行程序 即 .exe文件</p>
+<p>​			…</p>
 </blockquote>
-<h2 id="方法一：朴素法">方法一：朴素法</h2>
-<p><strong>思路：</strong></p>
+<h2 id="1-2数据文件">1.2数据文件</h2>
 <blockquote>
-<p>根据定义，只要循环2 - X-1 的数，看其是否是X的因数，如果都不是，那这个数就是素数。</p>
-<p>可以优化，即找2 - 根号x的数。</p>
+<p>例如：PPT、word文档、Excel表格…</p>
 </blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">isPrime</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span>	</span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-comment">//循环2- sqrt(x)的数，看是否为其因数</span><br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">2</span>; i &lt;= <span class="hljs-built_in">sqrt</span>(x); i++)<br>	&#123;<br>		<span class="hljs-keyword">if</span> (x % i == <span class="hljs-number">0</span>)<br>			<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-comment">//输入</span><br>	<span class="hljs-type">int</span> N = <span class="hljs-number">0</span>;<br>	cin &gt;&gt; N;<br>    <br>    <span class="hljs-comment">//由于素数是从2开始的</span><br>    <span class="hljs-comment">//循环2-N的数</span><br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">2</span>; i &lt;= N; i++)<br>	&#123;<br>        <span class="hljs-comment">//如果是素数，输出即可</span><br>		<span class="hljs-keyword">if</span> (<span class="hljs-built_in">isPrime</span>(i))<br>			cout &lt;&lt; i &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p>显然效率是不够的高的。每次都要找2-sqrt(x)的数来判断是否为因数。</p>
-<p><strong>假设找1-10000内的数，则要循环117527次。</strong></p>
-<h2 id="方法二：埃氏筛法">方法二：埃氏筛法</h2>
-<p><strong>思路：</strong></p>
-<blockquote>
-<p>埃氏筛法是通过先找到素数，然后筛选不是这些素数倍数的数。</p>
-</blockquote>
-<p><strong>例如：</strong></p>
-<blockquote>
-<p>2是素数，然后直接排除4、6、8、10…</p>
-<p>3由于不是2的倍数，所以没有被筛选，此时小于3的所有数就都筛选过了，此时3就是素数了。然后通过3，直接排除6、9、12…</p>
-<p>4由于被筛掉了，所以不用看了。</p>
-<p>5不是2、3的倍数，此时小于5的所有数也都被筛选了，5也就是素数。然后再排除其倍数。</p>
-</blockquote>
-<img src="/2023/03/28/%E7%AD%9B%E8%B4%A8%E6%95%B0/image-20230328215621016.png" srcset="/img/loading.gif" lazyload class title="image-20230328215621016">
-<p><strong>不过这种做法也是有一点缺陷的，即6被筛选了两次.</strong></p>
+<h1>二、文件的打开与关闭</h1>
+<p>不使用文件相关操作的时候，数据的输入输出都是以<strong>终端</strong>为对象，即从终端的键盘输入数据，将<strong>内存中的运行结果</strong>输出到<strong>终端</strong>上。如下：</p>
+
+<p><strong>注意：输入输出都是站在内存的角度来看待的！</strong></p>
 <hr>
-<p><strong>将原理运用：</strong></p>
-<blockquote>
-<p>首先创建一个大小为N+1的数组。里面存放能表示真或者假两种状态的标记。</p>
-<p>初始化数组，假设全为真，表示所有数为素数。</p>
-<p>要特判下标为0、1的，因为其不符合素数定义。</p>
-<p>然后循环2-N的数，如果这个数为素数，则去找其倍数，修改为非素数。即1变0，真变假。</p>
-</blockquote>
-<p><strong>代码如下：</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;vector&gt;</span></span><br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-type">int</span> N = <span class="hljs-number">0</span>;<br>	cin &gt;&gt; N;<br>    <br>    <span class="hljs-comment">//创建一个数组来表示0-N的数</span><br>	<span class="hljs-function">vector&lt;<span class="hljs-type">bool</span>&gt; <span class="hljs-title">Prime</span><span class="hljs-params">(N + <span class="hljs-number">1</span>, <span class="hljs-literal">true</span>)</span></span>;<br>    <br>    <span class="hljs-comment">//不符合定义</span><br>	Prime[<span class="hljs-number">0</span>] = <span class="hljs-literal">false</span>;<br>	Prime[<span class="hljs-number">1</span>] = <span class="hljs-literal">false</span>;<br>    <br>    <span class="hljs-comment">//循环2-N的数</span><br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">2</span>; i &lt;= N; i++)<br>	&#123;<br>        <span class="hljs-comment">//如果是素数就筛选其倍速</span><br>		<span class="hljs-keyword">if</span> (Prime[i])<br>		&#123;<br>			<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">2</span> * i; j &lt;= N; j += i)<br>			&#123;<br>				Prime[j] = <span class="hljs-literal">false</span>;<br>			&#125;<br>			cout &lt;&lt; i &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p><strong>埃氏筛法可快多了，当要找1-10000内的数，只要31841次。</strong></p>
-<h2 id="方法三：欧拉筛法">方法三：欧拉筛法</h2>
-<p><strong>介绍：</strong></p>
-<blockquote>
-<p>欧拉筛法，也称线性筛，是在埃氏筛的基础上的优化，因为埃氏筛会某一个合数进行多少筛选。本质上是通过合数的最小的质因子筛掉数字。</p>
-<p>大致流程：收集素数，然后遍历每一个数，让其乘上收集到的素数，然后筛选这个数。注意，因为是通过最小质因子筛选，如果当前数的因数有收集到的素数，需要终止。</p>
-</blockquote>
-<p><strong>例如：</strong></p>
-<blockquote>
-<p>2是素数，此时素数列表中只有2，让其 *2，筛选掉4</p>
-<p>3没被筛选，此时将其加入素数列表，列表内容为2、3,让3 * 2, 3 * 3，筛选掉6、9</p>
-<p>4被筛选掉了，不同于埃氏筛法，依旧要进行操作，让其成上2，筛选掉8，<strong>然后直接结束4的操作</strong>！<strong>因为欧拉筛的原理是通过最小质因子筛选。2是4的因子，不符合规则。所以不进行 4 * 3的操作。</strong></p>
-<p>5没被筛选，加入素数列表，列表内容为2、3、5，然其乘上这些素数。</p>
-<p>6被筛选掉了，让其乘上2, 2 * 6 = 12，然后直接结束6的操作！</p>
-<p>…</p>
-<p>这样就能保证对每个数只筛选一次了。</p>
-</blockquote>
-<img src="/2023/03/28/%E7%AD%9B%E8%B4%A8%E6%95%B0/image-20230328222516619.png" srcset="/img/loading.gif" lazyload class title="image-20230328222516619">
-<p><strong>这种筛选法，对于一个数只会筛掉一次。</strong></p>
-<p><strong>思路：</strong></p>
-<blockquote>
-<p>首先我们需要一个数组，标记这些数是否为质数。因为我们每个数都要乘以之前的所有素数，因此我们需要一个数组来记录素数。</p>
-<p>如果是素数就加入数组。</p>
-<p>对每个数进行乘上素数的操作，然后筛选数</p>
-</blockquote>
-<p><strong>代码如下：</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-type">int</span> N = <span class="hljs-number">0</span>;<br>	cin &gt;&gt; N;<br>    <br>    <span class="hljs-comment">//判定是否为素数</span><br>	<span class="hljs-function">vector&lt;<span class="hljs-type">bool</span>&gt; <span class="hljs-title">isPrime</span><span class="hljs-params">(N + <span class="hljs-number">1</span>, <span class="hljs-literal">true</span>)</span></span>;<br>	isPrime[<span class="hljs-number">0</span>] = <span class="hljs-literal">false</span>;<br>	isPrime[<span class="hljs-number">1</span>] = <span class="hljs-literal">false</span>;<br>    <span class="hljs-comment">//储存素数的数组</span><br>	vector&lt;<span class="hljs-type">int</span>&gt; Prime;<br>    <br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">2</span>; i &lt;= N; i++)<br>	&#123;<br>        <span class="hljs-comment">//如果为素数就加入数组</span><br>		<span class="hljs-keyword">if</span> (isPrime[i])<br>			Prime.<span class="hljs-built_in">push_back</span>(i);<br>        <span class="hljs-comment">//乘以素数进行筛选，需要注意是否会越界</span><br>		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; Prime.<span class="hljs-built_in">size</span>() &amp;&amp; i * Prime[j] &lt;= N; j++)<br>		&#123;<br>			isPrime[i * Prime[j]] = <span class="hljs-literal">false</span>;<br>			<span class="hljs-keyword">if</span> (i % Prime[j] == <span class="hljs-number">0</span>) <span class="hljs-comment">//最关键的一步！因为欧拉筛的本质是通过最小质因子来筛的</span><br>				<span class="hljs-keyword">break</span>;<br>		&#125;<br>	&#125;<br><br>	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> e : Prime)<br>		cout &lt;&lt; e &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; endl;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p><strong>欧拉筛是一种非常高效的算法，如果是找10000内的质数，只需要循环8770次，比埃氏还要快的多。</strong></p>
-<p><strong>对比：</strong></p>
+<p>但是如果是对文件操作，同理。</p>
+<p>如下：</p>
+
+<h2 id="2-1文件指针">2.1文件指针</h2>
+<p><strong>每个被使用的文件</strong>都在<strong>内存</strong>中开辟了一个相应的<strong>文件信息区</strong>，用来存放，文件的名字，文件当前的位置等信息。</p>
+<p>这些信息是<strong>保存在一个结构体变量</strong>中，该结构体类型是由系统声明的，取名<strong>FILE</strong></p>
+<p><strong>例如：在VS2013编译环境下，就有如下申明：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">struct</span> _<span class="hljs-title">iobuf</span> &#123;</span><br>    <span class="hljs-type">char</span> *_ptr;<br>    <span class="hljs-type">int</span> _cnt;<br>    <span class="hljs-type">char</span> *_base;<br>    <span class="hljs-type">int</span> _flag;<br>    <span class="hljs-type">int</span> _file;<br>    <span class="hljs-type">int</span> _charbuf;<br>    <span class="hljs-type">int</span> _bufsiz;<br>    <span class="hljs-type">char</span> *_tmpfname;<br>&#125;;<br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> _<span class="hljs-title">iobuf</span> <span class="hljs-title">FILE</span>;</span><br></code></pre></td></tr></table></figure>
+<p>因此我们可以通过<strong>创建一个文件指针</strong>来对文件完成相应的操作。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">FILE* pf<span class="hljs-comment">//文件指针</span><br></code></pre></td></tr></table></figure>
+<p><strong>ANSIC 规定使用fopen函数来打开文件，fclose来关闭文件</strong></p>
+<p>举例：对一个文件进行写的操作。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-comment">//打开文件，&quot;w&quot;表示是以写的方式打开文件。</span><br>	FILE* pf = fopen(<span class="hljs-string">&quot;test.txt&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>);<br>    <br>    <span class="hljs-comment">//关闭文件</span><br>    fclose(pf);<br>    pf = <span class="hljs-literal">NULL</span>;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>打开文件方式有许多，如下：</strong></p>
 <table>
 <thead>
 <tr>
-<th>方法：</th>
-<th>1-10000的数</th>
+<th>文件使用方式</th>
+<th>含义</th>
+<th>如果指定文件不存在</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>朴素筛法</strong></td>
-<td>117527</td>
+<td>“r”（只读）</td>
+<td>为了输入数据，打开一个已经存在的文本文件</td>
+<td>出错</td>
 </tr>
 <tr>
-<td><strong>埃氏筛</strong></td>
-<td>31841</td>
+<td>“w”（只写）</td>
+<td>为了输出数据，打开一个文本文件</td>
+<td>建立一个新的文件</td>
 </tr>
 <tr>
-<td><strong>欧拉筛(线性筛)</strong></td>
-<td>8770</td>
+<td>“a”（追加）</td>
+<td>向文本文件尾添加数据</td>
+<td>建立一个新的文件</td>
+</tr>
+<tr>
+<td>“rb”（只读）</td>
+<td>为了输入数据，打开一个二进制文件</td>
+<td>出错</td>
+</tr>
+<tr>
+<td>“wb”（只写）</td>
+<td>为了输出数据，打开一个二进制文件</td>
+<td>建立一个新的文件</td>
+</tr>
+<tr>
+<td>“ab”（追加）</td>
+<td>向一个二进制文件尾添加数据</td>
+<td>出错</td>
+</tr>
+<tr>
+<td>“r+”（读写）</td>
+<td>为了读和写，打开一个文本文件</td>
+<td>出错</td>
+</tr>
+<tr>
+<td>“w+”（读写）</td>
+<td>为了读和写，建议一个新的文件</td>
+<td>建立一个新的文件</td>
+</tr>
+<tr>
+<td>“a+”（读写）</td>
+<td>打开一个文件，在文件尾进行读写</td>
+<td>建立一个新的文件</td>
+</tr>
+<tr>
+<td>“rb+”（读写）</td>
+<td>为了读和写打开一个二进制文件</td>
+<td>出错</td>
+</tr>
+<tr>
+<td>“wb+”（读写）</td>
+<td>为了读和写，新建一个新的二进制文件</td>
+<td>建立一个新的文件</td>
+</tr>
+<tr>
+<td>“ab+”（读写）</td>
+<td>打开一个二进制文件，在文件尾进行读和写</td>
+<td>建立一个新的文件</td>
 </tr>
 </tbody>
 </table>
+<h1>三、文件的读写</h1>
 
                 
               </div>
@@ -419,7 +426,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/">#基础算法</a>
+        <a href="/tags/C%E8%AF%AD%E8%A8%80/">#C语言</a>
       
     </div>
   
@@ -431,8 +438,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>筛质数</div>
-      <div>http://example.com/2023/03/28/筛质数/</div>
+      <div>C语言文件操作</div>
+      <div>http://example.com/2023/04/03/C语言文件操作/</div>
     </div>
     <div class="license-meta">
       
@@ -444,7 +451,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年3月28日</div>
+          <div>2023年4月3日</div>
         </div>
       
       
@@ -476,18 +483,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/04/03/C%E8%AF%AD%E8%A8%80%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" title="C语言文件操作">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">C语言文件操作</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/03/27/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" title="二分查找">
-                        <span class="hidden-mobile">二分查找</span>
+                      <a href="/2023/03/28/%E7%AD%9B%E8%B4%A8%E6%95%B0/" title="筛质数">
+                        <span class="hidden-mobile">筛质数</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
