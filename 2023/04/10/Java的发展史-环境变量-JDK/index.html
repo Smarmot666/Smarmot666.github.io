@@ -16,25 +16,26 @@
   <meta name="author" content="郑政祺">
   <meta name="keywords" content="">
   
-    <meta name="description" content="一、文件的分类 1.1程序文件  例如：源程序文件 即 .c文件 ​			可执行程序 即 .exe文件 ​			…  1.2数据文件  例如：PPT、word文档、Excel表格…  二、文件的打开与关闭 对于不使用文件相关操作的时候，数据的输入输出都是以终端为对象，即从终端的键盘输入数据，将内存中的运行结果输出到终端上。如下：  注意：输入输出都是站在内存的角度来看待的！  但是如果是对文件操作">
+    <meta name="description" content="本文将讲述什么是Java、Java的发展史、比较一下C&#x2F;C++和Java的区别、环境变量的作用以及JDK是什么。  一、认识Java0x01 Java是什么Java是一门优秀的程序设计语言，它具有令人赏心悦目的语法和易于理解的语义  。 Java凭借着友好的语法、面向对象、内存管理和最棒的跨平台可移植性来吸引程序员。   Java有这样一句口号：“Write once，run anyw">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C语言文件操作">
-<meta property="og:url" content="http://example.com/2023/04/03/C%E8%AF%AD%E8%A8%80%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:title" content="认识java|Java的发展史|环境变量|JDK">
+<meta property="og:url" content="http://example.com/2023/04/10/Java%E7%9A%84%E5%8F%91%E5%B1%95%E5%8F%B2-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F-JDK/index.html">
 <meta property="og:site_name" content="机智的土拨鼠">
-<meta property="og:description" content="一、文件的分类 1.1程序文件  例如：源程序文件 即 .c文件 ​			可执行程序 即 .exe文件 ​			…  1.2数据文件  例如：PPT、word文档、Excel表格…  二、文件的打开与关闭 对于不使用文件相关操作的时候，数据的输入输出都是以终端为对象，即从终端的键盘输入数据，将内存中的运行结果输出到终端上。如下：  注意：输入输出都是站在内存的角度来看待的！  但是如果是对文件操作">
+<meta property="og:description" content="本文将讲述什么是Java、Java的发展史、比较一下C&#x2F;C++和Java的区别、环境变量的作用以及JDK是什么。  一、认识Java0x01 Java是什么Java是一门优秀的程序设计语言，它具有令人赏心悦目的语法和易于理解的语义  。 Java凭借着友好的语法、面向对象、内存管理和最棒的跨平台可移植性来吸引程序员。   Java有这样一句口号：“Write once，run anyw">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2023/04/03/C%E8%AF%AD%E8%A8%80%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/image-20230403202819947.png">
-<meta property="og:image" content="http://example.com/2023/04/03/C%E8%AF%AD%E8%A8%80%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/image-20230403203212563.png">
-<meta property="article:published_time" content="2023-04-03T12:03:25.000Z">
-<meta property="article:modified_time" content="2023-04-09T04:31:12.290Z">
+<meta property="og:image" content="http://example.com/2023/04/10/Java%E7%9A%84%E5%8F%91%E5%B1%95%E5%8F%B2-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F-JDK/image-20230410202641113.png">
+<meta property="og:image" content="http://example.com/2023/04/10/Java%E7%9A%84%E5%8F%91%E5%B1%95%E5%8F%B2-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F-JDK/image-20230410203130293.png">
+<meta property="og:image" content="http://example.com/2023/04/10/Java%E7%9A%84%E5%8F%91%E5%B1%95%E5%8F%B2-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F-JDK/image-20230410212254607.png">
+<meta property="article:published_time" content="2023-04-10T12:07:48.000Z">
+<meta property="article:modified_time" content="2023-04-10T13:27:54.694Z">
 <meta property="article:author" content="郑政祺">
-<meta property="article:tag" content="C语言">
+<meta property="article:tag" content="JavaSE">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2023/04/03/C%E8%AF%AD%E8%A8%80%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/image-20230403202819947.png">
+<meta name="twitter:image" content="http://example.com/2023/04/10/Java%E7%9A%84%E5%8F%91%E5%B1%95%E5%8F%B2-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F-JDK/image-20230410202641113.png">
   
   
   
-  <title>C语言文件操作 - 机智的土拨鼠</title>
+  <title>认识java|Java的发展史|环境变量|JDK - 机智的土拨鼠</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -217,7 +218,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="C语言文件操作"></span>
+            <span id="subtitle" data-typed-text="认识java|Java的发展史|环境变量|JDK"></span>
           
         </div>
 
@@ -228,8 +229,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-04-03 20:03" pubdate>
-          2023年4月3日 晚上
+        <time datetime="2023-04-10 20:07" pubdate>
+          2023年4月10日 晚上
         </time>
       </span>
     
@@ -240,7 +241,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.8k 字
+          1.6k 字
         
       </span>
     
@@ -251,7 +252,7 @@
         
         
         
-          15 分钟
+          14 分钟
         
       </span>
     
@@ -310,186 +311,50 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">C语言文件操作</h1>
+            <h1 style="display: none">认识java|Java的发展史|环境变量|JDK</h1>
             
             
               <div class="markdown-body">
                 
-                <h1>一、文件的分类</h1>
-<h2 id="1-1程序文件">1.1程序文件</h2>
-<blockquote>
-<p>例如：源程序文件 即 .c文件</p>
-<p>​			可执行程序 即 .exe文件</p>
-<p>​			…</p>
+                <blockquote>
+<p>本文将讲述什么是Java、Java的发展史、比较一下C&#x2F;C++和Java的区别、环境变量的作用以及JDK是什么。</p>
 </blockquote>
-<h2 id="1-2数据文件">1.2数据文件</h2>
-<blockquote>
-<p>例如：PPT、word文档、Excel表格…</p>
+<h1 id="一、认识Java"><a href="#一、认识Java" class="headerlink" title="一、认识Java"></a>一、认识Java</h1><h2 id="0x01-Java是什么"><a href="#0x01-Java是什么" class="headerlink" title="0x01 Java是什么"></a>0x01 Java是什么</h2><p>Java是一门优秀的<strong>程序设计语言</strong>，它具有令人赏心悦目的语法和易于理解的语义  。</p>
+<p>Java凭借着<strong>友好的语法</strong>、<strong>面向对象</strong>、<strong>内存管理</strong>和<strong>最棒的跨平台可移植性</strong>来吸引程序员。</p>
+
+
+<p>Java有这样一句口号：“Write once，run anywhere” 即 <strong>一次编译，到处运行</strong>。指的是你可以写一个Java程序，然后能够在你朋友所拥有的的任何设备上执行。</p>
+<img src="/2023/04/10/Java%E7%9A%84%E5%8F%91%E5%B1%95%E5%8F%B2-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F-JDK/image-20230410202641113.png" srcset="/img/loading.gif" lazyload class title="image-20230410202641113">
+
+<h2 id="0x02-Java发展史"><a href="#0x02-Java发展史" class="headerlink" title="0x02 Java发展史"></a>0x02 Java发展史</h2><blockquote>
+<p>Java 语言源于 1991 年 4 月，Sun 公司 <strong>James Gosling</strong>博士 领导的绿色计划(Green Project) 开始启动，此计划最初的目标是开发一种能够在各种消费性电子产品(如机顶盒、冰箱、收音机等)上运行的程序架构。这个就是Java的前身： Oak (得名与Java创始人James Gosling办公室外的一棵橡树)，但由于这些智能化家电的市场需求没有预期的高，Sun公司放弃了该项计划。随着<strong>1995</strong>年代互联网的发展<strong>，Sun公司看见</strong>Oak<strong>在互联网上应用的前景，于是改造了</strong>Oak<strong>，于</strong>1995<strong>年</strong>5<strong>月以</strong>Java<strong>的名称正式发布，并提出</strong>“Write once, Run anywhere” <strong>的口号</strong>。  </p>
 </blockquote>
-<h1>二、文件的打开与关闭</h1>
-<p>对于不使用文件相关操作的时候，数据的输入输出都是以<strong>终端</strong>为对象，即从终端的键盘输入数据，将<strong>内存中的运行结果</strong>输出到<strong>终端</strong>上。如下：</p>
-<img src="/2023/04/03/C%E8%AF%AD%E8%A8%80%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/image-20230403202819947.png" srcset="/img/loading.gif" lazyload class>
-<p><strong>注意：输入输出都是站在内存的角度来看待的！</strong></p>
+<img src="/2023/04/10/Java%E7%9A%84%E5%8F%91%E5%B1%95%E5%8F%B2-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F-JDK/image-20230410203130293.png" srcset="/img/loading.gif" lazyload class title="image-20230410203130293">
+
+<h2 id="0x03-Java-VS-C"><a href="#0x03-Java-VS-C" class="headerlink" title="0x03 Java VS C++"></a>0x03 Java VS C++</h2><h3 id="1、简单性"><a href="#1、简单性" class="headerlink" title="1、简单性"></a>1、简单性</h3><p>在Java中剔除了C++中许多很少使用、难以理解、易混淆的特性。可以这样理解：Java语法是C++语法的一个”纯净”版本。<strong>例如：Java中没有头文件、指针语法、结构体、联合体、运算符重载。</strong></p>
+<h3 id="2、健壮性"><a href="#2、健壮性" class="headerlink" title="2、健壮性"></a>2、健壮性</h3><p>Java投入了大量的精力进行早期的问题检测以及后期的动态检测。<strong>Java采用的指针模型(底层)可以消除重写内存和损坏数据的可能性。例如：C++的拷贝构造，当对象销毁自动调用析构函数，可能由于前面是写的浅拷贝，而导致同一块空间释放了两次。</strong></p>
+<h3 id="3、可移植性"><a href="#3、可移植性" class="headerlink" title="3、可移植性"></a><strong>3、可移植性</strong></h3><p>与C和C++不同的，Java规范中没有“依赖具体实现”的地方。<strong>基本教据类型的大小以及有关运算都做了明确的说明</strong>  </p>
+<p>例如：<strong>Java 中的 int 永远为 32 位的整数</strong>  ，<strong>而在 C&#x2F;C++ 中</strong>， <u>int 可能是 16 位整数、 32 位整数</u>， 也可能是编译器提供商指定的其他大小 。唯一的限制只是 int 类型的大小不能低于 short int, 并且不能高于 long int。  </p>
+<p>在 Java 中， 数据类型具有固定的大小， 这消除了代码移植时令人头痛的主要问题。 二进制数据以固定的格式进行存储和传输， 消除了字节顺序的困扰  。<strong>例如：在C&#x2F;C++中还存在大小端字节序存储的问题。</strong></p>
+<h1 id="二、环境变量"><a href="#二、环境变量" class="headerlink" title="二、环境变量"></a>二、环境变量</h1><p>有很多人在装Java时，上网查资料会发现，都装完JDK都会让你去配置一下环境变量。</p>
+<p><strong>那这是为什么呢？</strong></p>
+<p>举个例子：当我运行游戏的时候，如果不是用快捷打开方式，那我们就需要去游戏安装的目录下找到exe文件打开，但是如果我们配置了环境变量，那我们可以随便打开一个命令窗口，输入指令，即可打开游戏。</p>
+<p>类比到编程：</p>
+<p>相当于在函数A中，创建了一个局部变量，在函数B中无法使用这个变量，但当我们配置了环境变量后，这个局部变量升级成全局变量了，现在在函数B中可以使用这个变量。</p>
+<h1 id="三、JDK"><a href="#三、JDK" class="headerlink" title="三、JDK"></a>三、JDK</h1><h2 id="0x01-JDK"><a href="#0x01-JDK" class="headerlink" title="0x01 JDK"></a>0x01 JDK</h2><p>JDK全称 Java Development Kit， 即Java开发工具包，包含了Javac编译工具，java，JRE等工具。</p>
+<p>JDK &#x3D; JRE + 开发工具集(javac, javap, java…….)</p>
+<h2 id="0x02-JRE"><a href="#0x02-JRE" class="headerlink" title="0x02 JRE"></a>0x02 JRE</h2><p>JRE全称 Java Runtime Environment, 即Java运行时环境，包含了 JVM，Java基础类库。</p>
+<p>JRE &#x3D; JVM + JavaSE标准类库</p>
+<h2 id="0x03-JVM"><a href="#0x03-JVM" class="headerlink" title="0x03 JVM"></a>0x03 JVM</h2><p>JVM全称 Java Virtual Machine，即Java虚拟机， 用来运行Java代码。</p>
+<p><strong>JDK 、JRE 、JVM关系图：</strong></p>
+<img src="/2023/04/10/Java%E7%9A%84%E5%8F%91%E5%B1%95%E5%8F%B2-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F-JDK/image-20230410212254607.png" srcset="/img/loading.gif" lazyload class title="image-20230410212254607">
+
 <hr>
-<p>但是如果是对文件操作，同理。</p>
-<p>如下：</p>
-<img src="/2023/04/03/C%E8%AF%AD%E8%A8%80%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/image-20230403203212563.png" srcset="/img/loading.gif" lazyload class>
-<h2 id="2-1文件指针">2.1文件指针</h2>
-<p><strong>每个被使用的文件</strong>都在<strong>内存</strong>中开辟了一个相应的<strong>文件信息区</strong>，用来存放，文件的名字，文件当前的位置等信息。</p>
-<p>这些信息是<strong>保存在一个结构体变量</strong>中，该结构体类型是由系统声明的，取名<strong>FILE</strong></p>
-<p><strong>例如：在VS2013编译环境下，就有如下申明：</strong></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">struct</span> _<span class="hljs-title">iobuf</span> &#123;</span><br>    <span class="hljs-type">char</span> *_ptr;<br>    <span class="hljs-type">int</span> _cnt;<br>    <span class="hljs-type">char</span> *_base;<br>    <span class="hljs-type">int</span> _flag;<br>    <span class="hljs-type">int</span> _file;<br>    <span class="hljs-type">int</span> _charbuf;<br>    <span class="hljs-type">int</span> _bufsiz;<br>    <span class="hljs-type">char</span> *_tmpfname;<br>&#125;;<br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> _<span class="hljs-title">iobuf</span> <span class="hljs-title">FILE</span>;</span><br></code></pre></td></tr></table></figure>
-<p>因此我们可以通过<strong>创建一个文件指针</strong>来对文件完成相应的操作。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">FILE* pf<span class="hljs-comment">//文件指针</span><br></code></pre></td></tr></table></figure>
-<p><strong>ANSIC 规定使用fopen函数来打开文件，fclose来关闭文件</strong></p>
-<p>举例：对一个文件进行写的操作。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-comment">//打开文件，&quot;w&quot;表示是以写的方式打开文件。</span><br>	FILE* pf = fopen(<span class="hljs-string">&quot;test.txt&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>);<br>    <br>    <span class="hljs-comment">//关闭文件</span><br>    fclose(pf);<br>    pf = <span class="hljs-literal">NULL</span>;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p><strong>打开文件方式有许多，如下：</strong></p>
-<table>
-<thead>
-<tr>
-<th>文件使用方式</th>
-<th>含义</th>
-<th>如果指定文件不存在</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>“r”（只读）</td>
-<td>为了输入数据，打开一个已经存在的文本文件</td>
-<td>出错</td>
-</tr>
-<tr>
-<td>“w”（只写）</td>
-<td>为了输出数据，打开一个文本文件</td>
-<td>建立一个新的文件</td>
-</tr>
-<tr>
-<td>“a”（追加）</td>
-<td>向文本文件尾添加数据</td>
-<td>建立一个新的文件</td>
-</tr>
-<tr>
-<td>“rb”（只读）</td>
-<td>为了输入数据，打开一个二进制文件</td>
-<td>出错</td>
-</tr>
-<tr>
-<td>“wb”（只写）</td>
-<td>为了输出数据，打开一个二进制文件</td>
-<td>建立一个新的文件</td>
-</tr>
-<tr>
-<td>“ab”（追加）</td>
-<td>向一个二进制文件尾添加数据</td>
-<td>出错</td>
-</tr>
-<tr>
-<td>“r+”（读写）</td>
-<td>为了读和写，打开一个文本文件</td>
-<td>出错</td>
-</tr>
-<tr>
-<td>“w+”（读写）</td>
-<td>为了读和写，建议一个新的文件</td>
-<td>建立一个新的文件</td>
-</tr>
-<tr>
-<td>“a+”（读写）</td>
-<td>打开一个文件，在文件尾进行读写</td>
-<td>建立一个新的文件</td>
-</tr>
-<tr>
-<td>“rb+”（读写）</td>
-<td>为了读和写打开一个二进制文件</td>
-<td>出错</td>
-</tr>
-<tr>
-<td>“wb+”（读写）</td>
-<td>为了读和写，新建一个新的二进制文件</td>
-<td>建立一个新的文件</td>
-</tr>
-<tr>
-<td>“ab+”（读写）</td>
-<td>打开一个二进制文件，在文件尾进行读和写</td>
-<td>建立一个新的文件</td>
-</tr>
-</tbody>
-</table>
-<p>因此，当我们要写一个文件，可以使用fopen函数，但打开也要关闭，可以使用fclose函数，最后再将指针置空</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-comment">//打开文件</span><br>	FILE* pf = fopen(<span class="hljs-string">&quot;test.txt&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>);<br>	<span class="hljs-comment">//确保打开成功</span><br>	<span class="hljs-keyword">if</span> (pf == <span class="hljs-literal">NULL</span>)<br>	&#123;<br>		perror(<span class="hljs-string">&quot;fopen&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>	&#125;<br><br>	<span class="hljs-comment">//写文件</span><br><br>	<span class="hljs-comment">//关闭文件</span><br>	fclose(pf);<br>	pf = <span class="hljs-literal">NULL</span>;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h1>三、文件的读写</h1>
-<p>文件的读写可以使用如下函数：</p>
-<table>
-<thead>
-<tr>
-<th>字符输入函数</th>
-<th>fgetc</th>
-<th>所有输入流</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>字符输出函数</td>
-<td>fputc</td>
-<td>所有输出流</td>
-</tr>
-<tr>
-<td>文本行输入函数</td>
-<td>fgets</td>
-<td>所有输入流</td>
-</tr>
-<tr>
-<td>文本行输出函数</td>
-<td>fputs</td>
-<td>所有输出流</td>
-</tr>
-<tr>
-<td>格式化输入函数</td>
-<td>fscanf</td>
-<td>所有输入流</td>
-</tr>
-<tr>
-<td>格式化输出函数</td>
-<td>fprintf</td>
-<td>所有输出流</td>
-</tr>
-<tr>
-<td>二进制输入</td>
-<td>fread</td>
-<td>文件</td>
-</tr>
-<tr>
-<td>二进制输出</td>
-<td>fwrite</td>
-<td>文件</td>
-</tr>
-</tbody>
-</table>
-<p><strong>这里对所有输入输出流说明：</strong></p>
-<p><strong>流是一种抽象出来的概念，程序员只需要关注将数据输出到流中或者从流中获取数据，而不用关注流怎么跟文件、屏幕、网络、外部设备怎么进行交互。</strong></p>
-<p>我们一般使用的流：</p>
-<table>
-<thead>
-<tr>
-<th>读写文件</th>
-<th>文件流</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>在终端屏幕上打印输出</strong></td>
-<td><strong>标准输出流-stdout</strong></td>
-</tr>
-<tr>
-<td><strong>键盘上输入数据</strong></td>
-<td><strong>标准输入流-stdin</strong></td>
-</tr>
-</tbody>
-</table>
-<p>因此上面的函数，还可以将数据输入输出到屏幕上。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	fputc(<span class="hljs-string">&#x27;c&#x27;</span>, <span class="hljs-built_in">stdout</span>);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p>以上代码也可以起到printf函数的作用。</p>
+<blockquote>
+<p>参考资料：</p>
+<p>《Java核心技术卷》</p>
+<p>《Head First Java》</p>
+</blockquote>
 
                 
               </div>
@@ -502,7 +367,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/C%E8%AF%AD%E8%A8%80/">#C语言</a>
+        <a href="/tags/JavaSE/">#JavaSE</a>
       
     </div>
   
@@ -514,8 +379,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>C语言文件操作</div>
-      <div>http://example.com/2023/04/03/C语言文件操作/</div>
+      <div>认识java|Java的发展史|环境变量|JDK</div>
+      <div>http://example.com/2023/04/10/Java的发展史-环境变量-JDK/</div>
     </div>
     <div class="license-meta">
       
@@ -527,7 +392,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年4月3日</div>
+          <div>2023年4月10日</div>
         </div>
       
       
@@ -559,18 +424,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/04/10/Java%E7%9A%84%E5%8F%91%E5%B1%95%E5%8F%B2-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F-JDK/" title="认识java|Java的发展史|环境变量|JDK">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">认识java|Java的发展史|环境变量|JDK</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/03/28/%E7%AD%9B%E8%B4%A8%E6%95%B0/" title="筛质数">
-                        <span class="hidden-mobile">筛质数</span>
+                      <a href="/2023/04/03/C%E8%AF%AD%E8%A8%80%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" title="C语言文件操作">
+                        <span class="hidden-mobile">C语言文件操作</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
