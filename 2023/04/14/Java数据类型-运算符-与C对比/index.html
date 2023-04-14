@@ -16,28 +16,22 @@
   <meta name="author" content="郑政祺">
   <meta name="keywords" content="">
   
-    <meta name="description" content="本文将讲述什么是Java、Java的发展史、比较一下C&#x2F;C++和Java的区别、环境变量的作用以及JDK是什么。  一、认识Java0x01 Java是什么Java是一门优秀的程序设计语言，它具有令人赏心悦目的语法和易于理解的语义  。 Java凭借着友好的语法、面向对象、内存管理和最棒的跨平台可移植性来吸引程序员。   （Java之父——詹姆斯·高斯林) Java有这样一句口号：“W">
+    <meta name="description" content="一、Java中的数据类型 0x01 基本数据类型 在 Java 中数据类型主要分为两类：基本数据类型和引用数据类型。 基本数据类型有4类：整形、浮点型、字符型、布尔型。细分为8种。如下：    数据类型 关键字 内存占用 范围     字节型 byte 1 字节 -128 ~ 127   短整型 short 2 字节 -32768 ~ 32767   整型 int 4 字节 -2^31 ~ 2^3">
 <meta property="og:type" content="article">
-<meta property="og:title" content="认识java|Java的发展史|环境变量|JDK">
-<meta property="og:url" content="http://example.com/2023/04/10/Java%E7%9A%84%E5%8F%91%E5%B1%95%E5%8F%B2-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F-JDK/index.html">
+<meta property="og:title" content="Java数据类型|运算符(与C对比)">
+<meta property="og:url" content="http://example.com/2023/04/14/Java%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-%E8%BF%90%E7%AE%97%E7%AC%A6-%E4%B8%8EC%E5%AF%B9%E6%AF%94/index.html">
 <meta property="og:site_name" content="机智的土拨鼠">
-<meta property="og:description" content="本文将讲述什么是Java、Java的发展史、比较一下C&#x2F;C++和Java的区别、环境变量的作用以及JDK是什么。  一、认识Java0x01 Java是什么Java是一门优秀的程序设计语言，它具有令人赏心悦目的语法和易于理解的语义  。 Java凭借着友好的语法、面向对象、内存管理和最棒的跨平台可移植性来吸引程序员。   （Java之父——詹姆斯·高斯林) Java有这样一句口号：“W">
+<meta property="og:description" content="一、Java中的数据类型 0x01 基本数据类型 在 Java 中数据类型主要分为两类：基本数据类型和引用数据类型。 基本数据类型有4类：整形、浮点型、字符型、布尔型。细分为8种。如下：    数据类型 关键字 内存占用 范围     字节型 byte 1 字节 -128 ~ 127   短整型 short 2 字节 -32768 ~ 32767   整型 int 4 字节 -2^31 ~ 2^3">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2023/04/10/Java%E7%9A%84%E5%8F%91%E5%B1%95%E5%8F%B2-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F-JDK/image-20230410201938465.png">
-<meta property="og:image" content="http://example.com/2023/04/10/Java%E7%9A%84%E5%8F%91%E5%B1%95%E5%8F%B2-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F-JDK/image-20230410202641113.png">
-<meta property="og:image" content="http://example.com/2023/04/10/Java%E7%9A%84%E5%8F%91%E5%B1%95%E5%8F%B2-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F-JDK/image-20230410203130293.png">
-<meta property="og:image" content="http://example.com/2023/04/10/Java%E7%9A%84%E5%8F%91%E5%B1%95%E5%8F%B2-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F-JDK/image-20230411215831748.png">
-<meta property="og:image" content="http://example.com/2023/04/10/Java%E7%9A%84%E5%8F%91%E5%B1%95%E5%8F%B2-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F-JDK/image-20230410212254607.png">
-<meta property="article:published_time" content="2023-04-10T12:07:48.000Z">
-<meta property="article:modified_time" content="2023-04-11T14:37:32.993Z">
+<meta property="article:published_time" content="2023-04-14T03:16:40.000Z">
+<meta property="article:modified_time" content="2023-04-14T03:17:57.153Z">
 <meta property="article:author" content="郑政祺">
 <meta property="article:tag" content="JavaSE">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2023/04/10/Java%E7%9A%84%E5%8F%91%E5%B1%95%E5%8F%B2-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F-JDK/image-20230410201938465.png">
   
   
   
-  <title>认识java|Java的发展史|环境变量|JDK - 机智的土拨鼠</title>
+  <title>Java数据类型|运算符(与C对比) - 机智的土拨鼠</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -220,7 +214,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="认识java|Java的发展史|环境变量|JDK"></span>
+            <span id="subtitle" data-typed-text="Java数据类型|运算符(与C对比)"></span>
           
         </div>
 
@@ -231,8 +225,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-04-10 20:07" pubdate>
-          2023年4月10日 晚上
+        <time datetime="2023-04-14 11:16" pubdate>
+          2023年4月14日 上午
         </time>
       </span>
     
@@ -243,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2k 字
+          2.4k 字
         
       </span>
     
@@ -254,7 +248,7 @@
         
         
         
-          17 分钟
+          20 分钟
         
       </span>
     
@@ -313,56 +307,130 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">认识java|Java的发展史|环境变量|JDK</h1>
+            <h1 style="display: none">Java数据类型|运算符(与C对比)</h1>
             
             
               <div class="markdown-body">
                 
-                <blockquote>
-<p>本文将讲述什么是Java、Java的发展史、比较一下C&#x2F;C++和Java的区别、环境变量的作用以及JDK是什么。</p>
-</blockquote>
-<h1 id="一、认识Java"><a href="#一、认识Java" class="headerlink" title="一、认识Java"></a>一、认识Java</h1><h2 id="0x01-Java是什么"><a href="#0x01-Java是什么" class="headerlink" title="0x01 Java是什么"></a>0x01 Java是什么</h2><p>Java是一门优秀的<strong>程序设计语言</strong>，它具有令人赏心悦目的语法和易于理解的语义  。</p>
-<p>Java凭借着<strong>友好的语法</strong>、<strong>面向对象</strong>、<strong>内存管理</strong>和<strong>最棒的跨平台可移植性</strong>来吸引程序员。</p>
-<img src="/2023/04/10/Java%E7%9A%84%E5%8F%91%E5%B1%95%E5%8F%B2-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F-JDK/image-20230410201938465.png" srcset="/img/loading.gif" lazyload class>
-
-<p>（Java之父——詹姆斯·高斯林)</p>
-<p>Java有这样一句口号：“Write once，run anywhere” 即 <strong>一次编译，到处运行</strong>。指的是你可以写一个Java程序，然后能够在你朋友所拥有的的任何设备上执行。</p>
-<img src="/2023/04/10/Java%E7%9A%84%E5%8F%91%E5%B1%95%E5%8F%B2-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F-JDK/image-20230410202641113.png" srcset="/img/loading.gif" lazyload class title="image-20230410202641113">
-
-<h2 id="0x02-Java发展史"><a href="#0x02-Java发展史" class="headerlink" title="0x02 Java发展史"></a>0x02 Java发展史</h2><blockquote>
-<p>Java 语言源于 1991 年 4 月，Sun 公司 <strong>James Gosling</strong>博士 领导的绿色计划(Green Project) 开始启动，此计划最初的目标是开发一种能够在各种消费性电子产品(如机顶盒、冰箱、收音机等)上运行的程序架构。这个就是Java的前身： Oak (得名与Java创始人James Gosling办公室外的一棵橡树)，但由于这些智能化家电的市场需求没有预期的高，Sun公司放弃了该项计划。随着<strong>1995</strong>年代互联网的发展<strong>，Sun公司看见</strong>Oak<strong>在互联网上应用的前景，于是改造了</strong>Oak<strong>，于</strong>1995<strong>年</strong>5<strong>月以</strong>Java<strong>的名称正式发布，并提出</strong>“Write once, Run anywhere” <strong>的口号</strong>。  </p>
-</blockquote>
-<img src="/2023/04/10/Java%E7%9A%84%E5%8F%91%E5%B1%95%E5%8F%B2-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F-JDK/image-20230410203130293.png" srcset="/img/loading.gif" lazyload class title="image-20230410203130293">
-
-<h2 id="0x03-Java-VS-C"><a href="#0x03-Java-VS-C" class="headerlink" title="0x03 Java VS C++"></a>0x03 Java VS C++</h2><h3 id="1、简单性"><a href="#1、简单性" class="headerlink" title="1、简单性"></a>1、简单性</h3><p>在Java中剔除了C++中许多很少使用、难以理解、易混淆的特性。可以这样理解：Java语法是C++语法的一个”纯净”版本。<strong>例如：Java中没有头文件、指针语法、结构体、联合体、运算符重载。</strong></p>
-<h3 id="2、健壮性"><a href="#2、健壮性" class="headerlink" title="2、健壮性"></a>2、健壮性</h3><p>Java投入了大量的精力进行早期的问题检测以及后期的动态检测。<strong>Java采用的指针模型(底层)可以消除重写内存和损坏数据的可能性。例如：C++的拷贝构造，当对象销毁自动调用析构函数，可能由于前面是写的浅拷贝，而导致同一块空间释放了两次。</strong></p>
-<h3 id="3、可移植性"><a href="#3、可移植性" class="headerlink" title="3、可移植性"></a><strong>3、可移植性</strong></h3><p>与C和C++不同的，Java规范中没有“依赖具体实现”的地方。<strong>基本教据类型的大小以及有关运算都做了明确的说明</strong>  </p>
-<p>例如：<strong>Java 中的 int 永远为 32 位的整数</strong>  ，<strong>而在 C&#x2F;C++ 中</strong>， <u>int 可能是 16 位整数、 32 位整数</u>， 也可能是编译器提供商指定的其他大小 。唯一的限制只是 int 类型的大小不能低于 short int, 并且不能高于 long int。  </p>
-<p>在 Java 中， 数据类型具有固定的大小， 这消除了代码移植时令人头痛的主要问题。 二进制数据以固定的格式进行存储和传输， 消除了字节顺序的困扰  。<strong>例如：在C&#x2F;C++中还存在大小端字节序存储的问题。</strong></p>
-<h2 id="4、动态性"><a href="#4、动态性" class="headerlink" title="4、动态性"></a>4、动态性</h2><p>Java 与 C 或 C++ 相比更加具有动态性。 它能够适应不断发展的环境库中可以自由地添加新方法和实例变量， 而对客户端却没有任何影响。  一个很好的例子是： 从 Internet 下载代码，然后在浏览器上运行。 如果使用 C 或 C++, 这确实难度很大，不过 Java 设计者很清楚动态语言可以很容易地实现运行程序的演进。  </p>
-<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><p><strong>语言没有优劣之分，这个世界不是非黑即白的，每个语言都可能在某些领域表现出比其他语言更出色</strong>。比如：Objective C 和后来的 Swift 在 iOS 设备上就有着无可取代的地位， 浏览器中的处理几乎完全由 JavaScript 掌控。 Windows 程序通常都用 C++ 或 C# 编写 。Java 在服务器端编程和跨平台客户端应用领域则很有优势 。</p>
-<p><strong>Java 的成功源于其类库能够让人们轻松地完成原本有一定难度的事情</strong>。 例如：联网Web 应用和并发。Java 减少了指针错误， 这是一个额外的好处， 因此使用 Java 编程的效率更高。但这些并不是 Java 成功的全部原因。  </p>
-<h1 id="二、环境变量"><a href="#二、环境变量" class="headerlink" title="二、环境变量"></a>二、环境变量</h1><p>有很多人在装Java时，上网查资料会发现，都装完JDK都会让你去配置一下环境变量。</p>
-<p><strong>那这是为什么呢？</strong></p>
-<p>举个例子：当我运行游戏的时候，如果不是用快捷打开方式，那我们就需要去游戏安装的目录下找到exe文件打开，但是如果我们配置了环境变量，那我们可以随便打开一个命令窗口，输入指令，即可打开游戏。</p>
-<p><strong>类比到编程：</strong></p>
-<p>相当于在函数A中，创建了一个局部变量，在函数B中无法使用这个变量，但当我们配置了环境变量后，这个局部变量升级成全局变量了，现在在函数B中可以使用这个变量。</p>
-<h1 id="三、JDK"><a href="#三、JDK" class="headerlink" title="三、JDK"></a>三、JDK</h1><img src="/2023/04/10/Java%E7%9A%84%E5%8F%91%E5%B1%95%E5%8F%B2-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F-JDK/image-20230411215831748.png" srcset="/img/loading.gif" lazyload class title="image-20230411215831748">
-
-<h2 id="0x01-JDK"><a href="#0x01-JDK" class="headerlink" title="0x01 JDK"></a>0x01 JDK</h2><p>JDK全称 Java Development Kit， 即Java开发工具包，包含了Javac编译工具，java，JRE等工具。</p>
-<p>JDK &#x3D; JRE + 开发工具集(javac, javap, java…….)</p>
-<h2 id="0x02-JRE"><a href="#0x02-JRE" class="headerlink" title="0x02 JRE"></a>0x02 JRE</h2><p>JRE全称 Java Runtime Environment, 即Java运行时环境，包含了 JVM，Java基础类库。</p>
-<p>JRE &#x3D; JVM + JavaSE标准类库</p>
-<h2 id="0x03-JVM"><a href="#0x03-JVM" class="headerlink" title="0x03 JVM"></a>0x03 JVM</h2><p>JVM全称 Java Virtual Machine，即Java虚拟机， 用来运行Java代码。</p>
-<p><strong>JDK 、JRE 、JVM关系图：</strong></p>
-<img src="/2023/04/10/Java%E7%9A%84%E5%8F%91%E5%B1%95%E5%8F%B2-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F-JDK/image-20230410212254607.png" srcset="/img/loading.gif" lazyload class title="image-20230410212254607">
-
+                <h1>一、Java中的数据类型</h1>
+<h2 id="0x01-基本数据类型">0x01 基本数据类型</h2>
+<p>在 Java 中数据类型主要分为两类：<strong>基本数据类型</strong>和<strong>引用数据类型</strong>。</p>
+<p>基本数据类型有4类：<strong>整形、浮点型、字符型、布尔型</strong>。细分为8种。如下：</p>
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>关键字</th>
+<th>内存占用</th>
+<th>范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>字节型</td>
+<td>byte</td>
+<td>1 字节</td>
+<td>-128 ~ 127</td>
+</tr>
+<tr>
+<td>短整型</td>
+<td>short</td>
+<td>2 字节</td>
+<td>-32768 ~ 32767</td>
+</tr>
+<tr>
+<td>整型</td>
+<td>int</td>
+<td>4 字节</td>
+<td>-2^31 ~ 2^31 - 1</td>
+</tr>
+<tr>
+<td>长整型</td>
+<td>long</td>
+<td>8 字节</td>
+<td>-2^63 ~ 2^63 - 1</td>
+</tr>
+<tr>
+<td>单精度浮点数</td>
+<td>float</td>
+<td>4 字节</td>
+<td>有范围，一般不关注</td>
+</tr>
+<tr>
+<td>双精度浮点数</td>
+<td>double</td>
+<td>8 字节</td>
+<td>有范围，一般不关注</td>
+</tr>
+<tr>
+<td>字符型</td>
+<td>char</td>
+<td>2 字节</td>
+<td>0 ~ 65535</td>
+</tr>
+<tr>
+<td>布尔型</td>
+<td>boolean</td>
+<td>没有明确规定</td>
+<td>true 和 false</td>
+</tr>
+</tbody>
+</table>
+<p><strong>值得注意的是</strong>：这里数据的类型大小和C语言不同的是，<strong>不论是在16位系统还是32位系统下</strong>，都是上述的大小。</p>
+<p><strong>字符型</strong>在这里成了<strong>无符号的数</strong>了，<strong>还扩大成了2个字节</strong>。</p>
+<p><strong>在C语言中，我们知道0表示假，非0表示真，然而在 Java中是使用boolean类型来表示真假，并且boolean类型不能与int类型转化</strong>，因此代码就不能写成这样：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span> <span class="hljs-variable">n</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;<br><span class="hljs-keyword">while</span>(n--)&#123;<br>	<span class="hljs-comment">//本意是想循环10次，但java中的boolean不能与int转化。</span><br>&#125;<br><br><span class="hljs-comment">//只能这样写</span><br><span class="hljs-type">int</span> <span class="hljs-variable">n</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;<br><span class="hljs-keyword">while</span>(n-- &gt; <span class="hljs-number">0</span>)&#123;<br>	<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>因此， Java 程序员不会遇到下述麻烦：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">if</span>(x = <span class="hljs-number">0</span>) <span class="hljs-comment">//会报错</span><br></code></pre></td></tr></table></figure>
+<h2 id="0x02-类型转换">0x02 类型转换</h2>
+<p>Java 是一个强类型编程语言。<strong>当不同类型之间的变量相互赋值的时候</strong>, 会有教严格的校验</p>
+<p>例如：<strong>当我们将一个高精度的数赋值给低精度的数，由于会发生截断，编译器认为不安全，会报错。</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;<br><span class="hljs-type">double</span> <span class="hljs-variable">d</span> <span class="hljs-operator">=</span> <span class="hljs-number">10.0</span>;<br>a = d; <span class="hljs-comment">// 会报错</span><br></code></pre></td></tr></table></figure>
+<p>如果是将一个低精度赋值给高精度的数，会进行类型转换。</p>
+<p>类型转换又分为两种：<strong>自动(隐式)类型转换</strong>、<strong>强制(显示)类型转换</strong>。</p>
 <hr>
-<blockquote>
-<p>参考资料：</p>
-<p>《Java核心技术卷》</p>
-<p>《Head First Java》</p>
-</blockquote>
+<p><strong>自动类型转换</strong></p>
+<p><strong>代码不需要经过任何处理，在代码编译时，编译器会自动进行处理</strong>。特点：<strong>数据范围小的转为数<br>
+据范围大的时会自动进行</strong>  。</p>
+<p>如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span> <span class="hljs-variable">n</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;<br><span class="hljs-type">long</span> <span class="hljs-variable">l</span> <span class="hljs-operator">=</span> <span class="hljs-number">100</span>;<br>l = n; <span class="hljs-comment">//发生自动类型转换</span><br></code></pre></td></tr></table></figure>
+<p>自动类型转换路线：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">byte</span>-&gt;<span class="hljs-type">short</span>-&gt;<span class="hljs-type">int</span>-&gt;<span class="hljs-type">long</span>-&gt;<span class="hljs-type">float</span>-&gt;<span class="hljs-type">double</span><br><span class="hljs-type">char</span>-&gt;<span class="hljs-type">int</span>-&gt;<span class="hljs-type">long</span>-&gt;<span class="hljs-type">float</span>-&gt;<span class="hljs-type">double</span><br></code></pre></td></tr></table></figure>
+<p>可以将左边类型的变量赋值给右边类型的变量。</p>
+<p><strong>强制类型转换：</strong></p>
+<p>当进行操作时，代码需要经过一定的格式处理，不能自动完成。特点：数据范围大的到数据范围小的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span> <span class="hljs-variable">n</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;<br><span class="hljs-type">long</span> <span class="hljs-variable">l</span> <span class="hljs-operator">=</span> <span class="hljs-number">100</span>;<br>n = (<span class="hljs-type">int</span>)l; <span class="hljs-comment">//强制类型转换。告诉编译器我对此次类型转换负责！</span><br></code></pre></td></tr></table></figure>
+<p>但是对于byte、short、char类型有些特别：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">byte</span> <span class="hljs-variable">b</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;<br><span class="hljs-type">short</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;<br><span class="hljs-type">char</span> <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;<br></code></pre></td></tr></table></figure>
+<p>理论上这些操作，编译器不能通过，但是有这样的一个规则：</p>
+<p><strong>当把具体数赋值给byte、short、char时，会先判断该数是否在这个类型的范围内，如果在就可以.</strong></p>
+<p>这里的<strong>具体数值指的是字面常量：不能是变量</strong>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">byte</span> <span class="hljs-variable">b1</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>; <span class="hljs-comment">//可以</span><br><span class="hljs-type">int</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-number">100</span>;<br><span class="hljs-comment">//byte b2 = a //不可以</span><br><span class="hljs-type">short</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;<br><span class="hljs-comment">//short s1 = b1 + s; //不可以  </span><br></code></pre></td></tr></table></figure>
+<h2 id="0x03-类型提升">0x03 类型提升</h2>
+<p>不同类型的数据之间相互运算时，数据类型小的会被提升到数据类型大的。</p>
+<ol>
+<li><strong>int</strong>与<strong>long</strong>之间：<strong>int</strong>会被提升为<strong>long</strong></li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;<br><span class="hljs-type">long</span> <span class="hljs-variable">b</span> <span class="hljs-operator">=</span> <span class="hljs-number">20</span>;<br><span class="hljs-type">int</span> <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> a + b; <span class="hljs-comment">// 编译出错: a + b==&gt;int + long--&gt; long + long 赋值给int时会丢失数据</span><br><span class="hljs-type">long</span> <span class="hljs-variable">d</span> <span class="hljs-operator">=</span> a + b; <span class="hljs-comment">// 编译成功：a + b==&gt;int + long---&gt;long + long 赋值给long</span><br></code></pre></td></tr></table></figure>
+<ol start="2">
+<li><strong>byte</strong>与<strong>byte</strong>的运算</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">byte</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;<br><span class="hljs-type">byte</span> <span class="hljs-variable">b</span> <span class="hljs-operator">=</span> <span class="hljs-number">20</span>;<br><span class="hljs-type">byte</span> <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> a + b;<br>System.out.println(c);<br><span class="hljs-comment">// 编译报错</span><br>Test.java:<span class="hljs-number">5</span>: 错误: 不兼容的类型: 从<span class="hljs-type">int</span>转换到<span class="hljs-type">byte</span>可能会有损失<br>	<span class="hljs-type">byte</span> <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> a + b;<br></code></pre></td></tr></table></figure>
+<p>原因：由于计算机的 CPU 通常是按照 4 个字节为单位从内存中读写数据. <strong>为了硬件上实现方便, 诸如 byte 和 short这种低于 4 个字节的类型, 会先提升成 int</strong>, 再参与计算</p>
+<p>因此要想编译通过，需要进行强制类型转换。</p>
+<h1>二、运算符</h1>
+<p>Java中运算符可分为以下：算术运算符(+ - */)、关系运算符(&lt; &gt; ==)、逻辑运算符、位运算符、移位运算符以及条件运算符等 。</p>
+<p><strong>C语言中只能对整数取模</strong>，<strong>但在 Java 中 % 不仅可以对整型取模，也可以对double类型取模</strong>，但是没有意义，一般都是对整型取模的 。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">System.out.println(<span class="hljs-number">11.5</span> % <span class="hljs-number">2.0</span>);<br><span class="hljs-comment">// 运行结果</span><br><span class="hljs-number">1.5</span><br></code></pre></td></tr></table></figure>
+<p><strong>对于++和–：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">byte</span> <span class="hljs-variable">b</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;<br>b = b + <span class="hljs-number">1</span>; <span class="hljs-comment">//报错</span><br>b++; <span class="hljs-comment">//可以 会优化为 b = (byte)(b + 1)</span><br></code></pre></td></tr></table></figure>
+<p><strong>对于 &amp;&amp;</strong> , 如果<strong>左侧表达式值为</strong> <strong>false,</strong> <strong>则表达式结果一定是</strong> <strong>false,</strong> <strong>无需计算右侧表达式</strong>.</p>
+<p><strong>对于 ||</strong>, 如果<strong>左侧表达式值为</strong> <strong>true,</strong> <strong>则表达式结果一定是</strong> <strong>true,</strong> <strong>无需计算右侧表达式</strong>.</p>
+<p><strong>&amp; 和 |</strong> ，如果表达式结果为 boolean 时, 也表示逻辑运算. 但与 &amp;&amp; || 相比, 它们不支持短路求值 ，因此他会对两边的表达式对进行判断。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">System.out.println(<span class="hljs-number">10</span> &gt; <span class="hljs-number">20</span> &amp; <span class="hljs-number">10</span> / <span class="hljs-number">0</span> == <span class="hljs-number">0</span>); <span class="hljs-comment">// 程序抛出异常</span><br>System.out.println(<span class="hljs-number">10</span> &lt; <span class="hljs-number">20</span> | <span class="hljs-number">10</span> / <span class="hljs-number">0</span> == <span class="hljs-number">0</span>); <span class="hljs-comment">// 程序抛出异常</span><br></code></pre></td></tr></table></figure>
+<p><strong>对于移位操作符，与C语言不同的是，还有无符号右移&gt;&gt;&gt;</strong></p>
+<p>无符号右移 &gt;&gt;&gt;: <strong>最右侧位不要了, 最左侧补 0</strong></p>
+<p>即不会关注一个数的二进制中的符号是啥，直接补0，所以一个负数将会变成很大的正数。</p>
 
                 
               </div>
@@ -387,8 +455,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>认识java|Java的发展史|环境变量|JDK</div>
-      <div>http://example.com/2023/04/10/Java的发展史-环境变量-JDK/</div>
+      <div>Java数据类型|运算符(与C对比)</div>
+      <div>http://example.com/2023/04/14/Java数据类型-运算符-与C对比/</div>
     </div>
     <div class="license-meta">
       
@@ -400,7 +468,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年4月10日</div>
+          <div>2023年4月14日</div>
         </div>
       
       
@@ -432,18 +500,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/04/14/Java%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-%E8%BF%90%E7%AE%97%E7%AC%A6-%E4%B8%8EC%E5%AF%B9%E6%AF%94/" title="Java数据类型|运算符(与C对比)">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Java数据类型|运算符(与C对比)</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/04/03/C%E8%AF%AD%E8%A8%80%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" title="C语言文件操作">
-                        <span class="hidden-mobile">C语言文件操作</span>
+                      <a href="/2023/04/10/Java%E7%9A%84%E5%8F%91%E5%B1%95%E5%8F%B2-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F-JDK/" title="认识java|Java的发展史|环境变量|JDK">
+                        <span class="hidden-mobile">认识java|Java的发展史|环境变量|JDK</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
