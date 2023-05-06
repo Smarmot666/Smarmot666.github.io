@@ -16,22 +16,25 @@
   <meta name="author" content="郑政祺">
   <meta name="keywords" content="">
   
-    <meta name="description" content="一、为什么选择敲代码 因为高考很糟糕，然后稀里糊涂的填了几个志愿，结果莫名其妙的来到了计科专业。不过，在我初中的时候，我也曾想过当一名程序员，可能那时候喜欢游戏吧~ 而到了高中呢，太过压抑，而且我对其他的专业也不懂，在学校只能看见老师，正巧我在b站上看到一个叫国家玮的老师，他讲课的风格颠覆了我对老师的印象，我想成为向他一样的老师，但是最终考的并不如意，或许冥冥之中自由安排… 二、为什么选择java">
+    <meta name="description" content="JDBC一、连接数据库要想通过 JAVA 来操作数据库，分为下面4步： 1、注册驱动  - 加载Driver类 2、获取连接 - 得到Connection 3、执行CRUD操作 - 发送SQL给mysql执行 4、释放资源 -关闭连接 方式一：1234public static void main(String[] args) throws SQLException &amp;#123;    &#x2F;&#x2F;1.注">
 <meta property="og:type" content="article">
-<meta property="og:title" content="4_18深夜思考">
-<meta property="og:url" content="http://example.com/2023/04/19/4-18%E6%B7%B1%E5%A4%9C%E6%80%9D%E8%80%83/index.html">
+<meta property="og:title" content="Java连接数据库">
+<meta property="og:url" content="http://example.com/2023/04/24/Java%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93/index.html">
 <meta property="og:site_name" content="机智的土拨鼠">
-<meta property="og:description" content="一、为什么选择敲代码 因为高考很糟糕，然后稀里糊涂的填了几个志愿，结果莫名其妙的来到了计科专业。不过，在我初中的时候，我也曾想过当一名程序员，可能那时候喜欢游戏吧~ 而到了高中呢，太过压抑，而且我对其他的专业也不懂，在学校只能看见老师，正巧我在b站上看到一个叫国家玮的老师，他讲课的风格颠覆了我对老师的印象，我想成为向他一样的老师，但是最终考的并不如意，或许冥冥之中自由安排… 二、为什么选择java">
+<meta property="og:description" content="JDBC一、连接数据库要想通过 JAVA 来操作数据库，分为下面4步： 1、注册驱动  - 加载Driver类 2、获取连接 - 得到Connection 3、执行CRUD操作 - 发送SQL给mysql执行 4、释放资源 -关闭连接 方式一：1234public static void main(String[] args) throws SQLException &amp;#123;    &#x2F;&#x2F;1.注">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-04-18T18:37:45.000Z">
-<meta property="article:modified_time" content="2023-04-18T19:11:28.994Z">
+<meta property="og:image" content="http://example.com/2023/04/24/Java%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93/image-20230424115710059.png">
+<meta property="og:image" content="http://example.com/2023/04/24/Java%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93/image-20230424212641334.png">
+<meta property="article:published_time" content="2023-04-24T03:56:23.000Z">
+<meta property="article:modified_time" content="2023-04-24T13:41:57.483Z">
 <meta property="article:author" content="郑政祺">
-<meta property="article:tag" content="个人简介">
+<meta property="article:tag" content="JavaSE">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2023/04/24/Java%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93/image-20230424115710059.png">
   
   
   
-  <title>4_18深夜思考 - 机智的土拨鼠</title>
+  <title>Java连接数据库 - 机智的土拨鼠</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -214,7 +217,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="4_18深夜思考"></span>
+            <span id="subtitle" data-typed-text="Java连接数据库"></span>
           
         </div>
 
@@ -225,8 +228,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-04-19 02:37" pubdate>
-          2023年4月19日 凌晨
+        <time datetime="2023-04-24 11:56" pubdate>
+          2023年4月24日 中午
         </time>
       </span>
     
@@ -237,7 +240,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          841 字
+          2.1k 字
         
       </span>
     
@@ -248,7 +251,7 @@
         
         
         
-          8 分钟
+          18 分钟
         
       </span>
     
@@ -307,22 +310,38 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">4_18深夜思考</h1>
+            <h1 style="display: none">Java连接数据库</h1>
             
             
               <div class="markdown-body">
                 
-                <h1>一、为什么选择敲代码</h1>
-<p>因为高考很糟糕，然后稀里糊涂的填了几个志愿，结果莫名其妙的来到了计科专业。不过，在我初中的时候，我也曾想过当一名程序员，可能那时候喜欢游戏吧~ 而到了高中呢，太过压抑，而且我对其他的专业也不懂，在学校只能看见老师，正巧我在b站上看到一个叫国家玮的老师，他讲课的风格颠覆了我对老师的印象，我想成为向他一样的老师，但是最终考的并不如意，或许冥冥之中自由安排…</p>
-<h1>二、为什么选择java而不选择C++</h1>
-<p>我现在(大二下)感觉这个问题其实很奇怪，我觉得大部分都被互联网搞的太焦虑了，大家都不看好java，觉得学java毕业就找不到工作了。我感觉，<strong>首先</strong>找工作不是一门简单的事情，哪有毕业就一定能找到的呢，而且大家都追求好公司，据说不是找不到，是找不到心仪的，有点高不成低不就的感觉；<strong>其次</strong>，难道学C++就一定能找到工作吗？一门语言而已，c++和java不都是擅长做后端开发吗？<strong>最后</strong>，在学c++的时候，我感受到的是语法的复杂，而学习java的时候，我感受到了面向对象的编程方式，还挺好玩，于是我选择了java。</p>
-<p><strong>个人看法</strong>：其实选哪个都差不多，不过对于考研啥的，还是选C++好一点，毕竟考研书啥的资料大部分都是C++的。</p>
-<h1>三、为什么骑行</h1>
-<p>因为在b站上看到了一个博主，骑行了西藏，于是，我想我是否能试试骑行桂林呢？目前已经把桂林骑得差不多了，下个目标可能是柳州了？可能骑行会很累，但我不后悔，这是我自己选择的路~</p>
-<h1>四、最后</h1>
-<p>无论结果如何，我相信，人生没有那条路是白走的，可能会走错了路，但是你看到了别人看不到的风景，路上结识了一辈子的知己，收获了温暖的回忆和宝贵的经历。</p>
-<p>也许，我现在所做的一切，看不到任何成果，但是水滴石穿，绳锯木断，不要迷茫，不要彷徨，我不是没有成长，而是在扎根，在打基础，所有的付出，都会有回报的。</p>
-<p>也许，多年以后，当和家人、朋友坐在一起唠嗑时，打开自己尘封的记忆，那一幕幕，跳出来，依旧鲜活而富有生命力。这些美好的记忆不会随着年华的飘零而逝去，而是会被镌刻在岁月里，最美好的地方。</p>
+                <h1 id="JDBC"><a href="#JDBC" class="headerlink" title="JDBC"></a>JDBC</h1><h1 id="一、连接数据库"><a href="#一、连接数据库" class="headerlink" title="一、连接数据库"></a>一、连接数据库</h1><p><strong>要想通过 JAVA 来操作数据库，分为下面4步：</strong></p>
+<p>1、注册驱动  - 加载Driver类</p>
+<p>2、获取连接 - 得到Connection</p>
+<p>3、执行CRUD操作 - 发送SQL给mysql执行</p>
+<p>4、释放资源 -关闭连接</p>
+<h2 id="方式一："><a href="#方式一：" class="headerlink" title="方式一："></a>方式一：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> SQLException &#123;<br>    <span class="hljs-comment">//1.注册驱动</span><br>    <span class="hljs-type">Driver</span> <span class="hljs-variable">driver</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Driver</span>();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<img src="/2023/04/24/Java%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93/image-20230424115710059.png" srcset="/img/loading.gif" lazyload class title="image-20230424115710059">
+
+<p><strong>要根据你的数据库连接版本来确定选择哪一个，因为我的用的是mysql-connector-j-8.0.32.jar，因此我要连接com.mysql.cj.jdbc</strong></p>
+<p><strong>说明：</strong></p>
+<blockquote>
+<p>com.mysql.jdbc.Driver 是 mysql-connector-java 5中的，<br>com.mysql.cj.jdbc.Driver 是 mysql-connector-java 6以及以上中的</p>
+<p>否则Ideal会给你报警告，红红的很不好看~</p>
+</blockquote>
+<p><strong>接下来就是得到连接了：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java">  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> SQLException &#123;<br>      <span class="hljs-comment">//1.注册驱动</span><br>      <span class="hljs-type">Driver</span> <span class="hljs-variable">driver</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Driver</span>(); <span class="hljs-comment">//</span><br><br>      <span class="hljs-comment">//2.得到连接</span><br>      <span class="hljs-type">String</span> <span class="hljs-variable">url</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;jdbc:mysql://localhost:3306/db01&quot;</span>;<br><span class="hljs-comment">//jdbc:mysql:// 规定好的协议, 通过jdbc的方式来连接mysql</span><br><span class="hljs-comment">// localhost 主机，也可以是ip地址</span><br><span class="hljs-comment">// 3306 表示mysql监听的端口</span><br><span class="hljs-comment">// db01 表示连接到db01数据库</span><br>      <br>     <span class="hljs-comment">//连接数据库的时候，我们还需要输入用户名和密码</span><br>      <span class="hljs-type">Properties</span> <span class="hljs-variable">properties</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Properties</span>();<br>      properties.getProperty(<span class="hljs-string">&quot;user&quot;</span>,<span class="hljs-string">&quot;root&quot;</span>);<br>      properties.getProperty(<span class="hljs-string">&quot;password&quot;</span>, <span class="hljs-string">&quot;root&quot;</span>);<br>      <br>      <span class="hljs-comment">//连接数据库！</span><br>      <span class="hljs-type">Connection</span> <span class="hljs-variable">connection</span> <span class="hljs-operator">=</span> DriverManager.getConnection(url, properties);<br>  &#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>然后根据需求执行SQL语句以及关闭资源：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs java">  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> SQLException &#123;<br>      <span class="hljs-comment">//1.注册驱动</span><br>      <span class="hljs-type">Driver</span> <span class="hljs-variable">driver</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Driver</span>(); <span class="hljs-comment">//</span><br><br>      <span class="hljs-comment">//2.得到连接</span><br>      <span class="hljs-type">String</span> <span class="hljs-variable">url</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;jdbc:mysql://localhost:3306/db01&quot;</span>;<br><span class="hljs-comment">//jdbc:mysql:// 规定好的协议, 通过jdbc的方式来连接mysql</span><br><span class="hljs-comment">// localhost 主机，也可以是ip地址</span><br><span class="hljs-comment">// 3306 表示mysql监听的端口</span><br><span class="hljs-comment">// db01 表示连接到db01数据库</span><br>      <br>     <span class="hljs-comment">//我们还需要输入用户名和密码</span><br>      <span class="hljs-type">Properties</span> <span class="hljs-variable">properties</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Properties</span>();<br>      properties.getProperty(<span class="hljs-string">&quot;user&quot;</span>,<span class="hljs-string">&quot;root&quot;</span>);<br>      properties.getProperty(<span class="hljs-string">&quot;password&quot;</span>, <span class="hljs-string">&quot;root&quot;</span>);<br>      <br>      <span class="hljs-comment">//连接数据库！</span><br>      <span class="hljs-type">Connection</span> <span class="hljs-variable">connection</span> <span class="hljs-operator">=</span> DriverManager.getConnection(url, properties);<br>      <br>      <span class="hljs-comment">//3.执行SQL语句</span><br>      <span class="hljs-type">String</span> <span class="hljs-variable">sql</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;&quot;</span>;<br>      <span class="hljs-comment">//......</span><br>      <br>      <span class="hljs-comment">//4.关闭资源</span><br>      connection.close();<br>  &#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="方式二：精简版"><a href="#方式二：精简版" class="headerlink" title="方式二：精简版"></a>方式二：精简版</h2><p>我们还以用过反射来加载Driver类，在加载Driver类的时候，就完成注册~</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> ClassNotFoundException, SQLException &#123;<br>    <span class="hljs-comment">//1、注册驱动</span><br>    <span class="hljs-comment">//使用反射加载了Driver类</span><br>    Class.forName(<span class="hljs-string">&quot;com.mysql.jdbc.Driver&quot;</span>);<br>    <br>   	<span class="hljs-comment">//2.得到连接</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">url</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;jdbc:mysql://localhost:3306/db01&quot;</span>;<br>    <span class="hljs-type">String</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;root&quot;</span>;<br>    <span class="hljs-type">String</span> <span class="hljs-variable">password</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;root&quot;</span>;<br>    <span class="hljs-comment">//根据url连接到数据库</span><br>    <span class="hljs-type">Connection</span> <span class="hljs-variable">connection</span> <span class="hljs-operator">=</span> DriverManager.getConnection(url, user, password);<br>    <br>    <span class="hljs-comment">//3.执行SQL</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">sql</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;&quot;</span>;<br>    <span class="hljs-comment">//.......</span><br><br>    <span class="hljs-comment">//4.关闭连接资源</span><br>    connection.close();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<img src="/2023/04/24/Java%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93/image-20230424212641334.png" srcset="/img/loading.gif" lazyload class title="image-20230424212641334">
 
                 
               </div>
@@ -335,7 +354,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E4%B8%AA%E4%BA%BA%E7%AE%80%E4%BB%8B/">#个人简介</a>
+        <a href="/tags/JavaSE/">#JavaSE</a>
       
     </div>
   
@@ -347,8 +366,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>4_18深夜思考</div>
-      <div>http://example.com/2023/04/19/4-18深夜思考/</div>
+      <div>Java连接数据库</div>
+      <div>http://example.com/2023/04/24/Java连接数据库/</div>
     </div>
     <div class="license-meta">
       
@@ -360,7 +379,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年4月19日</div>
+          <div>2023年4月24日</div>
         </div>
       
       
@@ -392,9 +411,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/04/24/Java%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93/" title="Java连接数据库">
+                      <a href="/2023/05/05/%E6%B7%B1%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B5%85%E6%8B%B7%E8%B4%9D/" title="深拷贝与浅拷贝">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Java连接数据库</span>
+                        <span class="hidden-mobile">深拷贝与浅拷贝</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -402,8 +421,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/04/14/Java%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-%E8%BF%90%E7%AE%97%E7%AC%A6-%E4%B8%8EC%E5%AF%B9%E6%AF%94/" title="Java数据类型|运算符(与C对比)">
-                        <span class="hidden-mobile">Java数据类型|运算符(与C对比)</span>
+                      <a href="/2023/04/19/4-18%E6%B7%B1%E5%A4%9C%E6%80%9D%E8%80%83/" title="4_18深夜思考">
+                        <span class="hidden-mobile">4_18深夜思考</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
