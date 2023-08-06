@@ -28,8 +28,9 @@
 <meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230803100349147.png">
 <meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230803100206952.png">
 <meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230803100608847.png">
+<meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230806090729717.png">
 <meta property="article:published_time" content="2023-07-31T09:28:45.000Z">
-<meta property="article:modified_time" content="2023-08-03T02:07:38.692Z">
+<meta property="article:modified_time" content="2023-08-06T13:04:20.416Z">
 <meta property="article:author" content="郑政祺">
 <meta property="article:tag" content="mysql">
 <meta name="twitter:card" content="summary_large_image">
@@ -243,7 +244,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.9k 字
+          7.2k 字
         
       </span>
     
@@ -254,7 +255,7 @@
         
         
         
-          50 分钟
+          61 分钟
         
       </span>
     
@@ -580,7 +581,7 @@
 
 <p>我们细细观察，可以发现，肯定是先有班级表，学生的班级号才能确定，但是现在突然冒出了一个classId 为 300的学生，但是在我们的班级表中不存在这个班级号，为了防止这种情况发生，我们可以使用外键约束~</p>
 <p><strong>语法</strong>：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs mysql">create table 表名 (列名 类型, 列名 类型, ......, foreign key (列名) references 主表名(列名));<br><br>#我们创建学生表的时候可以这样写：<br>#create table student (id int, name varchar(20), classId int, foreign key classId references class(classId));<br>#student表的classId 的所有数据都要出自于class表的classId这一列，也就是说如果class表中没有这个班级号，那么我们插入的学生信息将会报错~<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs mysql">create table 表名 (列名 类型, 列名 类型, ......, foreign key (列名) references 主表名(列名));<br><br>#我们创建学生表的时候可以这样写：<br>#create table student (id int, name varchar(20), classId int, foreign key （classId） references class(classId));<br>#student表的classId 的所有数据都要出自于class表的classId这一列，也就是说如果class表中没有这个班级号，那么我们插入的学生信息将会报错~<br></code></pre></td></tr></table></figure>
 
 <p><strong>使用了外键之后，被约束的表就称为子表， 另一张表相对的就是父表，子表中的那一个字段的数据都要出自父表</strong>。当然，力的作用是相互的，约束也不例外，<strong>当我们想要删除&#x2F;修改父表的约束子表的那个字段，如果子表已经引用过了，那么我们将会删除&#x2F;修改失败</strong></p>
 <p><strong>注意</strong>：</p>
@@ -604,7 +605,60 @@
 
 
 
-<h1 id="七、查询增强-进阶"><a href="#七、查询增强-进阶" class="headerlink" title="七、查询增强(进阶)"></a>七、查询增强(进阶)</h1>
+<h1 id="七、查询增强-进阶"><a href="#七、查询增强-进阶" class="headerlink" title="七、查询增强(进阶)"></a>七、查询增强(进阶)</h1><h1 id="八、索引"><a href="#八、索引" class="headerlink" title="八、索引"></a>八、索引</h1><h1 id="九、事务"><a href="#九、事务" class="headerlink" title="九、事务"></a>九、事务</h1><p>事务：一组数据库的操作语句，这些操作将会被视为一个整体，保证要么这些语句全部执行，要么“一个都不执行”。</p>
+<h2 id="0x-00-案例引入"><a href="#0x-00-案例引入" class="headerlink" title="0x 00 案例引入"></a>0x 00 案例引入</h2><img src="/2023/07/31/MySQL/image-20230806090729717.png" srcset="/img/loading.gif" lazyload class title="image-20230806090729717">
+
+<p>现在，SQL语句执行完了第一条但是还没执行第二条的时候，突然电脑关机&#x2F;程序崩溃了…….</p>
+<p>张三一看已经扣了钱，但是李四却没有收到，这就很尴尬了。此时我们需要引入“事务”，来帮助我们解决这个问题，也就是要么张三扣了钱，李四收到了钱，要么就无事发生~ <strong>我们将这种“要么全部执行，要么相当于没有执行”这个特殊的性质称为“原子性”</strong></p>
+<h2 id="0x-01-事务的特性ACID"><a href="#0x-01-事务的特性ACID" class="headerlink" title="0x 01 事务的特性ACID"></a>0x 01 事务的特性ACID</h2><p>1、<strong>原子性(Atomicity)<strong>：</strong>事务出现的原因</strong>。将一系列sql语句看成一个整体，要么全部执行，要么通过回滚的方式，恢复如初。</p>
+<p>2、**一致性(Consistency)**：事务执行之前和之后，数据都不能出现非法的情况。</p>
+<p>3、**持久性(Durability)**：事务做出的修改，都是在硬盘上持久保存的，即使在系统故障或者崩溃的情况下，事务执行的修改都是有效的。</p>
+<p>4、<strong>隔离性(Isolation)<strong>：</strong>由于mysql是客户端-服务器的模式，会存在并发的情况，即多个用户在同一时间请求服务器。</strong>事务的执行是相互隔离的，一个事务的操作不应该影响其他事务的操作。</p>
+<p><strong>补充</strong>：</p>
+<p>并发操作往往能提高效率，但是会降低准确性。mysql数据库在并发执行的时候，会遇到如下问题：</p>
+<p><strong>1、脏读：</strong></p>
+<p>事务A在**改变(修改，增加，删除)**数据</p>
+<p>事务B在事务A未提交的时候就来读取数据</p>
+<p>后来事物A可能在事物B读完了数据后又修改了或者回滚了，此时事务B读到数据就是“脏”的，即无效的。</p>
+<p><strong>脏读也就是在写的过程中进行读操作。</strong>解决脏读问题，思路是<strong>对写操作进行加锁</strong>，告诉事务B在我写的时候，不要来读取数据。此时并发性降低了，隔离性提高了，效率降低了，准确性提高了~</p>
+<p><strong>2、不可重复读：</strong></p>
+<p>事务B在读取数据</p>
+<p>事务A<strong>修改或删除了数据</strong>然后提交事务</p>
+<p>事务B第二次读数据的时候，发现两次读到的数据不相同，也就是事务A在事物B两次读取的时候进行了修改。</p>
+<p><strong>不可重复读也就是在读的过程中进行了写操作</strong>。解决不可重复读问题，思路是<strong>对读操作进行加锁</strong>，告诉事务A在我读的时候，不要来修改数据。</p>
+<p><strong>3、幻读：</strong></p>
+<p>事务B在读数据</p>
+<p>事务A此时<strong>插入了数据</strong>然后提交了事务</p>
+<p>事务B第二次读数据，然后读到了与第一不一样的结果集。</p>
+<p><strong>幻读与不可重复读类似，区别在于幻读是强调插入操作，不可重读是修改操作。</strong>解决幻读的问题，思路是<strong>引入串行化的方式</strong>，保证绝对的串行执行事务，此时完全没有并发了。</p>
+<p>针对以上的问题，mysql提供了4种隔离级别，可以在mysql配置文件中修改~</p>
+<table>
+<thead>
+<tr>
+<th>隔离级别</th>
+<th>解决问题</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>read uncommitted(读未提交)</td>
+<td>隔离性最低，但效率最高</td>
+</tr>
+<tr>
+<td>read committed(读已提交)</td>
+<td>给写加锁，解决脏读</td>
+</tr>
+<tr>
+<td>repeatable read(可重复读)</td>
+<td>给读、写加锁，解决脏读、不可重复读、幻读问题</td>
+</tr>
+<tr>
+<td>serializable(串行化)</td>
+<td>严格按照串行的方式，一个一个执行事务，解决脏读、不可重复读、幻读</td>
+</tr>
+</tbody></table>
+<h2 id="0x-02-操作语句"><a href="#0x-02-操作语句" class="headerlink" title="0x 02 操作语句"></a>0x 02 操作语句</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs mysql">start transaction; #开启事务<br><br>进行一些列sql语句......<br><br>rollback;   #回滚事务，恢复到未执行事务前<br><br>commit;   #提交事务<br><br><br>#事务的使用很简单，但需要关注事务背后的一些原理性质的内容<br></code></pre></td></tr></table></figure>
+
+
                 
               </div>
             
