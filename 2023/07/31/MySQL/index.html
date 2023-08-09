@@ -16,21 +16,33 @@
   <meta name="author" content="郑政祺">
   <meta name="keywords" content="">
   
-    <meta name="description" content="本文说明：记录一下2023的暑假中mysql的学习~ 学习的内容的侧重点不同于学校的理论，而是工作、面试中可能经常出现的内容~ 本人是一只小白，如果发现有错欢迎指出~ 一、数据库介绍0x00 什么是数据库数据库是一个广义的概念：  表示 “数据库” 这一门学科。研究如何设计实现一个数据库(造轮子)  表示一类软件，用来有效管理数据 ……   我们这里介绍的是mysql数据库管理软件。学科啥的太抽象">
+    <meta name="description" content="本文说明：2023的暑假中mysql的学习~ 学习的内容的侧重点不同于学校的理论，而是工作、面试中可能经常出现的内容~ 本文是针对小白和稍微有一些了解的用户所讲解的~ 一、数据库介绍0x00 什么是数据库数据库是一个广义的概念：  表示 “数据库” 这一门学科。研究如何设计实现一个数据库(造轮子)  表示一类软件，用来有效管理数据 ……   我们这里介绍的是mysql数据库管理软件。学科啥的太抽象">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL">
 <meta property="og:url" content="http://example.com/2023/07/31/MySQL/index.html">
 <meta property="og:site_name" content="机智的土拨鼠">
-<meta property="og:description" content="本文说明：记录一下2023的暑假中mysql的学习~ 学习的内容的侧重点不同于学校的理论，而是工作、面试中可能经常出现的内容~ 本人是一只小白，如果发现有错欢迎指出~ 一、数据库介绍0x00 什么是数据库数据库是一个广义的概念：  表示 “数据库” 这一门学科。研究如何设计实现一个数据库(造轮子)  表示一类软件，用来有效管理数据 ……   我们这里介绍的是mysql数据库管理软件。学科啥的太抽象">
+<meta property="og:description" content="本文说明：2023的暑假中mysql的学习~ 学习的内容的侧重点不同于学校的理论，而是工作、面试中可能经常出现的内容~ 本文是针对小白和稍微有一些了解的用户所讲解的~ 一、数据库介绍0x00 什么是数据库数据库是一个广义的概念：  表示 “数据库” 这一门学科。研究如何设计实现一个数据库(造轮子)  表示一类软件，用来有效管理数据 ……   我们这里介绍的是mysql数据库管理软件。学科啥的太抽象">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230803084857974.png">
 <meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230803085241442.png">
 <meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230803100349147.png">
 <meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230803100206952.png">
 <meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230803100608847.png">
+<meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230808091752885.png">
+<meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230808091927650.png">
+<meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230808092930270.png">
+<meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230808093239831.png">
+<meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230808094213698.png">
+<meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230808094523104.png">
+<meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230808095817918.png">
+<meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230808100511716.png">
+<meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230808100806990.png">
+<meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230809090138583.png">
+<meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230809092917129.png">
+<meta property="og:image" content="http://example.com/2023/07/31/MySQL/f070fdfc8e4b40dda2ebee96c3c6170a.jpeg">
 <meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230806090729717.png">
 <meta property="article:published_time" content="2023-07-31T09:28:45.000Z">
-<meta property="article:modified_time" content="2023-08-06T13:04:20.416Z">
+<meta property="article:modified_time" content="2023-08-09T12:16:40.604Z">
 <meta property="article:author" content="郑政祺">
 <meta property="article:tag" content="mysql">
 <meta name="twitter:card" content="summary_large_image">
@@ -244,7 +256,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          7.2k 字
+          10k 字
         
       </span>
     
@@ -255,7 +267,7 @@
         
         
         
-          61 分钟
+          85 分钟
         
       </span>
     
@@ -319,7 +331,7 @@
             
               <div class="markdown-body">
                 
-                <p><strong>本文说明</strong>：记录一下2023的暑假中mysql的学习~ 学习的内容的侧重点不同于学校的理论，而是工作、面试中可能经常出现的内容~ 本人是一只小白，如果发现有错欢迎指出~</p>
+                <p><strong>本文说明</strong>：2023的暑假中mysql的学习~ 学习的内容的侧重点不同于学校的理论，而是工作、面试中可能经常出现的内容~ 本文是针对小白和稍微有一些了解的用户所讲解的~</p>
 <h1 id="一、数据库介绍"><a href="#一、数据库介绍" class="headerlink" title="一、数据库介绍"></a>一、数据库介绍</h1><h2 id="0x00-什么是数据库"><a href="#0x00-什么是数据库" class="headerlink" title="0x00 什么是数据库"></a>0x00 什么是数据库</h2><p>数据库是一个广义的概念：</p>
 <ol>
 <li><p>表示 “数据库” 这一门学科。研究如何设计实现一个数据库(造轮子)</p>
@@ -605,22 +617,153 @@
 
 
 
-<h1 id="七、查询增强-进阶"><a href="#七、查询增强-进阶" class="headerlink" title="七、查询增强(进阶)"></a>七、查询增强(进阶)</h1><h1 id="八、索引"><a href="#八、索引" class="headerlink" title="八、索引"></a>八、索引</h1><h1 id="九、事务"><a href="#九、事务" class="headerlink" title="九、事务"></a>九、事务</h1><p>事务：一组数据库的操作语句，这些操作将会被视为一个整体，保证要么这些语句全部执行，要么“一个都不执行”。</p>
+<h1 id="七、查询增强-进阶"><a href="#七、查询增强-进阶" class="headerlink" title="七、查询增强(进阶)"></a>七、查询增强(进阶)</h1><p><strong>查询操作有很多的花样，但一般实际开发中最最最常使用的还是前面基础的crud操作。</strong></p>
+<h2 id="0x-00-聚合查询"><a href="#0x-00-聚合查询" class="headerlink" title="0x 00 聚合查询"></a>0x 00 聚合查询</h2><p>之前的<strong>表达式查询</strong>是对于一条记录上的<strong>列与列</strong>之间进行运算的，如果要针对<strong>行与行之间进行运算</strong>呢？这时候就要用到<strong>聚合查询</strong>了~</p>
+<p>首先来了解一些聚合函数：</p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>count()</td>
+<td>返回查询数据的个数</td>
+</tr>
+<tr>
+<td>sum()</td>
+<td>返回查询数据的总和，不是数字没意义</td>
+</tr>
+<tr>
+<td>avg()</td>
+<td>返回查询数据的平均值，不是数字没意义</td>
+</tr>
+<tr>
+<td>max()</td>
+<td>返回查询数据的最大值，不是数字没意义</td>
+</tr>
+<tr>
+<td>min()</td>
+<td>返回查询数据的最小值，不是数字没意义</td>
+</tr>
+</tbody></table>
+<p><strong>语法：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select count([distinct]表达式) from 表名;<br>select sum([distinct]表达式) from 表名;<br>select avg([distinct]表达式) from 表名;<br>select max([distinct]表达式) from 表名;<br>select min([distinct]表达式) from 表名;<br><br>#注意：<br>#count(*) 和 count(列名)的区别，count(*)会把一条为null的数据也统计进去，而count(列名)则不会<br>#如果计算字符串的值，需要字符串合法，因为mysql会尝试转成double<br></code></pre></td></tr></table></figure>
+
+<h2 id="0x-01-分组查询"><a href="#0x-01-分组查询" class="headerlink" title="0x 01 分组查询"></a>0x 01 分组查询</h2><p>分组查询一般会配合聚合查询，因为分组查询会把几行数据看做是一行，如果不使用聚合查询，那么显示的结果为一组中某一个数据。</p>
+<p><strong>举例：</strong></p>
+<p><strong>求各班的平均成绩：</strong></p>
+<img src="/2023/07/31/MySQL/image-20230808091752885.png" srcset="/img/loading.gif" lazyload class title="image-20230808091752885">
+
+<p>那么我们的代码得这样写：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select class_id, avg(socre) from class group by class_id;<br></code></pre></td></tr></table></figure>
+
+<img src="/2023/07/31/MySQL/image-20230808091927650.png" srcset="/img/loading.gif" lazyload class title="image-20230808091927650">
+
+
+
+<p><strong>使用group by的时候，还可以搭配条件。此时我们需要区分该条件是分组前的，还是分组之后的？</strong></p>
+<p>如果是分组前，使用where条件查询</p>
+<p>如果是分组后，使用having条件查询</p>
+<p>举例：</p>
+<p><strong>查询各班平均分，但是学生成绩不能超过100</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select class_id, avg(socre) from class where socre &lt;= 100 group by class_id;<br></code></pre></td></tr></table></figure>
+
+<img src="/2023/07/31/MySQL/image-20230808092930270.png" srcset="/img/loading.gif" lazyload class title="image-20230808092930270">
+
+<p><strong>查询平均分大于100分的班级</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select class_id, avg(score) from class group by class_id having avg(score) &gt; 100;<br></code></pre></td></tr></table></figure>
+
+<img src="/2023/07/31/MySQL/image-20230808093239831.png" srcset="/img/loading.gif" lazyload class title="image-20230808093239831">
+
+
+
+<h2 id="0x-02-联合查询"><a href="#0x-02-联合查询" class="headerlink" title="0x 02 联合查询"></a>0x 02 联合查询</h2><p>联合查询也就是多表查询，就是在多张表上进行查询。但是联合查询也会有<strong>一些问题</strong>……</p>
+<p><strong>联合查询会产生笛卡尔积</strong>，也就是说表A中的每一条数据都会与表B中每一条数据进行组合，如果A表中的数据个数为100，表B中的数据个数为100，那么最终会产生100<em>100条数据。但是仔细观察，会发现有一些数据是“非法”的。*<em>笛卡尔积是简单的排列组合，穷举所有情况，因此你我们需要筛选数据~</em></em></p>
+<p><strong>如果要联合n张表进行查询，那么我们需要使用n-1个连接条件，才不会出现笛卡尔积的现象~</strong></p>
+<img src="/2023/07/31/MySQL/image-20230808094213698.png" srcset="/img/loading.gif" lazyload class title="image-20230808094213698">
+
+<p><strong>此时就出现了笛卡尔积，但是仔细观察，会发现class_id 不同的数据都组合到了一起，因此我们需要一个连接条件。</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select student.class_id, student.name, class.socre from student, class where student.class_id = class.class_id;<br></code></pre></td></tr></table></figure>
+
+<img src="/2023/07/31/MySQL/image-20230808094523104.png" srcset="/img/loading.gif" lazyload class title="image-20230808094523104">
+
+
+
+<p><strong>由于多表查询一般比较复杂，我们可以按照如下的步骤来写：</strong></p>
+<p>1、先进行指定哪个几个表，进行笛卡尔积</p>
+<p>2、指定连接条件，去除笛卡尔积</p>
+<p>3、精简列数据</p>
+<p>以上查询都是基于“内连接“的操作，然而mysql还提供了”外连接“(左外连接，右外连接)</p>
+<p><strong>案例引入</strong>：</p>
+<p>现有如下表<img src="/2023/07/31/MySQL/image-20230808095817918.png" srcset="/img/loading.gif" lazyload class title="image-20230808095817918"></p>
+<p>此时<strong>student的每一条记录都可以在score表中找到对应，每一个score中记录也可以在student表中找到对应。</strong></p>
+<p>此时我们使用外内接或者内连接查询的结果是一样。</p>
+<img src="/2023/07/31/MySQL/image-20230808100511716.png" srcset="/img/loading.gif" lazyload class title="image-20230808100511716">
+
+<p><strong>但是如果不存在记录，那么内连接与外连接就会天差地别~</strong></p>
+<img src="/2023/07/31/MySQL/image-20230808100806990.png" srcset="/img/loading.gif" lazyload class title="image-20230808100806990">
+
+<p>外连接分为左外连接和右外连接。</p>
+<p><strong>左外连接：</strong>以左表为基准，保证左侧表的每个数据都会出现在最终的结果集里，如果右表没有与之对应的记录则显示null。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select 列名 from 表名1 left join 表2 on 连接条件<br></code></pre></td></tr></table></figure>
+
+<p><strong>右外连接：</strong>以右表为基准，保证右侧表的每个数据都会出现在最终的结果集里，如果左表没有与之对应的记录则显示null。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select 列名 from 表名1 right join 表2 on 连接条件<br></code></pre></td></tr></table></figure>
+
+<p>我们还可以用集合图来表示这些连接的关系：</p>
+<img src="/2023/07/31/MySQL/image-20230809090138583.png" srcset="/img/loading.gif" lazyload class title="image-20230809090138583">
+
+
+
+<p><strong>补充</strong>：</p>
+<p>以上我们都是针对于两个表进行联合查询的，但我们甚至还可以<strong>将一个表当做两个表来进行联合查询</strong>，这样我们就能在一张表中进行 <strong>行与行的比较</strong>~这种连接方式一般被称为<strong>“内连接”</strong>。</p>
+<p>自连接的查询跟上面的联合查询基本没什么区别，需要注意将两张表进行别名操作~</p>
+<h2 id="0x-03-子查询"><a href="#0x-03-子查询" class="headerlink" title="0x 03 子查询"></a>0x 03 子查询</h2><p><strong>子查询是将多个简单的SQL语句拼成一个复杂的SQL, 也就是说将某一个查询的结果看做是一张表，然后进行操作，但本质是在套娃</strong>。因此我们实际也是可以用简单的查询完成子查询的操作的~</p>
+<p>语法形式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select 列名 from 表名 where 列名 = (select 列名 from 表名 where 列名 = (套娃下去....));<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="0x-04-合并查询"><a href="#0x-04-合并查询" class="headerlink" title="0x 04 合并查询"></a>0x 04 合并查询</h2><p>合并查询就是<strong>将多个sql的查询结果集 合并在一起</strong>。合并的两个sql结果集的列，需要<strong>匹配，列的个数和类型得是一致的</strong>！<strong>合并的时候是会进行去重的，如果不想要去重，得使用 union all</strong> </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select 列名1 列名2 from 表1 union [all] select 列名3 列名4 from 表2;<br></code></pre></td></tr></table></figure>
+
+<p><strong>最终结果</strong>：</p>
+<img src="/2023/07/31/MySQL/image-20230809092917129.png" srcset="/img/loading.gif" lazyload class title="image-20230809092917129">
+
+<h1 id="八、索引"><a href="#八、索引" class="headerlink" title="八、索引"></a>八、索引</h1><p>由于我们在使用数据库的时候，<strong>大部分操作的都是查询操作</strong>，但是我们<strong>每一次进行查询都需要遍历一遍表</strong>中所有数据，这会花费O(n)的时间，因此数据<strong>引入了“索引”</strong> 也就是在底层使用了数据结构来进行<strong>优化查询</strong>的操作，但是可能会<strong>造成插入&#x2F;删除操作变慢</strong>和<strong>消耗空间</strong>。</p>
+<p><strong>语法</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs mysql">show index from 表名;<br><br>#查看表中哪一列有索引<br><br>create index 索引名字 on 表名(列名);<br><br>#对某一列创建索引<br><br>drop index 索引名 on 表名;<br><br>#删除索引<br></code></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：</p>
+<p>一个索引是针对列来指定的。<strong>只有针对这一列进行查询时</strong>，查询速度才能被索引优化~如果进行全列查询的话，那还是需要遍历表的。</p>
+<p><strong>如果某一列被primary key、foreign key、unique所约束的话，会自动创建索引</strong>。</p>
+<p><strong>创建索引</strong>也是一个相当<strong>危险的操作</strong>，因为创建索引是需要对现有的数据进行大规模的整理，如果数据非常多，很容易就把服务器卡住，一般来说创建索引的时候都是在创建完表后立马操作，一旦使用久了的话， 需要慎重操作。不过也可以采用分治的思想，一点一点将数据写入到创建好的表中~</p>
+<hr>
+<p><strong>以上内容都是基础的知识，但是面试常考查的是索引的底层~~</strong></p>
+<p>(由于本人水平有限，在此先简单介绍简单的内容知识~)</p>
+<p>索引的底层使用的是<strong>一种类似二叉搜索树</strong>(在极端情况下，<strong>二叉搜索树的时间复杂度为O(n)，AVL树，红黑树能达到O(logn)</strong>)的树 ，也就是<strong>一棵改进的树形结构：B+树</strong>。可能会好奇，为啥不用哈希表呢？时间复杂度可以O(1),这是因为<strong>在查询的过程中我们往往会进行范围查询，而哈希表只能进行精确的查询</strong>，因此我们不使用哈希表。</p>
+<img src="/2023/07/31/MySQL/f070fdfc8e4b40dda2ebee96c3c6170a.jpeg" srcset="/img/loading.gif" lazyload class title="img">
+
+<p>B+树顾名思义是在B树的基础上改进的。那啥是B树呢？</p>
+<p>B树：是一棵N叉搜索树，每个节点的度不确定，一个节点上保存N个数据的值，划分出N + 1个区间，每个区间衍生出一棵子树。</p>
+<h1 id="九、事务"><a href="#九、事务" class="headerlink" title="九、事务"></a>九、事务</h1><p>事务：一组数据库的操作语句，这些操作将会被视为一个整体，保证要么这些语句全部执行，要么“一个都不执行”。</p>
 <h2 id="0x-00-案例引入"><a href="#0x-00-案例引入" class="headerlink" title="0x 00 案例引入"></a>0x 00 案例引入</h2><img src="/2023/07/31/MySQL/image-20230806090729717.png" srcset="/img/loading.gif" lazyload class title="image-20230806090729717">
 
 <p>现在，SQL语句执行完了第一条但是还没执行第二条的时候，突然电脑关机&#x2F;程序崩溃了…….</p>
 <p>张三一看已经扣了钱，但是李四却没有收到，这就很尴尬了。此时我们需要引入“事务”，来帮助我们解决这个问题，也就是要么张三扣了钱，李四收到了钱，要么就无事发生~ <strong>我们将这种“要么全部执行，要么相当于没有执行”这个特殊的性质称为“原子性”</strong></p>
-<h2 id="0x-01-事务的特性ACID"><a href="#0x-01-事务的特性ACID" class="headerlink" title="0x 01 事务的特性ACID"></a>0x 01 事务的特性ACID</h2><p>1、<strong>原子性(Atomicity)<strong>：</strong>事务出现的原因</strong>。将一系列sql语句看成一个整体，要么全部执行，要么通过回滚的方式，恢复如初。</p>
-<p>2、**一致性(Consistency)**：事务执行之前和之后，数据都不能出现非法的情况。</p>
-<p>3、**持久性(Durability)**：事务做出的修改，都是在硬盘上持久保存的，即使在系统故障或者崩溃的情况下，事务执行的修改都是有效的。</p>
-<p>4、<strong>隔离性(Isolation)<strong>：</strong>由于mysql是客户端-服务器的模式，会存在并发的情况，即多个用户在同一时间请求服务器。</strong>事务的执行是相互隔离的，一个事务的操作不应该影响其他事务的操作。</p>
+<h2 id="0x-01-事务的特性ACID"><a href="#0x-01-事务的特性ACID" class="headerlink" title="0x 01 事务的特性ACID"></a>0x 01 事务的特性ACID</h2><p>1、<strong>原子性(Atomicity)</strong> ：<strong>事务出现的原因</strong>。将一系列sql语句看成一个整体，要么全部执行，要么通过回滚的方式，恢复如初。</p>
+<p>2、 <strong>一致性(Consistency)</strong> ：事务执行之前和之后，数据都不能出现非法的情况。</p>
+<p>3、 <strong>持久性(Durability)</strong> ：事务做出的修改，都是在硬盘上持久保存的，即使在系统故障或者崩溃的情况下，事务执行的修改都是有效的。</p>
+<p>4、<strong>隔离性(Isolation)</strong> ：<strong>由于mysql是客户端-服务器的模式，会存在并发的情况，即多个用户在同一时间请求服务器。</strong>事务的执行是相互隔离的，一个事务的操作不应该影响其他事务的操作。</p>
 <p><strong>补充</strong>：</p>
-<p>并发操作往往能提高效率，但是会降低准确性。mysql数据库在并发执行的时候，会遇到如下问题：</p>
+<p><strong>并发操作往往能提高效率，但是会降低准确性</strong>。mysql数据库在并发执行的时候，会遇到如下问题：</p>
 <p><strong>1、脏读：</strong></p>
-<p>事务A在**改变(修改，增加，删除)**数据</p>
+<p>事务A在**改变(修改，增加，删除) **数据</p>
 <p>事务B在事务A未提交的时候就来读取数据</p>
 <p>后来事物A可能在事物B读完了数据后又修改了或者回滚了，此时事务B读到数据就是“脏”的，即无效的。</p>
-<p><strong>脏读也就是在写的过程中进行读操作。</strong>解决脏读问题，思路是<strong>对写操作进行加锁</strong>，告诉事务B在我写的时候，不要来读取数据。此时并发性降低了，隔离性提高了，效率降低了，准确性提高了~</p>
+<p><strong>脏读也就是在写的过程中进行读操作。 <strong>解决脏读问题，思路是</strong>对写操作进行加锁</strong>，告诉事务B在我写的时候，不要来读取数据。此时并发性降低了，隔离性提高了，效率降低了，准确性提高了~</p>
 <p><strong>2、不可重复读：</strong></p>
 <p>事务B在读取数据</p>
 <p>事务A<strong>修改或删除了数据</strong>然后提交事务</p>
@@ -659,6 +802,8 @@
 <h2 id="0x-02-操作语句"><a href="#0x-02-操作语句" class="headerlink" title="0x 02 操作语句"></a>0x 02 操作语句</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs mysql">start transaction; #开启事务<br><br>进行一些列sql语句......<br><br>rollback;   #回滚事务，恢复到未执行事务前<br><br>commit;   #提交事务<br><br><br>#事务的使用很简单，但需要关注事务背后的一些原理性质的内容<br></code></pre></td></tr></table></figure>
 
 
+
+<h1 id="十、JDBC"><a href="#十、JDBC" class="headerlink" title="十、JDBC"></a>十、JDBC</h1>
                 
               </div>
             
