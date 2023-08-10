@@ -40,9 +40,11 @@
 <meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230809090138583.png">
 <meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230809092917129.png">
 <meta property="og:image" content="http://example.com/2023/07/31/MySQL/f070fdfc8e4b40dda2ebee96c3c6170a.jpeg">
+<meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230810085349816.png">
+<meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230810093232881.png">
 <meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230806090729717.png">
 <meta property="article:published_time" content="2023-07-31T09:28:45.000Z">
-<meta property="article:modified_time" content="2023-08-09T12:16:40.604Z">
+<meta property="article:modified_time" content="2023-08-10T02:54:11.121Z">
 <meta property="article:author" content="郑政祺">
 <meta property="article:tag" content="mysql">
 <meta name="twitter:card" content="summary_large_image">
@@ -256,7 +258,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          10k 字
+          11k 字
         
       </span>
     
@@ -267,7 +269,7 @@
         
         
         
-          85 分钟
+          93 分钟
         
       </span>
     
@@ -574,37 +576,43 @@
 <p>由于not null、 unique、default、check比较容易，这里就对主键(primary key)和外键(foreign key) 进行解释。</p>
 <h2 id="主键primary-key"><a href="#主键primary-key" class="headerlink" title="主键primary key"></a>主键primary key</h2><p>主键可以理解为记录的身份标识，就像身份证一样是我们每个人的身份标识，既不能为空，又不能重复。</p>
 <p><strong>一张表里只能有一个主键</strong>，毕竟是身份标识嘛，存在多个了，以谁为准???</p>
-<p><strong>虽然主键只能有一个，但是主键不一定是一列，可以用多个列共同构成主键(联合主键)。</strong></p>
-<p>由于主键具有unique属性，因此我们一般配合mysql中 ”自增主键” 来使用，也就是会自动分配一个逐个增长的值~</p>
+<p>虽然主键只能有一个，但是<strong>主键不一定是一列</strong>，可以用<strong>多个列共同构成主键</strong>(联合主键)。</p>
+<p>由于主键具有unique属性，因此我们一般<strong>配合mysql中 ”自增主键”</strong> 来使用，也就是会自动分配一个逐个增长的值~</p>
 <p><strong>语法</strong>：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">create table 表名 (列名 类型 primary key auto_increment);<br></code></pre></td></tr></table></figure>
 
-<p><strong>如果手动插入一个数据，此时数据库为与主键最高的值进行比较，如果高了就更新，此后自动分配的值也会从这个最高值进行增长！</strong></p>
+<p>如果手动插入一个数据，此时<strong>数据库会与主键最高的值进行比较</strong>，如果高了就更新，<strong>此后自动分配的值也会从这个最高值进行增长</strong>！</p>
 <p><strong>拓展</strong>：</p>
-<p><strong>如果是分布式系统，在同一时间插入了一个数据，此时自增主键就会出错，那么如何处理这种并发场景呢？</strong></p>
+<p>如果是<strong>分布式系统</strong>，在<strong>同一时间插入了一个数据</strong>，此时<strong>自增主键就会出错</strong>，那么如何处理这种并发场景呢？</p>
 <p><strong>一般会使用一个公式来形成主键</strong>：</p>
 <p>分布式主键值 &#x3D;  时间戳 + 机房编号&#x2F;主机号 + 随机因子   此处使用的是字符串拼接操作!!!</p>
-<p><strong>前面两个可以防止在同一时间不同机器的的主键冲突，后面的随机因子可以防止同一时间同一机器的主键冲突<del>但是理论上还是有可能存在冲突的</del></strong></p>
+<p>前面两个可以<strong>防止在同一时间不同机器的的主键冲突</strong>，后面的<strong>随机因子</strong>可以<strong>防止同一时间同一机器的主键冲突</strong>，但是理论上还是有可能存在冲突的~</p>
 <h2 id="外键foreign-key"><a href="#外键foreign-key" class="headerlink" title="外键foreign key"></a>外键foreign key</h2><p>案例引入： </p>
 <p>现在我们有两张表，一张是学生表，里面有学号、姓名、班级号字段，另一张表示班级表，里面有班级号、班级名字段。</p>
 <img src="/2023/07/31/MySQL/image-20230803084857974.png" srcset="/img/loading.gif" lazyload class title="image-20230803084857974">
 
 <img src="/2023/07/31/MySQL/image-20230803085241442.png" srcset="/img/loading.gif" lazyload class title="image-20230803085241442">
 
+
+
 <p>我们细细观察，可以发现，肯定是先有班级表，学生的班级号才能确定，但是现在突然冒出了一个classId 为 300的学生，但是在我们的班级表中不存在这个班级号，为了防止这种情况发生，我们可以使用外键约束~</p>
 <p><strong>语法</strong>：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs mysql">create table 表名 (列名 类型, 列名 类型, ......, foreign key (列名) references 主表名(列名));<br><br>#我们创建学生表的时候可以这样写：<br>#create table student (id int, name varchar(20), classId int, foreign key （classId） references class(classId));<br>#student表的classId 的所有数据都要出自于class表的classId这一列，也就是说如果class表中没有这个班级号，那么我们插入的学生信息将会报错~<br></code></pre></td></tr></table></figure>
 
-<p><strong>使用了外键之后，被约束的表就称为子表， 另一张表相对的就是父表，子表中的那一个字段的数据都要出自父表</strong>。当然，力的作用是相互的，约束也不例外，<strong>当我们想要删除&#x2F;修改父表的约束子表的那个字段，如果子表已经引用过了，那么我们将会删除&#x2F;修改失败</strong></p>
+
+
+<p><strong>使用外键</strong>之后，<strong>被约束的表就称为子表</strong>， <strong>另一张表相对的就是父表</strong>，<strong>子表</strong>中的那一个字段的<strong>数据</strong>都要<strong>出自父表</strong>。当然，力的作用是相互的，约束也不例外，当我们想要<strong>删除&#x2F;修改父表的约束子表的那个字段</strong>，如果子表<strong>已经引用</strong>过了，那么我们将会<strong>删除&#x2F;修改失败</strong></p>
 <p><strong>注意</strong>：</p>
-<p><strong>父表中约束子表的字段必须为主键或者unique！</strong></p>
+<p><strong>父表中约束子表的字段必须为主键或者unique！！！</strong></p>
 <h1 id="六、表的设计"><a href="#六、表的设计" class="headerlink" title="六、表的设计"></a>六、表的设计</h1><p> 在实际的场景中，有大量的数据，我们需要明确当前要创建几个表，每个表有什么字段，这些表中是否存在一定的联系。</p>
 <p>因此根据实际开发就整理出了三大范式~</p>
-<h2 id="一对一"><a href="#一对一" class="headerlink" title="一对一"></a>一对一</h2><p>例如：一个学生只有一个账号，一个账号只属于一个学生。</p>
+<h2 id="一对一"><a href="#一对一" class="headerlink" title="一对一"></a>一对一</h2><p>例如：<strong>一个学生只有一个账号，一个账号只属于一个学生</strong>。</p>
 <p>此时我们设计两张表，让其中的一张表存储另一张表的唯一的属性，这样我们可以通过这个属性就能找到想要的值了。或者也可以将两张表整合，成为一张表。</p>
 <img src="/2023/07/31/MySQL/image-20230803100349147.png" srcset="/img/loading.gif" lazyload class title="image-20230803100349147">
 
-<h2 id="一对多"><a href="#一对多" class="headerlink" title="一对多"></a>一对多</h2><p>例如：一个学生只能属于一个班级，一个班级可以拥有多个学生。</p>
+
+
+<h2 id="一对多"><a href="#一对多" class="headerlink" title="一对多"></a>一对多</h2><p>例如：<strong>一个学生只能属于一个班级，一个班级可以拥有多个学生。</strong></p>
 <p>此时我们设计两张表，<strong>将那个“一”的表中添加上“多”的表中的唯一的字段</strong>。</p>
 <p><strong>补充</strong>：如果是redis这种能够支持数组类型的数据库，我们可以不这样设计，可以使用一个数组类型，用来存储多个学生。如下图：</p>
 <img src="/2023/07/31/MySQL/image-20230803100206952.png" srcset="/img/loading.gif" lazyload class title="image-20230803100206952">
@@ -656,6 +664,8 @@
 <p><strong>求各班的平均成绩：</strong></p>
 <img src="/2023/07/31/MySQL/image-20230808091752885.png" srcset="/img/loading.gif" lazyload class title="image-20230808091752885">
 
+
+
 <p>那么我们的代码得这样写：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select class_id, avg(socre) from class group by class_id;<br></code></pre></td></tr></table></figure>
 
@@ -671,6 +681,8 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select class_id, avg(socre) from class where socre &lt;= 100 group by class_id;<br></code></pre></td></tr></table></figure>
 
 <img src="/2023/07/31/MySQL/image-20230808092930270.png" srcset="/img/loading.gif" lazyload class title="image-20230808092930270">
+
+
 
 <p><strong>查询平均分大于100分的班级</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select class_id, avg(score) from class group by class_id having avg(score) &gt; 100;<br></code></pre></td></tr></table></figure>
@@ -689,13 +701,13 @@
 
 <img src="/2023/07/31/MySQL/image-20230808094523104.png" srcset="/img/loading.gif" lazyload class title="image-20230808094523104">
 
-
-
+<hr>
 <p><strong>由于多表查询一般比较复杂，我们可以按照如下的步骤来写：</strong></p>
 <p>1、先进行指定哪个几个表，进行笛卡尔积</p>
 <p>2、指定连接条件，去除笛卡尔积</p>
 <p>3、精简列数据</p>
 <p>以上查询都是基于“内连接“的操作，然而mysql还提供了”外连接“(左外连接，右外连接)</p>
+<hr>
 <p><strong>案例引入</strong>：</p>
 <p>现有如下表<img src="/2023/07/31/MySQL/image-20230808095817918.png" srcset="/img/loading.gif" lazyload class title="image-20230808095817918"></p>
 <p>此时<strong>student的每一条记录都可以在score表中找到对应，每一个score中记录也可以在student表中找到对应。</strong></p>
@@ -747,7 +759,26 @@
 <img src="/2023/07/31/MySQL/f070fdfc8e4b40dda2ebee96c3c6170a.jpeg" srcset="/img/loading.gif" lazyload class title="img">
 
 <p>B+树顾名思义是在B树的基础上改进的。那啥是B树呢？</p>
-<p>B树：是一棵N叉搜索树，每个节点的度不确定，一个节点上保存N个数据的值，划分出N + 1个区间，每个区间衍生出一棵子树。</p>
+<p>B树：是一棵<strong>N叉搜索树</strong>，每个节点的度不确定，一个节点上保存N个数据的值，划分出N + 1个区间，每个区间衍生出一棵子树。</p>
+<p><strong>逻辑上存储结果如下</strong>：</p>
+<img src="/2023/07/31/MySQL/image-20230810085349816.png" srcset="/img/loading.gif" lazyload class title="image-20230810085349816">
+
+<p>而B+树则是对B树的改进，感觉像是针对数据库进行量身定做。</p>
+<p>如果使用B树会有遇到什么问题呢？假如我们现在要使用范围查询去查询10-40之间的数。我们在如下图中进行观察：</p>
+<img src="/2023/07/31/MySQL/image-20230810093232881.png" srcset="/img/loading.gif" lazyload class title="image-20230810093232881">
+
+<p><strong>搜索过程大致如下</strong>：</p>
+<p>我们先要进行小于20区间的搜索，然后再进行20-40区间的搜索，里面<strong>包含大量“向下递”(需要开辟内存空间)，”回溯“的操作</strong>，如果一棵区间子树的高度较高，我们需要花费较多时间进行这个子树的搜索，恰巧另一些范围内的数据在另一棵子树上，那么我们又要花费较多时间进行搜索。<strong>总的来说，由于范围查询，我们有时要搜索多棵子树，这会导致效率的下降。</strong></p>
+<p>基于这些缺点，B+树进行了优化。首先，<strong>B+数在每个非叶子节点上存储的是索引</strong>(B树上就是实际的值)，<strong>所有数据都是存储在叶子节点上</strong>，<strong>B+树再使用了一个链表</strong>，将所有叶子节点连了起来，这就导致了<strong>范围查询更加高效</strong>，因为只要找到了一个符合要求的叶子节点，我们就直接对链表进行遍历，省去了再搜索其他子树的操作。</p>
+<hr>
+<p><strong>B+树的优点(相比B树、哈希、红黑树)：</strong></p>
+<p>1、<strong>是一棵N叉搜索树，因此树的高度比较小</strong>。</p>
+<p>2、<strong>磁盘IO次数更少，效率更高</strong>。</p>
+<p>红黑树是一棵平衡二叉搜索树，为了平衡需要进行旋转操作，而<strong>旋转操作时针对于整棵树</strong>的，但是因为数据库中可能存储着大量的数据，我们往往<strong>不能将所有的数据读取到内存中，因此需要部分多次读取</strong>，这就导致了旋转可能会有问题且效率不高，而且也<strong>无法利用磁盘预读</strong>(存储器某一个位置被访问了，那么其附近位置也会被访问)。</p>
+<p>在B树中，<strong>每一个节点是在一个硬盘区域中</strong>，可以利用磁盘预读，<strong>一次读硬盘就能取出整个节点(<strong>多个键值对)。而</strong>读取硬盘的时间远大于内存比较的时间</strong>，近似于 读一次硬盘 &#x3D; 内存1w次比较。</p>
+<p>在B+树中，<strong>非叶子节点上是存的索引信息</strong>，而对应数据库中一行数据可能内容比较多，但是单单某一行的<strong>某一列(索引)所占空间往往只有几个字节</strong>，因此我们能够<strong>将所有的索引信息读取到内存中进行比较</strong>，然后找到叶子节点上的值，再通过链表遍历的方式进行搜索，从而大大减少了IO次数。</p>
+<p>3、所有的查询最终要落实到叶子节点，因此整体的<strong>查询效率比较稳定</strong>，而B树中可能在前面的节点就能找到，复杂度为O(1), 不稳定。</p>
+<p>4、<strong>非常擅长范围查询</strong></p>
 <h1 id="九、事务"><a href="#九、事务" class="headerlink" title="九、事务"></a>九、事务</h1><p>事务：一组数据库的操作语句，这些操作将会被视为一个整体，保证要么这些语句全部执行，要么“一个都不执行”。</p>
 <h2 id="0x-00-案例引入"><a href="#0x-00-案例引入" class="headerlink" title="0x 00 案例引入"></a>0x 00 案例引入</h2><img src="/2023/07/31/MySQL/image-20230806090729717.png" srcset="/img/loading.gif" lazyload class title="image-20230806090729717">
 
