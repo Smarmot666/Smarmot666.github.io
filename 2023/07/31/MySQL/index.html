@@ -43,8 +43,11 @@
 <meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230810085349816.png">
 <meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230810093232881.png">
 <meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230806090729717.png">
+<meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230811195028006.png">
+<meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230811200839804.png">
+<meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230811203528869.png">
 <meta property="article:published_time" content="2023-07-31T09:28:45.000Z">
-<meta property="article:modified_time" content="2023-08-10T02:54:11.121Z">
+<meta property="article:modified_time" content="2023-08-12T08:58:09.596Z">
 <meta property="article:author" content="郑政祺">
 <meta property="article:tag" content="mysql">
 <meta name="twitter:card" content="summary_large_image">
@@ -258,7 +261,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          11k 字
+          16k 字
         
       </span>
     
@@ -269,7 +272,7 @@
         
         
         
-          93 分钟
+          132 分钟
         
       </span>
     
@@ -834,7 +837,73 @@
 
 
 
-<h1 id="十、JDBC"><a href="#十、JDBC" class="headerlink" title="十、JDBC"></a>十、JDBC</h1>
+<h1 id="十、JDBC"><a href="#十、JDBC" class="headerlink" title="十、JDBC"></a>十、JDBC</h1><h2 id="0x-00-什么是JDBC"><a href="#0x-00-什么是JDBC" class="headerlink" title="0x 00 什么是JDBC"></a>0x 00 什么是JDBC</h2><p>JDBC代表Java连接数据库，也就是<strong>通过Java代码操作数据库</strong>。</p>
+<p>在初期，市面上有着许多的数据库，如：MySQL, Oracle, SQL Sever…….但是<strong>不同的数据库</strong>大概率是<strong>由不同的程序员所开发</strong>出来的，因此在使用方面<strong>存在差异(如：方法名，类名，功能不同)<strong>，这就大大的增加了程序员的难度，苦不堪言~这时候就需要一个真正有分量的大佬来一统江湖！！！于是</strong>Java就自己设计出一套API的规范</strong>，让各种各样的<strong>数据库都要遵守</strong>，因此<strong>java程序员只需要会一套自己的API就好了</strong>，大大减少了学习成本~</p>
+<img src="/2023/07/31/MySQL/image-20230811195028006.png" srcset="/img/loading.gif" lazyload class title="image-20230811195028006">
+
+<p><strong>各厂商实现了接口</strong>后将其打包好并发布，如果<strong>Java程序员想要操作MySQL的话，只需要导入MySQL实现的jar包</strong>，然后在程序中调佣Java自己制定的API即可。其他如果数据库也同理，不过需要导入不同厂家的jar包。</p>
+<h2 id="0x-01导入jar包"><a href="#0x-01导入jar包" class="headerlink" title="0x 01导入jar包"></a>0x 01导入jar包</h2><p>在使用Java操作数据库前需要先将下载好的jar包(可以去中央仓库下载)导入程序。</p>
+<p><a target="_blank" rel="noopener" href="https://mvnrepository.com/artifact/mysql/mysql-connector-java">Maven Repository: mysql » mysql-connector-java (mvnrepository.com)</a></p>
+<img src="/2023/07/31/MySQL/image-20230811200839804.png" srcset="/img/loading.gif" lazyload class title="image-20230811200839804">
+
+
+
+<p>然后就可以在程序中使用了。</p>
+<h2 id="0x-02-使用JDBC"><a href="#0x-02-使用JDBC" class="headerlink" title="0x 02 使用JDBC"></a>0x 02 使用JDBC</h2><p><strong>1、创建DataSource</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">DataSource</span> <span class="hljs-variable">dataSource</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MysqlDataSource</span>();<br>        ((MysqlDataSource) dataSource).setUrl(<span class="hljs-string">&quot;jdbc:mysql://127.0.0.1:3306/test?characterEncoding=utf8&amp;useSSL=false&quot;</span>);<br>        ((MysqlDataSource) dataSource).setUser(<span class="hljs-string">&quot;root&quot;</span>);<br>        ((MysqlDataSource) dataSource).setPassword(<span class="hljs-string">&quot;root&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在这里我们可以看到，我们<strong>创建了一个dataSource</strong>，但是使用的时候却<strong>进行了向下转型</strong>，那<strong>为什么不直接创建一个MysqlDataSource的呢？</strong>这是因为要<strong>降低代码的耦合度</strong>，让MysqlDataSource这个类名不要扩散到代码的其他地方，如果后续要操作别的数据库了，代码的改动比较小。</p>
+<p>那<strong>Url是什么</strong>呢？<strong>url表示网络上的资源位置通俗讲就是网址</strong>，因为服务器是cs模式，需要通过网络交互。</p>
+<p><strong>127.0.0.1 表示IP地址</strong>，描述网络上一个主机所在的位置，不过这个IP地址是一个<strong>“环回IP”</strong>，即自己把数据发给自己。这是因为<strong>jdbc程序和mysql服务器都在我们自己的电脑上</strong>~</p>
+<p><strong>3306 表示端口号，用来区分不同进程的。</strong></p>
+<p>test 表示数据库名称。</p>
+<p>？&amp; &#x2F;…… 这些符号是一些特殊符号。这里从？后面，表示访问资源的时候，需要哪些参数</p>
+<p>useSSL&#x3D;false 表示是否要加密</p>
+<p>这里dataSource光写url的话 只能找到mysql服务器，但还得登录认证，因此还需要设置账号，密码。</p>
+<p><strong>2、和数据库服务器建立连接</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception&#123;<br>        <span class="hljs-type">DataSource</span> <span class="hljs-variable">dataSource</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MysqlDataSource</span>();<br>        ((MysqlDataSource) dataSource).setUrl(<span class="hljs-string">&quot;jdbc:mysql://127.0.0.1:3306/test?characterEncoding=utf8&amp;useSSL=false&quot;</span>);<br>        ((MysqlDataSource) dataSource).setUser(<span class="hljs-string">&quot;root&quot;</span>);<br>        ((MysqlDataSource) dataSource).setPassword(<span class="hljs-string">&quot;root&quot;</span>);<br><br>        <span class="hljs-type">Connection</span> <span class="hljs-variable">connection</span> <span class="hljs-operator">=</span> dataSource.getConnection();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p><strong>在创建的时候千万不要选错！！！</strong></p>
+<img src="/2023/07/31/MySQL/image-20230811203528869.png" srcset="/img/loading.gif" lazyload class>
+
+
+
+<p><strong>3、构造sql语句并执行</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception&#123;<br>        <span class="hljs-type">DataSource</span> <span class="hljs-variable">dataSource</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MysqlDataSource</span>();<br>        ((MysqlDataSource) dataSource).setUrl(<span class="hljs-string">&quot;jdbc:mysql://127.0.0.1:3306/test?characterEncoding=utf8&amp;useSSL=false&quot;</span>);<br>        ((MysqlDataSource) dataSource).setUser(<span class="hljs-string">&quot;root&quot;</span>);<br>        ((MysqlDataSource) dataSource).setPassword(<span class="hljs-string">&quot;root&quot;</span>);<br><br>        <span class="hljs-type">Connection</span> <span class="hljs-variable">connection</span> <span class="hljs-operator">=</span> dataSource.getConnection();<br>        <span class="hljs-type">String</span> <span class="hljs-variable">sql</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;insert into student values(1, &#x27;张三&#x27;)&quot;</span>;<br>        <span class="hljs-type">PreparedStatement</span> <span class="hljs-variable">statement</span> <span class="hljs-operator">=</span> connection.prepareStatement(sql);<br>        <span class="hljs-type">int</span> <span class="hljs-variable">n</span> <span class="hljs-operator">=</span> statement.executeUpdate(); <span class="hljs-comment">//看看修改了几条</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这里通过使<strong>用preparedStatement进行对sql语句的检查</strong>，在<strong>将sql发给服务器之前先看看有没有语法错误</strong>啥的，这样就能<strong>减小mysql服务器的开销</strong>。</p>
+<p>如果要执<strong>查询操作</strong>的话，要<strong>使用executeQuery()方法</strong>，如果是<strong>改操作</strong>的话，<strong>使用executeUpdate()方法</strong>。</p>
+<p><strong>4、执行完后关闭连接，释放资源</strong></p>
+<p><strong>程序通过代码和服务器进行通信</strong>，是<strong>需要消耗一定的资源</strong>的。因此在程序结束后需要告知服务器，<strong>释放这些资源</strong>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception&#123;<br>        <span class="hljs-type">DataSource</span> <span class="hljs-variable">dataSource</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MysqlDataSource</span>();<br>        ((MysqlDataSource) dataSource).setUrl(<span class="hljs-string">&quot;jdbc:mysql://127.0.0.1:3306/test?characterEncoding=utf8&amp;useSSL=false&quot;</span>);<br>        ((MysqlDataSource) dataSource).setUser(<span class="hljs-string">&quot;root&quot;</span>);<br>        ((MysqlDataSource) dataSource).setPassword(<span class="hljs-string">&quot;root&quot;</span>);<br><br>        <span class="hljs-type">Connection</span> <span class="hljs-variable">connection</span> <span class="hljs-operator">=</span> dataSource.getConnection();<br>        <span class="hljs-type">String</span> <span class="hljs-variable">sql</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;insert into student values(1, &#x27;张三&#x27;)&quot;</span>;<br>        <span class="hljs-type">PreparedStatement</span> <span class="hljs-variable">statement</span> <span class="hljs-operator">=</span> connection.prepareStatement(sql);<br>        <span class="hljs-type">int</span> <span class="hljs-variable">n</span> <span class="hljs-operator">=</span> statement.executeUpdate();<br><br>        statement.close();<br>        connection.close();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p><strong>后申请的先释放！</strong></p>
+<h2 id="0x-03自定义sql语句"><a href="#0x-03自定义sql语句" class="headerlink" title="0x 03自定义sql语句"></a>0x 03自定义sql语句</h2><p>刚刚我们是为了演示总得流程，所以sql语句就在程序中写死了，如果我们要插入我们想要的数据该怎么办呢？</p>
+<p>方案一：</p>
+<p>创建变量让用户输入赋值修改就行。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">sql</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;insert into sutdent values (&quot;</span> + id + <span class="hljs-string">&quot;, &#x27;&quot;</span> + name + <span class="hljs-string">&quot;&#x27;)&quot;</span>;<br></code></pre></td></tr></table></figure>
+
+<p>这样写，既不优雅，也不安全。这么多符号很容易出错，然后如果用户是高手，懂<strong>sql注入</strong>的话，那就危险了。name一栏不好好写，写成 删库 那就惨了。</p>
+<p>方案二：</p>
+<p>创建变量并<strong>使用占位符</strong>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">sql</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;insert into student values(?, ?)&quot;</span>;<br>statement.setInt(<span class="hljs-number">1</span>, id); <span class="hljs-comment">//当心第一个是从1位置开始计算的，而不是0</span><br>statement.setString(<span class="hljs-number">2</span>, name);<br></code></pre></td></tr></table></figure>
+
+<p>这样就好多了~</p>
+<h2 id="0x-04-输出查询结果"><a href="#0x-04-输出查询结果" class="headerlink" title="0x 04 输出查询结果"></a>0x 04 输出查询结果</h2><p>查询在数据库操作中是大头，怎么将查询结果输出呢？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception&#123;<br>        <span class="hljs-type">DataSource</span> <span class="hljs-variable">dataSource</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MysqlDataSource</span>();<br>        ((MysqlDataSource) dataSource).setUrl(<span class="hljs-string">&quot;jdbc:mysql://127.0.0.1:3306/test?characterEncoding=utf8&amp;useSSL=false&quot;</span>);<br>        ((MysqlDataSource) dataSource).setUser(<span class="hljs-string">&quot;root&quot;</span>);<br>        ((MysqlDataSource) dataSource).setPassword(<span class="hljs-string">&quot;root&quot;</span>);<br><br>        <span class="hljs-type">Connection</span> <span class="hljs-variable">connection</span> <span class="hljs-operator">=</span> dataSource.getConnection();<br>        <span class="hljs-type">String</span> <span class="hljs-variable">sql</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;select * from student&quot;</span>;<br>        <span class="hljs-type">PreparedStatement</span> <span class="hljs-variable">statement</span> <span class="hljs-operator">=</span> connection.prepareStatement(sql);<br>        <span class="hljs-type">ResultSet</span> <span class="hljs-variable">resultSet</span> <span class="hljs-operator">=</span>  statement.executeQuery();<br>        <span class="hljs-keyword">while</span>(resultSet.next())&#123;<br>            <span class="hljs-type">int</span> <span class="hljs-variable">id</span> <span class="hljs-operator">=</span> resultSet.getInt(<span class="hljs-string">&quot;id&quot;</span>);<br>            <span class="hljs-type">String</span> <span class="hljs-variable">name</span> <span class="hljs-operator">=</span> resultSet.getString(<span class="hljs-string">&quot;name&quot;</span>);<br>            System.out.println(id + <span class="hljs-string">&quot;,&quot;</span> + name);<br>        &#125;<br><br>        resultSet.close();<br>        statement.close();<br>        connection.close();<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<p>我们的<strong>查询结果返回的是一张临时表</strong>，此时需要<strong>使用ResultSet类来接收结果集</strong>。然后要进行<strong>遍历ResultSet</strong>才能取出全部数据。</p>
+<p>遍历ResultSet是<strong>通过调用next方法</strong>获取临时表中的每一行数据。这个next方法<strong>相当于在临时表中有一个“光标”，一开始的时候指向的是第一行的前一个位置，而每一次执行，就相当于将光标移到下一行。如果走到最后一行，将会放回false。</strong></p>
+<p><strong>resultSet中提供了getXXX方法</strong>，里面的<strong>参数是列名</strong>，这样就可以拿到一行中的某一列数据了。</p>
+<p>最后记得要释放result资源~</p>
+<hr>
+<p>以上就是一些mysql中高频常用的知识了~</p>
+<p>完结，撒花~~</p>
+
                 
               </div>
             
