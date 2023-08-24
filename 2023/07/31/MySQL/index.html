@@ -25,9 +25,9 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230803084857974.png">
 <meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230803085241442.png">
-<meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230803100349147.png">
-<meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230803100206952.png">
-<meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230803100608847.png">
+<meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230813092055975.png">
+<meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230813093004691.png">
+<meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230813093735349.png">
 <meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230808091752885.png">
 <meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230808091927650.png">
 <meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230808092930270.png">
@@ -47,7 +47,7 @@
 <meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230811200839804.png">
 <meta property="og:image" content="http://example.com/2023/07/31/MySQL/image-20230811203528869.png">
 <meta property="article:published_time" content="2023-07-31T09:28:45.000Z">
-<meta property="article:modified_time" content="2023-08-12T08:58:09.596Z">
+<meta property="article:modified_time" content="2023-08-23T04:09:49.854Z">
 <meta property="article:author" content="郑政祺">
 <meta property="article:tag" content="mysql">
 <meta name="twitter:card" content="summary_large_image">
@@ -610,21 +610,23 @@
 <h1 id="六、表的设计"><a href="#六、表的设计" class="headerlink" title="六、表的设计"></a>六、表的设计</h1><p> 在实际的场景中，有大量的数据，我们需要明确当前要创建几个表，每个表有什么字段，这些表中是否存在一定的联系。</p>
 <p>因此根据实际开发就整理出了三大范式~</p>
 <h2 id="一对一"><a href="#一对一" class="headerlink" title="一对一"></a>一对一</h2><p>例如：<strong>一个学生只有一个账号，一个账号只属于一个学生</strong>。</p>
-<p>此时我们设计两张表，让其中的一张表存储另一张表的唯一的属性，这样我们可以通过这个属性就能找到想要的值了。或者也可以将两张表整合，成为一张表。</p>
-<img src="/2023/07/31/MySQL/image-20230803100349147.png" srcset="/img/loading.gif" lazyload class title="image-20230803100349147">
+<p>此时我们设计两张表，让其中的一张表存储另一张表的<strong>唯一</strong>属性，这样我们可以通过这个属性就能找到想要的值了。或者也可以将两张表整合，成为一张表。</p>
+<img src="/2023/07/31/MySQL/image-20230813092055975.png" srcset="/img/loading.gif" lazyload class title="image-20230813092055975">
 
 
 
 <h2 id="一对多"><a href="#一对多" class="headerlink" title="一对多"></a>一对多</h2><p>例如：<strong>一个学生只能属于一个班级，一个班级可以拥有多个学生。</strong></p>
 <p>此时我们设计两张表，<strong>将那个“一”的表中添加上“多”的表中的唯一的字段</strong>。</p>
 <p><strong>补充</strong>：如果是redis这种能够支持数组类型的数据库，我们可以不这样设计，可以使用一个数组类型，用来存储多个学生。如下图：</p>
-<img src="/2023/07/31/MySQL/image-20230803100206952.png" srcset="/img/loading.gif" lazyload class title="image-20230803100206952">
+<img src="/2023/07/31/MySQL/image-20230813093004691.png" srcset="/img/loading.gif" lazyload class title="image-20230813093004691">
 
 
 
 <h2 id="多对多"><a href="#多对多" class="headerlink" title="多对多"></a>多对多</h2><p>例如：一个学生可以选多门课程，一个课程可以被多名学生选择。</p>
 <p>此时我们需要再<strong>创建一张表来描述这两张表之间的关系</strong>。</p>
-<img src="/2023/07/31/MySQL/image-20230803100608847.png" srcset="/img/loading.gif" lazyload class title="image-20230803100608847">
+<img src="/2023/07/31/MySQL/image-20230813093735349.png" srcset="/img/loading.gif" lazyload class title="image-20230813093735349">
+
+
 
 
 
@@ -735,7 +737,7 @@
 <p><strong>补充</strong>：</p>
 <p>以上我们都是针对于两个表进行联合查询的，但我们甚至还可以<strong>将一个表当做两个表来进行联合查询</strong>，这样我们就能在一张表中进行 <strong>行与行的比较</strong>~这种连接方式一般被称为<strong>“内连接”</strong>。</p>
 <p>自连接的查询跟上面的联合查询基本没什么区别，需要注意将两张表进行别名操作~</p>
-<h2 id="0x-03-子查询"><a href="#0x-03-子查询" class="headerlink" title="0x 03 子查询"></a>0x 03 子查询</h2><p><strong>子查询是将多个简单的SQL语句拼成一个复杂的SQL, 也就是说将某一个查询的结果看做是一张表，然后进行操作，但本质是在套娃</strong>。因此我们实际也是可以用简单的查询完成子查询的操作的~</p>
+<h2 id="0x-03-子查询"><a href="#0x-03-子查询" class="headerlink" title="0x 03 子查询"></a>0x 03 子查询</h2><p><strong>子查询是将多个简单的SQL语句拼成一个复杂的SQL, 也就是说将某一个查询的结果看做是一张表，然后进行操作，但本质是在套娃</strong>。因此我们实际也是可以用简单的查询完成子查询的操作的~ (合成2048？合成复杂SQL！)</p>
 <p>语法形式：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select 列名 from 表名 where 列名 = (select 列名 from 表名 where 列名 = (套娃下去....));<br></code></pre></td></tr></table></figure>
 
@@ -826,7 +828,7 @@
 </tr>
 <tr>
 <td>repeatable read(可重复读)</td>
-<td>给读、写加锁，解决脏读、不可重复读、幻读问题</td>
+<td>给读、写加锁，解决脏读、不可重复读</td>
 </tr>
 <tr>
 <td>serializable(串行化)</td>
@@ -971,6 +973,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2023/08/24/JavaEE%E5%88%9D%E9%98%B61/" title="JavaEE初阶1">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">JavaEE初阶1</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
