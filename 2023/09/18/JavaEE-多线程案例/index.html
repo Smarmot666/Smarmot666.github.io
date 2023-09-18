@@ -16,25 +16,25 @@
   <meta name="author" content="郑政祺">
   <meta name="keywords" content="">
   
-    <meta name="description" content="设计模式———单例模式 单例也就是只能有一个实例，即只创建一个实例对象，不能有多个。 可能会疑惑，那我写代码的时候注意点，只new一次不就得了。理论上是可以的，但在实际中很难实现，因为你无法预料到后面是否会脑抽一下~~因此我们就可以通过编码技巧，让编译器来帮助我们检查约束。 单例模式又分为两种：饿汉式和懒汉式，区别在于实例对象创建的时机不同。 0x00 饿汉式 说到饿汉，那一定是很饥饿的人，很急切">
+    <meta name="description" content="一、阻塞队列什么是阻塞队列阻塞队列是在多线程代码中常用的一种数据结构，也具有”先进先出”的原则。与普通队列相比，阻塞队列是一种线程安全的队列，并且具有如下特性： 1、当阻塞队列为空时，继续出队，不会抛出异常，而是会阻塞等待，直到其他线程往队列中添加元素为止。 2、当阻塞队列为满时，继续入队，不会抛出异常，而是会阻塞等待，直到其他线程往队列中删除元素为止。 由于阻塞队列是一个数据结构，所以往往用来管">
 <meta property="og:type" content="article">
-<meta property="og:title" content="设计模式-单例模式">
-<meta property="og:url" content="http://example.com/2023/09/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:title" content="JavaEE-多线程案例">
+<meta property="og:url" content="http://example.com/2023/09/18/JavaEE-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A1%88%E4%BE%8B/index.html">
 <meta property="og:site_name" content="机智的土拨鼠">
-<meta property="og:description" content="设计模式———单例模式 单例也就是只能有一个实例，即只创建一个实例对象，不能有多个。 可能会疑惑，那我写代码的时候注意点，只new一次不就得了。理论上是可以的，但在实际中很难实现，因为你无法预料到后面是否会脑抽一下~~因此我们就可以通过编码技巧，让编译器来帮助我们检查约束。 单例模式又分为两种：饿汉式和懒汉式，区别在于实例对象创建的时机不同。 0x00 饿汉式 说到饿汉，那一定是很饥饿的人，很急切">
+<meta property="og:description" content="一、阻塞队列什么是阻塞队列阻塞队列是在多线程代码中常用的一种数据结构，也具有”先进先出”的原则。与普通队列相比，阻塞队列是一种线程安全的队列，并且具有如下特性： 1、当阻塞队列为空时，继续出队，不会抛出异常，而是会阻塞等待，直到其他线程往队列中添加元素为止。 2、当阻塞队列为满时，继续入队，不会抛出异常，而是会阻塞等待，直到其他线程往队列中删除元素为止。 由于阻塞队列是一个数据结构，所以往往用来管">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2023/09/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/image-20230913211123788.png">
-<meta property="og:image" content="http://example.com/2023/09/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/image-20230913211530808.png">
-<meta property="article:published_time" content="2023-09-13T14:05:47.000Z">
-<meta property="article:modified_time" content="2023-09-13T14:10:03.901Z">
+<meta property="og:image" content="http://example.com/2023/09/18/JavaEE-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A1%88%E4%BE%8B/image-20230918202907725.png">
+<meta property="og:image" content="http://example.com/2023/09/18/JavaEE-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A1%88%E4%BE%8B/image-20230918203518563.png">
+<meta property="article:published_time" content="2023-09-18T09:48:47.000Z">
+<meta property="article:modified_time" content="2023-09-18T12:48:08.415Z">
 <meta property="article:author" content="郑政祺">
-<meta property="article:tag" content="设计模式">
+<meta property="article:tag" content="JavaEE">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2023/09/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/image-20230913211123788.png">
+<meta name="twitter:image" content="http://example.com/2023/09/18/JavaEE-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A1%88%E4%BE%8B/image-20230918202907725.png">
   
   
   
-  <title>设计模式-单例模式 - 机智的土拨鼠</title>
+  <title>JavaEE-多线程案例 - 机智的土拨鼠</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -217,7 +217,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="设计模式-单例模式"></span>
+            <span id="subtitle" data-typed-text="JavaEE-多线程案例"></span>
           
         </div>
 
@@ -228,8 +228,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-09-13 22:05" pubdate>
-          2023年9月13日 晚上
+        <time datetime="2023-09-18 17:48" pubdate>
+          2023年9月18日 下午
         </time>
       </span>
     
@@ -240,7 +240,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.1k 字
+          2.9k 字
         
       </span>
     
@@ -251,7 +251,7 @@
         
         
         
-          26 分钟
+          25 分钟
         
       </span>
     
@@ -310,62 +310,40 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">设计模式-单例模式</h1>
+            <h1 style="display: none">JavaEE-多线程案例</h1>
             
             
               <div class="markdown-body">
                 
-                <h1>设计模式———单例模式</h1>
-<p>单例也就是只能有一个实例，即只创建一个实例对象，不能有多个。</p>
-<p>可能会疑惑，那我写代码的时候注意点，只new一次不就得了。理论上是可以的，但在实际中很难实现，因为你无法预料到后面是否会脑抽一下~~因此我们就可以<strong>通过编码技巧，让编译器来帮助我们检查约束。</strong></p>
-<p>单例模式又分为两种：<strong>饿汉式和懒汉式</strong>，<strong>区别在于实例对象创建的时机不同</strong>。</p>
-<h2 id="0x00-饿汉式">0x00 饿汉式</h2>
-<p>说到饿汉，那一定是很饥饿的人，很急切，也就是说这个实例对象创建的时机比较早，在类加载的时候就创建了。</p>
-<p><strong>要点</strong>：</p>
-<ul>
-<li>1、由于创建时机较早，设置为静态即可在类加载的时候就可以创建实例对象</li>
-<li>2、由于只能创建一个实例对象，因此将构造函数私有化</li>
-<li>3、对外提供一个获取实例对象的静态类方法</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Singleton</span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">Singleton</span> <span class="hljs-variable">instance</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Singleton</span>();<br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Singleton <span class="hljs-title function_">getInstance</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> instance;<br>    &#125;<br>     <span class="hljs-keyword">private</span> <span class="hljs-title function_">Singleton</span><span class="hljs-params">()</span>&#123;<br>         <br>     &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
-<h2 id="0x01-懒汉式">0x01 懒汉式</h2>
-<p>懒汉，顾名思义，很懒，比较缓慢，也就是说这个实例对象是在使用到的时候才去创建。</p>
-<p><strong>要点</strong>：</p>
-<ul>
-<li>1、一开始设置为null，直到在使用的时候再去new实例对象</li>
-<li>2、由于只能创建一个实例对象，因此将构造函数私有化</li>
-<li>3、对外提供一个获取实例对象的静态类方法</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SingletonLazy</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">SingletonLazy</span> <span class="hljs-variable">instance</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> SingletonLazy <span class="hljs-title function_">getInstance</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">if</span>(instance == <span class="hljs-literal">null</span>)&#123;<br>            instance = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SingletonLazy</span>();<br>        &#125;<br>        <span class="hljs-keyword">return</span> instance;<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-title function_">SingletonLazy</span><span class="hljs-params">()</span>&#123;<br><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h2 id="0x02-单例模式与多线程">0x02 单例模式与多线程</h2>
-<p>众所周知，许多在单线程环境下的代码一到多线程环境下就会出错，在此将对单例模式在多线程下的编写进行调整优化~</p>
-<p>先来看看饿汉式的代码，我们发现这个实现的方式是在类加载的时候就去实例化对象了，而后续在多线程中掉用getInstance方法来获取实例对象的时候，只会进行返回操作，即”<strong>只读”</strong>，<strong>因此多个线程在操作的时候是安全的</strong>。</p>
-<img src="/2023/09/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/image-20230913211123788.png" srcset="/img/loading.gif" lazyload class>
-<p>再来看看懒汉式，可以发现在调用getInstance方法的时候，会进行修改操作，<strong>如果恰巧有两个线程同时进入了if，然后就会进行new操作，那不就创建了多个实例对象了</strong>，如果恰巧每个对象不是很轻量，可能有很多属性，加载了几十G的数据到内存中…</p>
-<img src="/2023/09/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/image-20230913211530808.png" srcset="/img/loading.gif" lazyload class>
-<p>因此解决方法是进行加锁操作，<strong>保证if和new操作是原子的</strong>。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SingletonLazy</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">SingletonLazy</span> <span class="hljs-variable">instance</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> SingletonLazy <span class="hljs-title function_">getInstance</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">synchronized</span>(SingletonLazy.class)&#123;<br>            <span class="hljs-keyword">if</span>(instance == <span class="hljs-literal">null</span>)&#123;<br>                instance = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SingletonLazy</span>();<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> instance;<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-title function_">SingletonLazy</span><span class="hljs-params">()</span>&#123;<br><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p>这样修改以后，就能保证if和new操作是一个整体，此时线程的安全问题就得到了改善。</p>
-<p><strong>但是这样写是否就真的完了呢？</strong></p>
-<p>答案：不是。因为我们是单例模式，所以只需要new一次之后，实例对象就不可能是null了，后续直接return对象就行了。<strong>假如我们现在已经创建好了一个对象，当后续有多个线程去调用getInstance方法的时候，需要去获取到这把锁才能进行返回操作，也就是我们的多线程变成了串行化，并发程度几乎没了</strong>~</p>
-<p>那是否有办法，既可以保证代码线程安全，又不会对执行效率产生大的影响呢？</p>
-<p>如下代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SingletonLazy</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">SingletonLazy</span> <span class="hljs-variable">instance</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> SingletonLazy <span class="hljs-title function_">getInstance</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">if</span>(instance == <span class="hljs-literal">null</span>)&#123;<br>            <span class="hljs-keyword">synchronized</span>(SingletonLazy.class)&#123;<br>                <span class="hljs-keyword">if</span>(instance == <span class="hljs-literal">null</span>)&#123;<br>                    instance = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SingletonLazy</span>();<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> instance;<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-title function_">SingletonLazy</span><span class="hljs-params">()</span>&#123;<br><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p>与前面的代码对比，可以发现，在外层多加了一个if语句。</p>
-<p><strong>分析</strong>：</p>
-<p>当有多个线程进入了第一个if语句，此时里面有一个加锁操作，这样可以保证只创建了一个实例对象。假设此时已经创建好了一个实例对象了，当下一次又有多个线程进来时，由于instance不为null，直接返回了，并不会进入到加锁操作，此时并发并没有再受到影响了，既保证了正确又保证了效率。</p>
-<p><strong>总结</strong>：</p>
-<p><strong>在锁外面的if语句保证了是否要进行加锁操作，即如果还没有创建实例对象，此时线程由于需要进行修改操作要进行加锁才能保证安全，如果已经创建了实例对象，此时线程安全了就不用加锁了。</strong></p>
-<p><strong>在锁里面的if语句是来保证只创建一个实例对象。</strong></p>
-<h2 id="0x03-指令重排序">0x03 指令重排序</h2>
-<p>上述代码其实还不够安全，还存在指令重排序的问题。</p>
-<p><strong>指令重排序，本质是编译器为了提高执行效率，调整原有的代码执行顺序(前提是保持逻辑不变)。</strong></p>
-<p>接下来具体问题具体分析：</p>
-<p>上述的代码中，出现了一个new操作，而new操作其实是分三步的，第一步，申请内存空间，第二步，在内存空间上构造对象，第三步，把内存地址赋值给对象引用。一般是按照1,2,3的顺序执行的，但是编译器优化过后，可能会按照1,3,2的顺序执行，在单线程环境下都可以，但是在多线程环境下则不是。如果线程1是按照1,3,2顺序执行完了3后，线程2此时返回了这个实例对象，但是此时这个对象还没有初始化呢，也就是说这是个非法对象，当我们的线程2去访问这个对象的属性或方法时，此时就是非法，会出错。此时我们还需要再对instance加一个限制操作，即用volatile来修饰instance。</p>
-<p><strong>最终代码</strong>：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SingletonLazy</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">volatile</span> <span class="hljs-type">SingletonLazy</span> <span class="hljs-variable">instance</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> SingletonLazy <span class="hljs-title function_">getInstance</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">if</span>(instance == <span class="hljs-literal">null</span>)&#123;<br>            <span class="hljs-keyword">synchronized</span>(SingletonLazy.class)&#123;<br>                <span class="hljs-keyword">if</span>(instance == <span class="hljs-literal">null</span>)&#123;<br>                    instance = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SingletonLazy</span>();<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> instance;<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-title function_">SingletonLazy</span><span class="hljs-params">()</span>&#123;<br><br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
-<p>至此，这段“健壮”的代码基本可以满足使用了~</p>
+                <h1 id="一、阻塞队列"><a href="#一、阻塞队列" class="headerlink" title="一、阻塞队列"></a>一、阻塞队列</h1><h2 id="什么是阻塞队列"><a href="#什么是阻塞队列" class="headerlink" title="什么是阻塞队列"></a>什么是阻塞队列</h2><p>阻塞队列是在多线程代码中常用的一种数据结构，也具有”先进先出”的原则。与普通队列相比，阻塞队列是一种线程安全的队列，并且具有如下特性：</p>
+<p>1、当<strong>阻塞队列为空</strong>时，继续<strong>出队</strong>，不会抛出异常，而是会<strong>阻塞等待</strong>，直到其他线程往队列中添加元素为止。</p>
+<p>2、当<strong>阻塞队列为满</strong>时，继续<strong>入队</strong>，不会抛出异常，而是会<strong>阻塞等待</strong>，直到其他线程往队列中删除元素为止。</p>
+<p>由于阻塞队列是一个数据结构，所以往往用来管理数据，典型的应用场景是”生产者消费者模型”。</p>
+<h2 id="生产者消费者模型"><a href="#生产者消费者模型" class="headerlink" title="生产者消费者模型"></a>生产者消费者模型</h2><p>生产者消费者模型是一种用来协调多个线程的设计模式。生产者负责生产数据，消费者用来消耗数据。</p>
+<p>生产者与消费者之间通过一个阻塞队列来维护数据，即生产者将生成的数据放进阻塞队列中，消费者从阻塞队列中取数据，阻塞队列可以控制数据的流量，防止资源的过度消耗或浪费。</p>
+<p><strong>生产者消费者模型的意义</strong>：</p>
+<p><strong>1、解耦合</strong></p>
+<p>耦合指的是两个不同的模块，如果联系紧密(一个模块的修改会影响另一个模块)，则称耦合度高。生产者消费者模型通过使用阻塞队列，生产者A不直接与消费者B联系，而是通过阻塞队列，此时耦合就降低了，如果后续增加了一个消费者C，生产者A不需要进行修改，而是只需让消费者C从阻塞队列中取数据即可~</p>
+<p><strong>2、削峰填谷</strong></p>
+<p>在实际生活中，有一些特定的场景，例如”学校抢课”，服务器会在某一时刻收到大量请求，如果直接处理这些请求，服务器可能会扛不住(在处理的某些环节中，可能比较脆弱，如：数据库操作)，这时候就可以把这些请求放到阻塞队列中，后续让消费者线程慢慢的处理。</p>
+<hr>
+<h2 id="标准库中内置的阻塞队列"><a href="#标准库中内置的阻塞队列" class="headerlink" title="标准库中内置的阻塞队列"></a><strong>标准库中内置的阻塞队列</strong></h2><p>1、BlockingQueue是一个接口，实现的类是ArrayBlockingQueue和LinkedBlockingQueue，即底层有链表和数组实现的类。</p>
+<p>2、put方法用于阻塞式的入队了，take方法用于阻塞式出队列，offer、poll方法不带有阻塞特性。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.concurrent.BlockingQueue;<br><span class="hljs-keyword">import</span> java.util.concurrent.LinkedBlockingQueue;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Demo1</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> InterruptedException &#123;<br>        BlockingQueue&lt;String&gt; blockingQueue = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedBlockingQueue</span>&lt;&gt;();<br><br>        blockingQueue.put(<span class="hljs-string">&quot;hello&quot;</span>);<br>        <span class="hljs-keyword">while</span>(!blockingQueue.isEmpty())&#123;<br>            System.out.println(blockingQueue.take());<br>        &#125;<br>        <span class="hljs-comment">//程序阻塞</span><br>        blockingQueue.take();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
+<p>阻塞队列的使用与普通队列类似，注意使用put和take方法即可~</p>
+<h2 id="模拟实现阻塞队列"><a href="#模拟实现阻塞队列" class="headerlink" title="模拟实现阻塞队列"></a><strong>模拟实现阻塞队列</strong></h2><p>首先实现一个循环队列，然后对put和take方法注入阻塞等待的特性。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyBlockingQueue</span>&#123;<br>    <span class="hljs-comment">//浪费一个空间，来区分满与空</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">volatile</span> String[] data = <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>[<span class="hljs-number">2</span> + <span class="hljs-number">1</span>];<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">volatile</span> <span class="hljs-type">int</span> <span class="hljs-variable">head</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">volatile</span> <span class="hljs-type">int</span> <span class="hljs-variable">tail</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br><br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">put</span><span class="hljs-params">(String s)</span> <span class="hljs-keyword">throws</span> InterruptedException &#123;<br>        <span class="hljs-keyword">synchronized</span> (<span class="hljs-built_in">this</span>)&#123;<br>            <span class="hljs-keyword">while</span>((tail + <span class="hljs-number">1</span>) % data.length == head)&#123;<br>                <span class="hljs-comment">//如果队列满了，就会阻塞</span><br>                <span class="hljs-built_in">this</span>.wait();<br>            &#125;<br>            <span class="hljs-comment">//队列不满，插入元素</span><br>            data[tail] = s;<br>            tail = (tail + <span class="hljs-number">1</span>) % data.length;<br>            <span class="hljs-comment">//唤醒take中wait的线程</span><br>            <span class="hljs-built_in">this</span>.notify();<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">take</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> InterruptedException &#123;<br>        <span class="hljs-keyword">synchronized</span> (<span class="hljs-built_in">this</span>)&#123;<br>            <span class="hljs-keyword">while</span>(head == tail)&#123;<br>                <span class="hljs-comment">//如果队列为空，阻塞等待</span><br>                <span class="hljs-built_in">this</span>.wait();<br>            &#125;<br>            <span class="hljs-type">String</span> <span class="hljs-variable">ret</span> <span class="hljs-operator">=</span> data[head];<br>            head = (head + <span class="hljs-number">1</span>) % data.length;<br>            <span class="hljs-comment">//唤醒put中wait的线程</span><br>            <span class="hljs-built_in">this</span>.notify();<br>            <span class="hljs-keyword">return</span> ret;<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Demo2</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> InterruptedException &#123;<br>        <span class="hljs-type">MyBlockingQueue</span> <span class="hljs-variable">myBlockingQueue</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyBlockingQueue</span>();<br>        <span class="hljs-type">Thread</span> <span class="hljs-variable">t1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(() -&gt; &#123;<br>            <span class="hljs-keyword">try</span> &#123;<br>                myBlockingQueue.put(<span class="hljs-string">&quot;1&quot;</span>);<br>                myBlockingQueue.put(<span class="hljs-string">&quot;1&quot;</span>);<br>                myBlockingQueue.put(<span class="hljs-string">&quot;1&quot;</span>);<br>            &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(e);<br>            &#125;<br>        &#125;);<br>        t1.start();<br>        Thread.sleep(<span class="hljs-number">100</span>);<br><br>        <span class="hljs-type">Thread</span> <span class="hljs-variable">t2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(() -&gt; &#123;<br>            <span class="hljs-keyword">try</span> &#123;<br>                System.out.println(myBlockingQueue.take());<br>            &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(e);<br>            &#125;<br>        &#125;);<br>        t2.start();<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p><strong>这份代码有一个地方值得注意：put方法中是否需要循环判断队列是否已满？</strong></p>
+<img src="/2023/09/18/JavaEE-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A1%88%E4%BE%8B/image-20230918202907725.png" srcset="/img/loading.gif" lazyload class title="image-20230918202907725">
+
+<img src="/2023/09/18/JavaEE-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A1%88%E4%BE%8B/image-20230918203518563.png" srcset="/img/loading.gif" lazyload class title="image-20230918203518563">
+
+<p>所以使用wait的时候，需要注意当前wait唤醒的时候，是通过notify唤醒的还是通过interrupt唤醒的，如果是通过notify唤醒的，说明别的线程已经删除了元素，队列不可能为满，如果是interrupt唤醒的，队列可能还满着呢，需要继续判断。因此使用while循环判断的话，就可以保证队列一定是不为满。</p>
+<p><strong>总结：使用wait的时候，往往都是使用while作为条件判定的方式，目的是为了让wait唤醒后的线程再确定一次，是否满足条件。上述while循环写法，越是官方文档的建议。</strong></p>
+<h1 id="二、单例模式"><a href="#二、单例模式" class="headerlink" title="二、单例模式"></a>二、单例模式</h1><p><a target="_blank" rel="noopener" href="https://smarmot666.github.io/2023/09/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">设计模式-单例模式 - 机智的土拨鼠 (smarmot666.github.io)</a></p>
+<h1 id="三、定时器"><a href="#三、定时器" class="headerlink" title="三、定时器"></a>三、定时器</h1><h1 id="四、线程池"><a href="#四、线程池" class="headerlink" title="四、线程池"></a>四、线程池</h1>
                 
               </div>
             
@@ -377,7 +355,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">#设计模式</a>
+        <a href="/tags/JavaEE/">#JavaEE</a>
       
     </div>
   
@@ -389,8 +367,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>设计模式-单例模式</div>
-      <div>http://example.com/2023/09/13/设计模式-单例模式/</div>
+      <div>JavaEE-多线程案例</div>
+      <div>http://example.com/2023/09/18/JavaEE-多线程案例/</div>
     </div>
     <div class="license-meta">
       
@@ -402,7 +380,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年9月13日</div>
+          <div>2023年9月18日</div>
         </div>
       
       
@@ -434,9 +412,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/09/18/JavaEE-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A1%88%E4%BE%8B/" title="JavaEE-多线程案例">
+                      <a href="/2023/09/18/JavaEE-%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/" title="JavaEE-线程安全">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">JavaEE-多线程案例</span>
+                        <span class="hidden-mobile">JavaEE-线程安全</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -444,8 +422,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/08/24/JavaEE%E5%88%9D%E9%98%B61/" title="JavaEE初阶1">
-                        <span class="hidden-mobile">JavaEE初阶1</span>
+                      <a href="/2023/09/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" title="设计模式-单例模式">
+                        <span class="hidden-mobile">设计模式-单例模式</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
