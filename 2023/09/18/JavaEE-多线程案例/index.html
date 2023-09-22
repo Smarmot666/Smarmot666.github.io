@@ -26,8 +26,10 @@
 <meta property="og:image" content="http://example.com/2023/09/18/JavaEE-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A1%88%E4%BE%8B/image-20230918202907725.png">
 <meta property="og:image" content="http://example.com/2023/09/18/JavaEE-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A1%88%E4%BE%8B/image-20230918203518563.png">
 <meta property="og:image" content="http://example.com/2023/09/18/JavaEE-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A1%88%E4%BE%8B/image-20230919154600704.png">
+<meta property="og:image" content="http://example.com/2023/09/18/JavaEE-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A1%88%E4%BE%8B/image-20230922152359084.png">
+<meta property="og:image" content="http://example.com/2023/09/18/JavaEE-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A1%88%E4%BE%8B/image-20230922155648608.png">
 <meta property="article:published_time" content="2023-09-18T09:48:47.000Z">
-<meta property="article:modified_time" content="2023-09-19T11:20:01.961Z">
+<meta property="article:modified_time" content="2023-09-22T08:19:06.784Z">
 <meta property="article:author" content="郑政祺">
 <meta property="article:tag" content="JavaEE">
 <meta name="twitter:card" content="summary_large_image">
@@ -241,7 +243,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          6.6k 字
+          9.4k 字
         
       </span>
     
@@ -252,7 +254,7 @@
         
         
         
-          55 分钟
+          79 分钟
         
       </span>
     
@@ -374,7 +376,72 @@
 
 
 
-<h1 id="四、线程池"><a href="#四、线程池" class="headerlink" title="四、线程池"></a>四、线程池</h1>
+<h1 id="四、线程池"><a href="#四、线程池" class="headerlink" title="四、线程池"></a>四、线程池</h1><h2 id="为什么要有线程池？"><a href="#为什么要有线程池？" class="headerlink" title="为什么要有线程池？"></a><strong>为什么要有线程池？</strong></h2><p>首先我们需要知道为什么要使用多线程而不使用多进程呢？这是因为进程创建太过重量,当需要频繁销毁&#x2F;创建的时候, 就不能忽视这些资源开销了。而线程依赖与进程，多个线程共享同个进程的资源，不过线程的创建&#x2F;销毁也会消耗一定的资源(相比进程少)，因此到达一定程度，这些开销也不能忽视了!!!</p>
+<h2 id="两种解决方案："><a href="#两种解决方案：" class="headerlink" title="两种解决方案："></a><strong>两种解决方案：</strong></h2><p><strong>1、使用协程</strong></p>
+<p>协程相比于线程来说，更加轻量级，因为协程把系统调度的过程给省略了，程序猿可以手动调度。不过在Java中，标准库没有协程，只有一些第三方库中有，但第三方库靠不靠谱？使用协程更多的是Go和Python。</p>
+<p><strong>2、使用线程池</strong></p>
+<p>在计算中”池”是一个重要的思想方法，例如：线程池、进程池、内存池…….</p>
+<p>大致思想就是，一次多创建几个线程，后续要用到的话，直接从池子里取出来，可为什么从池子里取出就比重新创建效率高呢？</p>
+<p><strong>原因</strong>：</p>
+<p>在计算机工作中，操作系统会在”内核态”和”用户态”两种状态来回切换，<strong>创建一个新的线程，就需要调用系统API，让操作系统的内核去完成，而操作系统内核是需要给所有的进程提供服务的，可能并不会马上回应你，这是不可控的</strong>，可能操作系统花费了很多时间才来理睬捏。但如果是<strong>从线程池中取出一个线程，这个操作是只需要”用户态”来完成，程序立马就能去执行，这是可控的。</strong></p>
+<h2 id="标准库中的线程池"><a href="#标准库中的线程池" class="headerlink" title="标准库中的线程池"></a>标准库中的线程池</h2><p><strong>简单使用</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.concurrent.ExecutorService;<br><span class="hljs-keyword">import</span> java.util.concurrent.Executors;<br><span class="hljs-keyword">import</span> java.util.concurrent.ThreadPoolExecutor;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Demo1</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">ExecutorService</span> <span class="hljs-variable">service</span> <span class="hljs-operator">=</span> Executors.newFixedThreadPool(<span class="hljs-number">10</span>);<br>        <br>        service.submit(() -&gt; &#123;<br>            System.out.println(<span class="hljs-string">&quot;111&quot;</span>);<br>        &#125;);<br>        <br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在这里线程池对象不是直接new出来的，而是通过一个专门的方法，返回了一个线程池对象。(在这使用到了一个<strong>设计模式——工厂模式</strong>)。</p>
+<p>在这使用了Executors.newFixedThreadPool方法，可以创建一个固定包含10个线程的线程池，其返回值类型是ExecutorService，通过调用里面的submit方法，可以将一个任务放到线程池中。</p>
+<hr>
+<p><strong>Executors创建线程池有这几种方式</strong>：</p>
+<ul>
+<li>newFixedThreadPool: 创建固定线程数的线程池.</li>
+<li>newCachedThreadPool: 创建线程数目动态增长的线程池.</li>
+<li>newSingleThreadPool: 创建单个线程的线程池.</li>
+<li>newScheduleThreadPool: 设置延迟时间后执行命令，或者定期执行命令.</li>
+</ul>
+<p>上述的几个工厂方法生成的线程池，本质上是Executors类对ThreadPoolExecutor类的封装。</p>
+<hr>
+<p><strong>ThreadPoolExecutor中的重要的方法就两个</strong>：</p>
+<ol>
+<li>构造方法</li>
+<li>submit方法(注册任务)</li>
+</ol>
+<img src="/2023/09/18/JavaEE-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A1%88%E4%BE%8B/image-20230922152359084.png" srcset="/img/loading.gif" lazyload class title="image-20230922152359084">
+
+<p><strong>参数含义</strong>：</p>
+<ul>
+<li>int corePoolSize：表示核心线程数(线程池中可以摸鱼的线程数目)。</li>
+<li>int maxiumPoolSize：表示线程池中最大线程的个数。</li>
+<li>long keepAliveTime：表示非核心线程可以摸鱼的时间，一到时间就会销毁。</li>
+<li>TimeUnit unit：表示keepAliveTime的时间单位。</li>
+<li>BlockingQueue<Runnable> workQueue：表示用来维护任务的容器，但必须为阻塞队列或其子类(优先阻塞队列)。</Runnable></li>
+<li>ThreadFactory threadFactory：使用某个工厂对象，线程由这个对象创建。使用工厂类是为了在创建过程中对线程属性做一些修改。</li>
+<li>RejectedExecutionHandler handler：线程池的拒绝策略，一个线程池中线程数达到了最大容量，当继续往线程池中添加任务，的话就需要采用某种策略来处理。</li>
+</ul>
+<hr>
+<p><strong>线程池拒绝策略：</strong></p>
+<img src="/2023/09/18/JavaEE-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A1%88%E4%BE%8B/image-20230922155648608.png" srcset="/img/loading.gif" lazyload class title="image-20230922155648608">
+
+<ul>
+<li>AbortPolicy：直接抛出异常。(摆烂~老子不干了！！)</li>
+<li>CallerRunsPolicy：新添加的任务，由添加任务的那个线程执行。(假装没听到~~依旧是自己干)</li>
+<li>DiscardOldestPolicy：丢弃任务队列中最老未被执行的任务。(放弃很久之前没做的事，将任务添加进来)</li>
+<li>DiscardPolicy：丢弃当前新加的任务。(任务都别干了)</li>
+</ul>
+<hr>
+<p><strong>如果使用newFixedThreadPool方法来构建线程池的话，初始构建多少个合适？根据cpu核心数设置？</strong></p>
+<p><strong>应当根据实际项目来设置。</strong>在一个线程中，执行的代码主要有两类：第一类为<strong>cpu密集型</strong>，在代码中主要进行算术运算&#x2F;逻辑判断，另一类为<strong>IO密集型</strong>，在代码中主要进行IO操作。</p>
+<p>假设一个线程的代码都是cpu密集型，这个时候线程池中的个数不应该超过cpu的核心数，此时如果超过了，也无法进一步提高效率了，反而回应为太多线程影响调度开销。</p>
+<p>假设一个线程的代码都是IO密集型，这个时候不吃cpu，设置的线程数就以超过N，一个核心可以通过调度来执行并发。</p>
+<p>所以需要根据实际需求，进行多轮测试的方式，来找到最佳的线程池的线程数目。</p>
+<h2 id="模拟实现-1"><a href="#模拟实现-1" class="headerlink" title="模拟实现"></a>模拟实现</h2><p>在这就实现一个最简单的线程池(固定个数，不使用工厂模式)</p>
+<p><strong>要点</strong>：</p>
+<ul>
+<li>线程池中核心的操作时submit方法，将线程添加到线程池中。</li>
+<li>由于有多个线程任务，考虑使用阻塞队列来管理这些任务。</li>
+</ul>
+<p><strong>实现代码</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyThreadPool</span>&#123;<br>    <span class="hljs-keyword">private</span> BlockingQueue&lt;Runnable&gt; queue = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedBlockingQueue</span>&lt;&gt;();<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">submit</span><span class="hljs-params">(Runnable runnable)</span> <span class="hljs-keyword">throws</span> InterruptedException &#123;<br>        queue.put(runnable);<br>    &#125;<br>    <br>    MyThreadPool(<span class="hljs-type">int</span> n)&#123;<br>        <span class="hljs-comment">//创建n个线程，如果没有任务，则阻塞等待</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; n; i++)&#123;<br>            <span class="hljs-type">Thread</span> <span class="hljs-variable">t</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(() -&gt; &#123;<br>                <span class="hljs-keyword">try</span> &#123;<br>                    <span class="hljs-comment">//如果没有任务，让线程阻塞等待</span><br>                    <span class="hljs-type">Runnable</span> <span class="hljs-variable">runnable</span> <span class="hljs-operator">=</span> queue.take();<br>                    runnable.run();<br>                &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>                    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(e);<br>                &#125;<br>            &#125;);<br>            t.start();<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
                 
               </div>
             
