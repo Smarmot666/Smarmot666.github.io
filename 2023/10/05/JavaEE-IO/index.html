@@ -16,25 +16,25 @@
   <meta name="author" content="郑政祺">
   <meta name="keywords" content="">
   
-    <meta name="description" content="一、常见的锁策略乐观锁 vs 悲观锁乐观锁和悲观锁并不是一个具体的锁，而是一类锁的特性。 悲观锁：悲观锁认为接下来锁冲突的概率较大，所以在访问资源共享资源前会先上锁。 乐观锁：乐观锁认为接下来锁冲突的概率不大，所以会先修改共享资源，然后再去验证这段时间内有没有发生冲突，如果没有，则完成操作，如果有，放弃本次操作，返回用户错误信息，让用户再去处理。 两种锁并没有孰优孰劣之分，而是需要看当前使用的场景">
+    <meta name="description" content="认识文件文件是一个广义的概念，在操作系统中，会把很多的硬件设备和软件资源都抽象成”文件”, 统一进行管理。我们平时所谈到的文件，都是指硬盘中的文件。文件就相当于是对”硬盘”数据的一种抽象。 文件组织结构由于文件很多，那么如何来管理文件呢？——使用一种按照层级结构进行组织，即树形结构。   文件路径文件路径是用来定位当前文件资源的，被分为相对路径和绝对路径。 绝对路径：从根节点(以C,D盘符开头的)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaEE-多线程进阶">
-<meta property="og:url" content="http://example.com/2023/09/22/JavaEE-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E8%BF%9B%E9%98%B6/index.html">
+<meta property="og:title" content="JavaEE-IO">
+<meta property="og:url" content="http://example.com/2023/10/05/JavaEE-IO/index.html">
 <meta property="og:site_name" content="机智的土拨鼠">
-<meta property="og:description" content="一、常见的锁策略乐观锁 vs 悲观锁乐观锁和悲观锁并不是一个具体的锁，而是一类锁的特性。 悲观锁：悲观锁认为接下来锁冲突的概率较大，所以在访问资源共享资源前会先上锁。 乐观锁：乐观锁认为接下来锁冲突的概率不大，所以会先修改共享资源，然后再去验证这段时间内有没有发生冲突，如果没有，则完成操作，如果有，放弃本次操作，返回用户错误信息，让用户再去处理。 两种锁并没有孰优孰劣之分，而是需要看当前使用的场景">
+<meta property="og:description" content="认识文件文件是一个广义的概念，在操作系统中，会把很多的硬件设备和软件资源都抽象成”文件”, 统一进行管理。我们平时所谈到的文件，都是指硬盘中的文件。文件就相当于是对”硬盘”数据的一种抽象。 文件组织结构由于文件很多，那么如何来管理文件呢？——使用一种按照层级结构进行组织，即树形结构。   文件路径文件路径是用来定位当前文件资源的，被分为相对路径和绝对路径。 绝对路径：从根节点(以C,D盘符开头的)">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2023/09/22/JavaEE-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E8%BF%9B%E9%98%B6/image-20230927160351210.png">
-<meta property="og:image" content="http://example.com/2023/09/22/JavaEE-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E8%BF%9B%E9%98%B6/image-20230927211126606.png">
-<meta property="article:published_time" content="2023-09-22T08:51:43.000Z">
-<meta property="article:modified_time" content="2023-09-27T13:31:35.287Z">
+<meta property="og:image" content="http://example.com/2023/10/05/JavaEE-IO/image-20231005104001376.png">
+<meta property="og:image" content="http://example.com/2023/10/05/JavaEE-IO/image-20231005110248724.png">
+<meta property="article:published_time" content="2023-10-05T02:22:33.000Z">
+<meta property="article:modified_time" content="2023-10-06T12:27:36.157Z">
 <meta property="article:author" content="郑政祺">
 <meta property="article:tag" content="JavaEE">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2023/09/22/JavaEE-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E8%BF%9B%E9%98%B6/image-20230927160351210.png">
+<meta name="twitter:image" content="http://example.com/2023/10/05/JavaEE-IO/image-20231005104001376.png">
   
   
   
-  <title>JavaEE-多线程进阶 - 机智的土拨鼠</title>
+  <title>JavaEE-IO - 机智的土拨鼠</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -217,7 +217,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="JavaEE-多线程进阶"></span>
+            <span id="subtitle" data-typed-text="JavaEE-IO"></span>
           
         </div>
 
@@ -228,8 +228,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-09-22 16:51" pubdate>
-          2023年9月22日 下午
+        <time datetime="2023-10-05 10:22" pubdate>
+          2023年10月5日 上午
         </time>
       </span>
     
@@ -240,7 +240,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.3k 字
+          3.8k 字
         
       </span>
     
@@ -251,7 +251,7 @@
         
         
         
-          19 分钟
+          32 分钟
         
       </span>
     
@@ -310,57 +310,217 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">JavaEE-多线程进阶</h1>
+            <h1 style="display: none">JavaEE-IO</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="一、常见的锁策略"><a href="#一、常见的锁策略" class="headerlink" title="一、常见的锁策略"></a>一、常见的锁策略</h1><h2 id="乐观锁-vs-悲观锁"><a href="#乐观锁-vs-悲观锁" class="headerlink" title="乐观锁 vs 悲观锁"></a>乐观锁 vs 悲观锁</h2><p>乐观锁和悲观锁并不是一个具体的锁，而是一类锁的特性。</p>
-<p><strong>悲观锁</strong>：悲观锁认为接下来<strong>锁冲突的概率较大</strong>，所以在<strong>访问资源共享资源前会先上锁</strong>。</p>
-<p><strong>乐观锁</strong>：乐观锁认为接下来<strong>锁冲突的概率不大</strong>，所以会<strong>先修改共享资源</strong>，然后<strong>再去验证这段时间内有没有发生冲突</strong>，如果没有，则完成操作，<strong>如果有，放弃本次操作，返回用户错误信息，让用户再去处理。</strong></p>
-<p><strong>两种锁并没有孰优孰劣之分，而是需要看当前使用的场景。</strong></p>
-<p>如果当前冲突概率确实大，使用悲观锁策略会更好，而使用乐观锁的话，会导致”白操作”很多次，耗费资源。</p>
-<p>如果当前冲突概率比较小，使用乐观锁更好，而使用悲观锁的话就会一直加锁，并发程度就下降了。</p>
-<p>synchronized 初始使用的是乐观锁策略，当发现锁竞争比较频繁的时候，就会自动切换成悲观锁策略(真是太强了~~)。</p>
-<h2 id="重量级锁-vs-轻量级锁"><a href="#重量级锁-vs-轻量级锁" class="headerlink" title="重量级锁 vs 轻量级锁"></a>重量级锁 vs 轻量级锁</h2><p>重量级和轻量级描述的是实际的开销量。<strong>在底层，加锁机制是通过操作系统提供的mutex锁来实现的，因此一旦加上锁，就会涉及到操作系统的内核，即在内核态与用户态间切换，这就会带来不小的开销。</strong></p>
-<p>上述悲观锁就是重量级锁，因为会频繁加锁，而乐观锁则是轻量级锁，其原则是尽量不加锁。</p>
-<h2 id="读写锁"><a href="#读写锁" class="headerlink" title="读写锁"></a>读写锁</h2><p><strong>在多线程中数据的读取操作不会产生线程安全问题，但是当有线程在写入数据的时候，另一个线程无论是读还是写操作都会出现线程安全的问题。</strong>如果在这两种场景(都是读或者有读有写)都只是用一个锁的话，就会产生很大的性能消耗，因此读写锁应运而生~</p>
-<p>读写锁分为两部分：一个”读锁”,一个”写锁”。适合于”读多，写少”的场景。<strong>在Java中ReentrantReadWriteLock类就实现了读写锁。</strong></p>
-<img src="/2023/09/22/JavaEE-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E8%BF%9B%E9%98%B6/image-20230927160351210.png" srcset="/img/loading.gif" lazyload class title="image-20230927160351210">
+                <h1 id="认识文件"><a href="#认识文件" class="headerlink" title="认识文件"></a>认识文件</h1><p>文件是一个广义的概念，在操作系统中，会把很多的硬件设备和软件资源都抽象成”文件”, 统一进行管理。我们平时所谈到的文件，都是指硬盘中的文件。文件就相当于是对”硬盘”数据的一种抽象。</p>
+<h2 id="文件组织结构"><a href="#文件组织结构" class="headerlink" title="文件组织结构"></a>文件组织结构</h2><p>由于文件很多，那么如何来管理文件呢？——<strong>使用一种按照层级结构进行组织，即树形结构</strong>。</p>
+<img src="/2023/10/05/JavaEE-IO/image-20231005104001376.png" srcset="/img/loading.gif" lazyload class title="image-20231005104001376">
 
-<p><strong>读写锁将读操作和写操作进行了区分对待</strong>，其中：</p>
-<ul>
-<li><p>读加锁和读加锁之间，不互斥。</p>
-</li>
-<li><p>写加锁和写加锁之间，互斥。</p>
-</li>
-<li><p>写加锁和读加锁之间，互斥。</p>
-</li>
-</ul>
-<h2 id="自旋锁-vs-互斥锁-挂起等待锁"><a href="#自旋锁-vs-互斥锁-挂起等待锁" class="headerlink" title="自旋锁 vs 互斥锁(挂起等待锁)"></a>自旋锁 vs 互斥锁(挂起等待锁)</h2><p><strong>自旋锁是一种轻量级锁</strong>，其实现套路往往是<strong>使用一个循环不停的检查当前锁是否被释放</strong>，如果没有释放就继续循环，释放了就去获取锁，<strong>因此自旋锁往往是在纯用户态实现</strong>。但是不停的循环，就会产生”忙等”现象(消耗cpu换取更快的响应速度)。</p>
-<p><strong>互斥锁是一种重量级锁</strong>，一个<strong>线程针对互斥锁进行加锁失败而阻塞是由操作系统内核实现</strong>的，当加锁失败，内核会将线程置为睡眠状态，等待锁释放后，内核会在合适的时机唤醒线程。所以<strong>当加锁失败后，会从用户态切换到内核态</strong>，而这就会产生不小的开销。</p>
-<h2 id="可重入锁-vs-不可重入锁"><a href="#可重入锁-vs-不可重入锁" class="headerlink" title="可重入锁 vs 不可重入锁"></a>可重入锁 vs 不可重入锁</h2><p>如果一个<strong>针对同一把锁，连续加锁两次不会产生死锁，那么就是可重入锁</strong>，如果会死锁，就是不可重入锁。</p>
-<p><strong>synchronized就是可重入锁</strong>，而linux中的mutex就是不可重入锁。</p>
-<h2 id="公平锁-vs-非公平锁"><a href="#公平锁-vs-非公平锁" class="headerlink" title="公平锁 vs 非公平锁"></a>公平锁 vs 非公平锁</h2><p>当很多线程尝试去加一把锁的时候，只有一个线程能够拿到这把锁，其他线程进行阻塞等待，当这个线程释放锁后，接下来哪个线程能够拿到锁呢？</p>
-<p><strong>公平锁：按照”先来后到”的顺序</strong>。(需要使用数据结构来维护加锁顺序)</p>
-<p><strong>非公平锁：剩下的线程以”均等”的概率来重新竞争锁</strong>。</p>
-<h1 id="二、CAS"><a href="#二、CAS" class="headerlink" title="二、CAS"></a>二、CAS</h1><p>CAS的全称是Compare And Swap, 本质上是<strong>一个cpu提供的指令，具有原子性</strong>，其被操作系统封装提供成api，然后又被JVM封装成api提供给程序员使用。</p>
-<p><strong>CAS比较交换的是内存和寄存器</strong>，假设现在有一个内存M,两个寄存器A,B,CAS的操作如下：</p>
-<p><strong>如果M和A的值相同，则交换M和B中的值，如果不同的话，则无事发生。</strong></p>
-<hr>
-<p>在介绍线程安全的时候，我们引入了一个案例，即通过i++操作让两个线程对变量i进行2w次的自增操作，最终结果并不是我们所想要的。<strong>这是因为i++操作本质上不是原子的，由load、add、save这三个指令完成，在并发的时候由于穿插执行，导致了线程不安全</strong>。解决办法是进行加锁。不过我们也可以使用CAS指令来实现。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">AtomicInteger</span> &#123;<br>	<span class="hljs-keyword">private</span> <span class="hljs-type">int</span> value;<br>	<span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getAndIncrement</span><span class="hljs-params">()</span> &#123;<br>		<span class="hljs-type">int</span> <span class="hljs-variable">oldValue</span> <span class="hljs-operator">=</span> value;<br>        <span class="hljs-keyword">while</span> ( CAS(value, oldValue, oldValue+<span class="hljs-number">1</span>) != <span class="hljs-literal">true</span>) &#123;<br>        	oldValue = value;<br>        &#125;<br>        <span class="hljs-keyword">return</span> oldValue;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="文件路径"><a href="#文件路径" class="headerlink" title="文件路径"></a>文件路径</h2><p>文件路径是用来定位当前文件资源的，被分为<strong>相对路径和绝对路径</strong>。</p>
+<p><strong>绝对路径：从根节点(以C,D盘符开头的)到叶子节点(当前文件)的路径。</strong></p>
+<p>如: C:\植物大战僵尸\Plants Vs Zombies\PlantsVsZombies.exe</p>
+<p><strong>相对路径：使用一个基准目录(使用.或者..表示,一个.表示当前目录,两个.表示当前目录的上一级),表示从这个基准目录往后到叶子节点的路径。</strong></p>
+<p>如：.\Plants Vs Zombies\PlantsVsZombies.exe 这里的.就代表了C:\植物大战僵尸</p>
+<h2 id="文件类型"><a href="#文件类型" class="headerlink" title="文件类型"></a>文件类型</h2><p>从编程的角度来看，文件主要分为两大类：</p>
+<p><strong>1、文本文件(文件中保存的都是字符串，都是合法的字符)。</strong></p>
+<p><strong>2、二进制文件(文件中保存是二进制数据)</strong></p>
+<p>如何区分？丢将文件丢记事本中,<strong>记事本会尝试按照字符的方式来展示内容，这个过程中会自动查码表，如果出现了一些看不懂的内容，那大概率就是二进制文件了。</strong></p>
+<img src="/2023/10/05/JavaEE-IO/image-20231005110248724.png" srcset="/img/loading.gif" lazyload class title="image-20231005110248724">
 
-<p>这里CAS是通过重试的方法来避免穿插执行的。</p>
-<p>当两个线程同时进行操作的时候，线程1已经自增过一次了，线程2此时使用CAS，发现value不等于oldValue，此时就不进行操作了，然后一直循环，知道发现某一次相等才会进行自增操作。</p>
-<h2 id="CAS中的ABA问题"><a href="#CAS中的ABA问题" class="headerlink" title="CAS中的ABA问题"></a>CAS中的ABA问题</h2><p>虽然CAS已经是一个原子指令了，但是还是可能会出现一些问题，即反复横跳问题。</p>
-<img src="/2023/09/22/JavaEE-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E8%BF%9B%E9%98%B6/image-20230927211126606.png" srcset="/img/loading.gif" lazyload class title="image-20230927211126606">
 
-<p>如图所示，本来是让两个线程去同时操作value的值，理论上value的值应该只能被修改一次，但是<strong>后面又来了线程3，它偷偷将value的值修改回去了</strong>，然后线程1发现值没变，最后又修改了，这样就导致了value的值被修改了两次。如果带入到取钱场景中，会发现非常要命，假设ATM机卡了，你多点了两次，就创建了两个线程去扣款50，此时剩下的钱变为了50，但恰巧有人给你转账了50，余额又变为了100，前面扣款的某个线程发现了值没变，又再一次扣款了,最终导致多扣了50……</p>
-<hr>
-<p>大部分情况下ABA问题都是没啥问题的，但又一些极端情况，还是会出现bug的。</p>
-<p><strong>解决方案</strong>：</p>
-<p><strong>ABA问题是因为某个值出现有增有减的情况</strong>，<strong>那么只要让判定的数值，按照一个方向增长即可。</strong>我们可以<strong>引入一个版本号，约定好每次修改余额的时候，都让版本号自增</strong>，此时CAS判定的时候就不是判定余额了，而是<strong>判定版本号是否发生了变化</strong>。</p>
+
+<h1 id="File类"><a href="#File类" class="headerlink" title="File类"></a>File类</h1><p>Java中通过java.io.File类来对一个文件进行描述。File对象可以对应到一个已经真实存在的文件，也可以对应到一个不存在的文件。</p>
+<h2 id="File中常用方法"><a href="#File中常用方法" class="headerlink" title="File中常用方法"></a>File中常用方法</h2><p><strong>构造方法</strong></p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>File(File parent, String child)</td>
+<td>根据父目录+孩子文件路径创建File实例</td>
+</tr>
+<tr>
+<td>File(String pathname)</td>
+<td>根据文件路径来创建一个File实例</td>
+</tr>
+<tr>
+<td>File(String parent, String child)</td>
+<td>根据父目录+孩子文件路径创建File实例</td>
+</tr>
+</tbody></table>
+<p><strong>成员方法</strong></p>
+<table>
+<thead>
+<tr>
+<th>返回值</th>
+<th>名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>String</td>
+<td>getParent()</td>
+<td>返回File对象的父目录文件路径</td>
+</tr>
+<tr>
+<td>String</td>
+<td>getName()</td>
+<td>返回File对象的文件名称</td>
+</tr>
+<tr>
+<td>String</td>
+<td>getPath()</td>
+<td>返回File对象的文件路径</td>
+</tr>
+<tr>
+<td>String</td>
+<td>getAbsolutePath()</td>
+<td>返回 File 对象的绝对路径</td>
+</tr>
+<tr>
+<td>String</td>
+<td>getCanonicalPath()</td>
+<td>返回 File 对象的修饰过的绝对路径</td>
+</tr>
+<tr>
+<td>void</td>
+<td>deleteOnExit()</td>
+<td>根据 File 对象，标注文件将被删除，删除动作会到 JVM 运行结束时才会进行</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>exists()</td>
+<td>判断File对象文件是否存在</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>createNewFile()</td>
+<td>根据File对象创建空文件</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>delete()</td>
+<td>根据File对象，删除该文件</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>isFile()</td>
+<td>判断 File 对象代表的文件是否是一个普通文件</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>isDirectory()</td>
+<td>判断 File 对象代表的文件是否是一个目录</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>mkdir()</td>
+<td>创建File对象代表的目录&#x2F;文件夹</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>mkdirs()</td>
+<td>创建File对象代表的目录，可以创建中间目录</td>
+</tr>
+</tbody></table>
+<h1 id="文件的读写"><a href="#文件的读写" class="headerlink" title="文件的读写"></a>文件的读写</h1><p>以上是文件系统的操作，但我们日常更多的是进行文件内容的操作。这时候我们就需要用到”文件流”了。</p>
+<p>“流”是一种抽象的概念，程序员不用关注数据是怎么从硬盘上读入&#x2F;读出的，只需要关注如何写入到”流”中。文件流一般又分为两大类：字节流和字符流。</p>
+<h2 id="字节流"><a href="#字节流" class="headerlink" title="字节流"></a>字节流</h2><p>字节流顾名思义是一个字节一个字节的读入&#x2F;读出的，更适合与二进制文件的操作，这样可以保证文件不失真。</p>
+<p>字节流又分为输入字节流InputStream和输出字节流OutputStream。这两个类在Java中是各种实现字节流类的基类，而且还是抽象类。</p>
+<h3 id="InputStream"><a href="#InputStream" class="headerlink" title="InputStream"></a>InputStream</h3><p><strong>常用方法</strong></p>
+<table>
+<thead>
+<tr>
+<th>返回值</th>
+<th>名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>int</td>
+<td>read()</td>
+<td>读取一个字节的数据，返回-1表示已经读完了</td>
+</tr>
+<tr>
+<td>int</td>
+<td>read(byte[] b)</td>
+<td>最多读取b.length个字节的数据到b数组中，返回实际读到的数量，-1表示读完了</td>
+</tr>
+<tr>
+<td>int</td>
+<td>read(byte[] b, int off, int len)</td>
+<td>最多读取len-off个字节到b数组，放在从off开始位置</td>
+</tr>
+<tr>
+<td>void</td>
+<td>close</td>
+<td>关闭字节流</td>
+</tr>
+</tbody></table>
+<h3 id="OutputStream"><a href="#OutputStream" class="headerlink" title="OutputStream"></a>OutputStream</h3><table>
+<thead>
+<tr>
+<th>返回值</th>
+<th>名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td>write(int b)</td>
+<td>将b写入到文件</td>
+</tr>
+<tr>
+<td>void</td>
+<td>write(byte[] b)</td>
+<td>将b数组中全部数据写入文件</td>
+</tr>
+<tr>
+<td>int</td>
+<td>write(byte[] b, int off, int len)</td>
+<td>将b数组中从off位置往后len个数据写入文件</td>
+</tr>
+<tr>
+<td>void</td>
+<td>close()</td>
+<td>关闭字节流</td>
+</tr>
+<tr>
+<td>void</td>
+<td>flush()</td>
+<td>刷新缓冲区</td>
+</tr>
+</tbody></table>
+<p><strong>注意</strong>：</p>
+<p>为什么要手动进行刷新缓冲区呢？这是因为I&#x2F;O写入的速度很慢，OutputStream为了频繁多次只写一点点数据，就在写数据的时候会先将数据暂时<strong>写入缓冲区</strong>，然后才会将真正的数据写入文件。因此有可能当我们写完数据，结束程序后去看文件发现什么也没有，这是因为数据都在缓冲区中，还没来得及到文件里，这时需要手动刷新缓冲区。</p>
+<p>我们可以使用上述的方法，进行读文件与写文件操作，但我们还可以<strong>使用PrintWriter类来帮我更简便的操作</strong>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> FileNotFoundException, UnsupportedEncodingException &#123;<br>    <span class="hljs-type">OutputStream</span> <span class="hljs-variable">outputStream</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileOutputStream</span>(<span class="hljs-string">&quot;D:/Test/test.txt&quot;</span>);<br>    <span class="hljs-type">OutputStreamWriter</span> <span class="hljs-variable">outputStreamWriter</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">OutputStreamWriter</span>(outputStream, <span class="hljs-string">&quot;UTF-8&quot;</span>);<br>    <span class="hljs-type">PrintWriter</span> <span class="hljs-variable">writer</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">PrintWriter</span>(outputStreamWriter);<br><br>    writer.println(<span class="hljs-string">&quot;我是第一行~&quot;</span>);<br>    writer.println(<span class="hljs-string">&quot;我是第二行~&quot;</span>);<br>    writer.println(<span class="hljs-string">&quot;我是第三行~&quot;</span>);<br>    writer.flush();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="字符流"><a href="#字符流" class="headerlink" title="字符流"></a>字符流</h2><p>在字符流中会使用到两个重要的基类：Reader和Writer。里面的方法使用跟上述字节流基本一致，只不过一个针对的是字节一个针对的是字符。</p>
+<p>在Java中字符通常用char类型表示，字节用byte表示，一个char类型为2个字节，一个utf8编码的中文字符占3个字节。在Java标准库中，对字符编码进行了很多处理，如果只是用char，此时使用的字符集固定是Unicode，如果是使用了String，此时会自动把每个字符的unicode转为utf8编码，同样一个中文汉字，在unicode编码下占2个字节，而在utf8编码下占3个字节。</p>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>我们每创建一个流对象就应该在不使用的时候进行关闭，即调用它的close方法。这是因为一个进程创建的时候，其PCB中会有一个文件描述符表来描述文件相关资源，如果我们的代码一直打开文件而不去关闭文件，这个文件描述符表里的元素越来越多，直到占满了，后续再次尝试创建就会出错，最终导致了文件资源泄漏。</p>
+<p><strong>方案一：</strong></p>
+<p><strong>每次使用完，人为的去手动调用它的close方法.</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.io.*;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Demo5</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;D:/Test/test.txt&quot;</span>;<br>        <span class="hljs-type">Writer</span> <span class="hljs-variable">writer</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileWriter</span>(path);<br>        <br>        <span class="hljs-comment">//写入文件~</span><br>        <br>        writer.close();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>但是这样去写的话，万一中间抛出了什么异常，那么就不会往下执行代码了，就导致了close方法没有执行。</p>
+<p><strong>方案二:</strong></p>
+<p><strong>在finally代码块中调用。</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.io.*;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Demo5</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;D:/Test/test.txt&quot;</span>;<br>        <span class="hljs-type">Writer</span> <span class="hljs-variable">writer</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileWriter</span>(path);<br>        <span class="hljs-keyword">try</span>&#123;<br>            <span class="hljs-comment">//写文件</span><br>        &#125;<span class="hljs-keyword">finally</span> &#123;<br>            writer.close();<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这样无论如何，finally代码块中的代码都会被执行，即close方法一定被执行了。虽然能这么写，但是不够优雅~</p>
+<p><strong>方案三：</strong></p>
+<p><strong>使用try(){}语法，这个语法会在try代码块执行结束的时候(正常结束或者抛出异常)，自动调用()定义的变量中的close方法。不过里面的变量类型必须实现了closeable接口</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.io.*;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Demo5</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;D:/Test/test.txt&quot;</span>;<br>        <span class="hljs-keyword">try</span>(<span class="hljs-type">Writer</span> <span class="hljs-variable">writer</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileWriter</span>(path))&#123;<br>            <span class="hljs-comment">//写文件</span><br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
 
                 
               </div>
@@ -385,8 +545,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>JavaEE-多线程进阶</div>
-      <div>http://example.com/2023/09/22/JavaEE-多线程进阶/</div>
+      <div>JavaEE-IO</div>
+      <div>http://example.com/2023/10/05/JavaEE-IO/</div>
     </div>
     <div class="license-meta">
       
@@ -398,7 +558,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年9月22日</div>
+          <div>2023年10月5日</div>
         </div>
       
       
@@ -430,18 +590,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/10/05/JavaEE-IO/" title="JavaEE-IO">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">JavaEE-IO</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/09/18/JavaEE-%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/" title="JavaEE-线程安全">
-                        <span class="hidden-mobile">JavaEE-线程安全</span>
+                      <a href="/2023/09/22/JavaEE-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E8%BF%9B%E9%98%B6/" title="JavaEE-多线程进阶">
+                        <span class="hidden-mobile">JavaEE-多线程进阶</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
