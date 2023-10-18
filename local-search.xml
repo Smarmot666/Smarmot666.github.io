@@ -4,6 +4,44 @@
   
   
   <entry>
+    <title>网络原理-传输层</title>
+    <link href="/2023/10/18/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-%E4%BC%A0%E8%BE%93%E5%B1%82/"/>
+    <url>/2023/10/18/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-%E4%BC%A0%E8%BE%93%E5%B1%82/</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>JavaEE</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>网络原理-应用层协议</title>
+    <link href="/2023/10/17/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-%E5%BA%94%E7%94%A8%E5%B1%82%E5%8D%8F%E8%AE%AE/"/>
+    <url>/2023/10/17/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-%E5%BA%94%E7%94%A8%E5%B1%82%E5%8D%8F%E8%AE%AE/</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>应用层是借助传输层提供的服务来实现自己的功能的，在应用层存在许多现成的协议，不过，很多时候程序猿也可以自定义协议，那协议究竟是什么？</p><h1 id="自定义协议"><a href="#自定义协议" class="headerlink" title="自定义协议"></a>自定义协议</h1><p>在这引入一个场景：在B站上搜索英雄联盟。</p><p>在这我们的请求是：英雄联盟，而服务器的响应是一大堆视频和比赛咨询信息啥的。</p><p>在这之间发生了什么呢？**首先我们需要知道，我们的代码中包含了各种各样的对象，当我们传输数据的时候需要将其进行序列化，将其变为文本数据或者二进制数据才能传输(简单理解将对象变为一个字符串)**。在我们输入”英雄联盟”的时候，客户端会将”英雄联盟”这个字符串按找某种协议的格式，重新组织，例如转换成”请求:英雄联盟\n”,然后发送给了服务器,此时服务器根据协议(例如:规定了从冒号后面开始读取,然后以\n为结尾)进行解析这个字符串,就得到了”英雄联盟”,之后计算响应,将一大堆视频信息组织整理,例如转换成”响应:视频1,xxxx;视频2,xxxx”，此时客户端再根据协议约定来解析这个响应，提取出里面的信息。</p><p><strong>总得来说，协议就是用来规定通信数据的格式、包含哪些信息，通信双方得遵守这个协议，才能读懂对方的意思</strong>，举个例子，我们都知道GBK编码后的中文字符，然后使用utf8来解读的话，会出现乱码，这就是因为双方没有遵守协议~ <strong>协议的具体格式可以非常灵活，但是要表征通信双方都使用相同的规则!!!</strong></p><h1 id="一些大佬的协议"><a href="#一些大佬的协议" class="headerlink" title="一些大佬的协议"></a>一些大佬的协议</h1><p>虽然说自定义格式可以是任意的，但是为了避免出现离离原上谱的设计方式，大佬门就搞出了一些”通用的协议格式”,我们可以参考这些格式。</p><h2 id="xml"><a href="#xml" class="headerlink" title="xml"></a>xml</h2><p>xml是以成对的标签，来表示”键值对”信息，和html长的差不多，不过<strong>xml中的标签是程序猿自己定义的</strong></p><p><strong>例如：</strong></p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">request</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">userId</span>&gt;</span>张三<span class="hljs-tag">&lt;/<span class="hljs-name">userId</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">password</span>&gt;</span>123456<span class="hljs-tag">&lt;/<span class="hljs-name">password</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">request</span>&gt;</span><br></code></pre></td></tr></table></figure><p><strong>优点：xml能非常清晰的把数据结构化表示出来。</strong></p><p><strong>缺点：表示数据需要引入大量标签，比较繁琐，传输的数据也多，会占用不少带宽。</strong></p><h2 id="json"><a href="#json" class="headerlink" title="json"></a>json</h2><p>json本质上也是”键值对”,相比xml更简洁一些，使用{}表示键值对。json是当前主流使用的一种网络传输数据的格式，其对换行并不敏感，在传输的时候会对json进行压缩,去掉不必要的换行来降低带宽(会影响可读性)。</p><p><strong>例如：</strong></p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;Zhangsan&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;age&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">18</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;hobbies&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;sleep&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;read&quot;</span><span class="hljs-punctuation">]</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure><p><strong>优点：相比xml，数据简洁，可读性好。</strong></p><p><strong>缺点：依旧需要花费一定的带宽来传输”键”的数据。</strong></p><h2 id="protobuffer"><a href="#protobuffer" class="headerlink" title="protobuffer"></a>protobuffer</h2><p>protobuffer是谷歌提出的一套二进制的数据序列化方式。使用二进制的方式，约定某几个字节，表示什么什么属性，不必传输”键”的数据，通过位置和长度来区分每个属性。我们需要使用一个proto文件来编写，然后使用protobuf编译器将其转换。</p><p><strong>优点：不用传输”键”，节省带宽，最大化效率。</strong></p><p><strong>缺点：二进制数据，无法肉眼观察，使用比较复杂。</strong></p><h1 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h1>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>JavaEE</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>JavaEE-网络编程</title>
     <link href="/2023/10/13/JavaEE-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"/>
     <url>/2023/10/13/JavaEE-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/</url>
