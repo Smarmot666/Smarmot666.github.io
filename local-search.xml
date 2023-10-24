@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>网络原理-以太网协议和DNS协议</title>
+    <link href="/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%8D%8F%E8%AE%AE%E5%92%8CDNS%E5%8D%8F%E8%AE%AE/"/>
+    <url>/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%8D%8F%E8%AE%AE%E5%92%8CDNS%E5%8D%8F%E8%AE%AE/</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="一、以太网协议"><a href="#一、以太网协议" class="headerlink" title="一、以太网协议"></a>一、以太网协议</h1><p>以太网协议会涉及到数据链路层和物理层。</p><img src="/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%8D%8F%E8%AE%AE%E5%92%8CDNS%E5%8D%8F%E8%AE%AE/image-20231024162621522.png" class title="image-20231024162621522"><p>这里面的目的地址和源地址指的并不是IP地址,而是MAC地址(物理地址)。长度为6个字节。即最多能表示2^48 个地址,也是非常大的,足够给全球每个设备都分配一个地址,因此在网卡出厂的时候都会带有一个唯一的MAC地址,用作身份标识，所以说网络不是法外之地~</p><hr><p>那已经有了IP地址,为啥还要设计MAC地址呢?</p><p>IP地址:负责网络层的转发。</p><p>MAC地址:负责数据链路层的转发。</p><p>网络层负责的是整体的转发过程(统筹全局，视角更高),数据链路层负责的是局部转发过程(着眼当下)。</p><img src="/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%8D%8F%E8%AE%AE%E5%92%8CDNS%E5%8D%8F%E8%AE%AE/image-20231024164413501.png" class title="image-20231024164413501"><p>在上图中:</p><p>IP地址关注的是主机A的地址和主机B的地址</p><p>MAC地址则先关注的是主机A的地址和中间节点1的地址,然后关注中间节点1的地址和中间节点2的地址…….</p><hr><p>以太网数据帧的类型有这么三种：</p><img src="/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%8D%8F%E8%AE%AE%E5%92%8CDNS%E5%8D%8F%E8%AE%AE/image-20231024165717671.png" class title="image-20231024165717671"><p>根据载荷中的不同数据可以分为IP数据报、ARP数据报、RAPP数据报。</p><p>一个以太网数据帧的载荷部分最大的长度也就1500字节,才1kb多,是一个非常小的数字,而这都跟设备的硬件有关。</p><h1 id="二、DNS"><a href="#二、DNS" class="headerlink" title="二、DNS"></a>二、DNS</h1><p>DNS全称域名解析系统,如果在没有DNS的情况下上网,我们需要输入以串数字,例如:192.168.10.15,这种数字的记忆方式非常不便于人们的记忆和传播,因此就使用单词来替代IP地址,例如:<a href="http://www.bilibili.com这样的方式来替代上述的数字形式.这样的方式单词格式称为域名./">www.bilibili.com这样的方式来替代上述的数字形式。这样的方式单词格式称为域名。</a></p><p>为了保证域名的唯一性,域名往往是分级的。例如上述的域名,其中com是一级域名,bilibili是二级域名,www是三级域名,而域名的方式显然是给人看的,在底层会将其转化为IP地址。</p><p>早起的DNS是一个文件,每个域名都会对应一个IP地址,一旦新网站出现,就得去修改这个文件(hosts文件),可世界上每天有那么多网站被创建和销毁,并且又有那么多主机上的hosts文件需要修改,因此就使用了一个DNS服务器来解决。</p><p>每当创建一个新的网站都需要想这个DNS服务器去报备一下,后续客户端通过先访问DNS服务器查询到IP地址再去访问要去的地方。</p><img src="/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%8D%8F%E8%AE%AE%E5%92%8CDNS%E5%8D%8F%E8%AE%AE/image-20231024171611705.png" class><p>全世界那么多主机都要上网,DNS服务器如何承受这么大的请求量?——开源节流</p><p>1、每个电脑上再域名解析的时候进行缓存,下次访问的时候可以先看看缓存中有没有</p><p>2、全世界会搭建很多的”DNS镜像服务器”并从美国的DNS服务器同步数据</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>JavaEE</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>网络原理-IP协议</title>
     <link href="/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-IP%E5%8D%8F%E8%AE%AE/"/>
     <url>/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-IP%E5%8D%8F%E8%AE%AE/</url>

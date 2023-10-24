@@ -16,29 +16,27 @@
   <meta name="author" content="郑政祺">
   <meta name="keywords" content="">
   
-    <meta name="description" content="一、IP协议报头   版本号:用来表示IP协议的版本,现在常用的IP协议有两个版本,IPv4和IPv6，其他版本可能只存在于实验室中，并没有被广泛的使用。 首部长度:用来表示IP报头的长度,因为存在”选项”字段，所以IP报头是可变长的,此处单位为4个字节。取值范围:20-60字节。 服务类型:虽然有8位但是真正只有4位才有效,用来表示IP协议的4工作模式:最小延时、最大吞吐量、最高可靠性、最小成本">
+    <meta name="description" content="一、以太网协议以太网协议会涉及到数据链路层和物理层。   这里面的目的地址和源地址指的并不是IP地址,而是MAC地址(物理地址)。长度为6个字节。即最多能表示2^48 个地址,也是非常大的,足够给全球每个设备都分配一个地址,因此在网卡出厂的时候都会带有一个唯一的MAC地址,用作身份标识，所以说网络不是法外之地~  那已经有了IP地址,为啥还要设计MAC地址呢? IP地址:负责网络层的转发。 MAC">
 <meta property="og:type" content="article">
-<meta property="og:title" content="网络原理-IP协议">
-<meta property="og:url" content="http://example.com/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-IP%E5%8D%8F%E8%AE%AE/index.html">
+<meta property="og:title" content="网络原理-以太网协议和DNS协议">
+<meta property="og:url" content="http://example.com/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%8D%8F%E8%AE%AE%E5%92%8CDNS%E5%8D%8F%E8%AE%AE/index.html">
 <meta property="og:site_name" content="机智的土拨鼠">
-<meta property="og:description" content="一、IP协议报头   版本号:用来表示IP协议的版本,现在常用的IP协议有两个版本,IPv4和IPv6，其他版本可能只存在于实验室中，并没有被广泛的使用。 首部长度:用来表示IP报头的长度,因为存在”选项”字段，所以IP报头是可变长的,此处单位为4个字节。取值范围:20-60字节。 服务类型:虽然有8位但是真正只有4位才有效,用来表示IP协议的4工作模式:最小延时、最大吞吐量、最高可靠性、最小成本">
+<meta property="og:description" content="一、以太网协议以太网协议会涉及到数据链路层和物理层。   这里面的目的地址和源地址指的并不是IP地址,而是MAC地址(物理地址)。长度为6个字节。即最多能表示2^48 个地址,也是非常大的,足够给全球每个设备都分配一个地址,因此在网卡出厂的时候都会带有一个唯一的MAC地址,用作身份标识，所以说网络不是法外之地~  那已经有了IP地址,为啥还要设计MAC地址呢? IP地址:负责网络层的转发。 MAC">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-IP%E5%8D%8F%E8%AE%AE/image-20231024091920655.png">
-<meta property="og:image" content="http://example.com/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-IP%E5%8D%8F%E8%AE%AE/Users/11834/AppData/Roaming/Typora/typora-user-images/image-20231024111522964.png">
-<meta property="og:image" content="http://example.com/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-IP%E5%8D%8F%E8%AE%AE/image-20231024113917143.png">
-<meta property="og:image" content="http://example.com/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-IP%E5%8D%8F%E8%AE%AE/image-20231024152047060.png">
-<meta property="og:image" content="http://example.com/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-IP%E5%8D%8F%E8%AE%AE/image-20231024153559056.png">
-<meta property="og:image" content="http://example.com/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-IP%E5%8D%8F%E8%AE%AE/image-20231024154054368.png">
-<meta property="article:published_time" content="2023-10-24T01:05:51.000Z">
-<meta property="article:modified_time" content="2023-10-24T08:13:08.588Z">
+<meta property="og:image" content="http://example.com/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%8D%8F%E8%AE%AE%E5%92%8CDNS%E5%8D%8F%E8%AE%AE/image-20231024162621522.png">
+<meta property="og:image" content="http://example.com/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%8D%8F%E8%AE%AE%E5%92%8CDNS%E5%8D%8F%E8%AE%AE/image-20231024164413501.png">
+<meta property="og:image" content="http://example.com/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%8D%8F%E8%AE%AE%E5%92%8CDNS%E5%8D%8F%E8%AE%AE/image-20231024165717671.png">
+<meta property="og:image" content="http://example.com/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%8D%8F%E8%AE%AE%E5%92%8CDNS%E5%8D%8F%E8%AE%AE/image-20231024171611705.png">
+<meta property="article:published_time" content="2023-10-24T08:20:59.000Z">
+<meta property="article:modified_time" content="2023-10-24T09:20:18.978Z">
 <meta property="article:author" content="郑政祺">
 <meta property="article:tag" content="JavaEE">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-IP%E5%8D%8F%E8%AE%AE/image-20231024091920655.png">
+<meta name="twitter:image" content="http://example.com/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%8D%8F%E8%AE%AE%E5%92%8CDNS%E5%8D%8F%E8%AE%AE/image-20231024162621522.png">
   
   
   
-  <title>网络原理-IP协议 - 机智的土拨鼠</title>
+  <title>网络原理-以太网协议和DNS协议 - 机智的土拨鼠</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -221,7 +219,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="网络原理-IP协议"></span>
+            <span id="subtitle" data-typed-text="网络原理-以太网协议和DNS协议"></span>
           
         </div>
 
@@ -232,8 +230,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-10-24 09:05" pubdate>
-          2023年10月24日 上午
+        <time datetime="2023-10-24 16:20" pubdate>
+          2023年10月24日 下午
         </time>
       </span>
     
@@ -244,7 +242,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.1k 字
+          959 字
         
       </span>
     
@@ -255,7 +253,7 @@
         
         
         
-          18 分钟
+          8 分钟
         
       </span>
     
@@ -314,56 +312,40 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">网络原理-IP协议</h1>
+            <h1 style="display: none">网络原理-以太网协议和DNS协议</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="一、IP协议报头"><a href="#一、IP协议报头" class="headerlink" title="一、IP协议报头"></a>一、IP协议报头</h1><img src="/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-IP%E5%8D%8F%E8%AE%AE/image-20231024091920655.png" srcset="/img/loading.gif" lazyload class title="image-20231024091920655">
+                <h1 id="一、以太网协议"><a href="#一、以太网协议" class="headerlink" title="一、以太网协议"></a>一、以太网协议</h1><p>以太网协议会涉及到数据链路层和物理层。</p>
+<img src="/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%8D%8F%E8%AE%AE%E5%92%8CDNS%E5%8D%8F%E8%AE%AE/image-20231024162621522.png" srcset="/img/loading.gif" lazyload class title="image-20231024162621522">
 
-<ol>
-<li><strong>版本号</strong>:用来表示IP协议的版本,现在常用的IP协议有两个版本,IPv4和IPv6，其他版本可能只存在于实验室中，并没有被广泛的使用。</li>
-<li><strong>首部长度</strong>:用来表示IP报头的长度,因为存在”选项”字段，所以IP报头是可变长的,此处单位为4个字节。取值范围:20-60字节。</li>
-<li><strong>服务类型</strong>:虽然有8位但是真正只有4位才有效,用来表示IP协议的4工作模式:最小延时、最大吞吐量、最高可靠性、最小成本,四种模式互斥,只能切换到一种模式。虽然IP协议支持这个机制,但在实际中很少用到。</li>
-<li><strong>总长度</strong>:表示的是整个IP数据报的长度,即IP报头长度+载荷的长度。这里的总长度使用了16bit，只能表示到64kb的数据,所以当携带的数据比较多的时候，IP协议会自动将数据报拆成多份，而数据到了接收方又会进行合并操作。</li>
-<li><strong>标识+标志位+片偏移</strong>:用来帮助IP协议正确拆包组包。当IP的载荷数据比较多的时候，会进行拆包，而同一个数据报中多个包的标识是相同的，然后再根据包的先后顺序进行片偏移的赋值。其中的标志位，一共3bit，一位不作使用，一位用来表示是否允许拆包，还有一位用作”结束标记”，判断是否为最后一个包。</li>
-<li><strong>生存时间(TTL)</strong>:表示一个数据包在网络上最多被转发多少次，每经过一个中间节点就减1，比如有一个TTL的初始值为32,在经过32次转发后就会减为0，此时这个数据包就会被丢弃，表示不可达。</li>
-<li><strong>协议</strong>:表示上层使用的是哪种协议。</li>
-<li><strong>首部校验和</strong>:检验IP协议数据包的头部是否出现错误,后面的载荷为TCP&#x2F;UDP,可以自己检验。</li>
-</ol>
-<h1 id="二、IP地址"><a href="#二、IP地址" class="headerlink" title="二、IP地址"></a>二、IP地址</h1><p>在网络的世界中有许多的主机，彼此之间要使用IP地址找到对方才能通信，因此每个IP地址原则上是不能重复的。而所谓的IP地址本质上是一个32位的整数。不过为了便于叙述与记忆往往会使用点分十进制表示。</p>
-<p>32位能表示的数据量是有限的，大约为42亿，随着网络的迅速发展，上网的设备越来越多已经超出了32位能表示的范围了,如何解决32位IP地址不够用呢?</p>
-<h2 id="DHCP-动态分配IP"><a href="#DHCP-动态分配IP" class="headerlink" title="DHCP(动态分配IP)"></a>DHCP(动态分配IP)</h2><p>通过使用类似分时复用的方式,当主机需要上网的时候进行分配一个IP地址，不需要就先不分配，这种方式无法改变总量，只能缓治(你咋确定不会正好有42亿人一起上网呢?)。</p>
-<h2 id="NAT机制-网络地址转换"><a href="#NAT机制-网络地址转换" class="headerlink" title="NAT机制(网络地址转换)"></a>NAT机制(网络地址转换)</h2><p>NAT机制本质上是使用了IP地址的复用，将网络分为了两大类，一类为内网，另一类为外网。外网之间可以直接通信，而内网之间不可以。</p>
-<p><img src="/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-IP%E5%8D%8F%E8%AE%AE/Users/11834/AppData/Roaming/Typora/typora-user-images/image-20231024111522964.png" srcset="/img/loading.gif" lazyload alt="image-20231024111522964"></p>
-<p>由于内网可以复用，因此就会出现两台不同的主机的IP地址相同的情况，此时要通信的话，需要借助外网。</p>
-<p><strong>大致流程如下:</strong></p>
-<img src="/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-IP%E5%8D%8F%E8%AE%AE/image-20231024113917143.png" srcset="/img/loading.gif" lazyload class title="image-20231024113917143">
-
-<p>在发送的过程中,每经过一个路由器的时候就会触发NAT机制，路由器会将自己IP地址替换到当前IP数据报的源IP地址，因此接收端也无法知道这个数据报是源自哪的，只知道是上一级交付的。对于每一个带有NAT机制的路由设备也都会使用一个映射表来维护对应关系，这样当一个数据报过来之后，通过查表就知道发给谁了。</p>
-<p>在NAT机制下，一个外网IP代表的不一定是一个设备了，而是很多很多设备，但是NAT也有非常明显的缺点：</p>
-<p>非常繁琐，不方便直接访问局域网设备，需要多层路由转发才能访问另一个局域网中的设备。</p>
-<p>虽然NAT进一步提高了利用率，但是也没有从根本上解决问题，但为啥还是在当今广泛使用呢？这是因为NAT是一个纯软件实现的方案，开发商只需要更新一下软件，这样就能大大降低成本。</p>
-<h2 id="IPv6"><a href="#IPv6" class="headerlink" title="IPv6"></a>IPv6</h2><p>IPv6算是从根本上解决了IP地址不够用的问题。因为IPv6增长到了16个字节，128位，其能表示的数据范围相当于能给地球上的每一粒沙子都分配一个IP地址。</p>
-<img src="/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-IP%E5%8D%8F%E8%AE%AE/image-20231024152047060.png" srcset="/img/loading.gif" lazyload class title="image-20231024152047060">
-
-<p>但是IPv6并没有发展起来,这是因为IPv4使用的是4个字节,因此两个协议无法兼容，要想升级IPv6就得更换硬件，但这并不会提高网速,用户也就感知不到,运营商也就赚不到钱……</p>
-<p>更多知识可参考:<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1i14y157YV/?spm_id_from=333.788">https://www.bilibili.com/video/BV1i14y157YV/?spm_id_from=333.788</a></p>
-<h2 id="IP地址组成"><a href="#IP地址组成" class="headerlink" title="IP地址组成"></a>IP地址组成</h2><p>IP地址由两部分组成:<strong>网络号+主机号</strong>。</p>
-<p><strong>网络号</strong>:<strong>标识网段</strong>,保证相互连接的两个网段具有不同的标识。</p>
-<p><strong>主机号</strong>:<strong>标识主机</strong>,同一网段内,主机之间具有相同的网络号,但是主机号必须不同。</p>
+<p>这里面的目的地址和源地址指的并不是IP地址,而是MAC地址(物理地址)。长度为6个字节。即最多能表示2^48 个地址,也是非常大的,足够给全球每个设备都分配一个地址,因此在网卡出厂的时候都会带有一个唯一的MAC地址,用作身份标识，所以说网络不是法外之地~</p>
 <hr>
-<p>那么如何区分网络号和主机号呢？使用<strong>子网掩码</strong>。</p>
-<p>子网掩码和IP地址一样，也是4个字节，32位的整数，但是子网掩码要求,左侧必须为连续的1，右边必须为连续的0，即0和1不能穿插出现。其中1的范围就描述了IP地址的网络号，0的范围则是主机号。</p>
-<img src="/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-IP%E5%8D%8F%E8%AE%AE/image-20231024153559056.png" srcset="/img/loading.gif" lazyload class title="image-20231024153559056">
+<p>那已经有了IP地址,为啥还要设计MAC地址呢?</p>
+<p>IP地址:负责网络层的转发。</p>
+<p>MAC地址:负责数据链路层的转发。</p>
+<p>网络层负责的是整体的转发过程(统筹全局，视角更高),数据链路层负责的是局部转发过程(着眼当下)。</p>
+<img src="/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%8D%8F%E8%AE%AE%E5%92%8CDNS%E5%8D%8F%E8%AE%AE/image-20231024164413501.png" srcset="/img/loading.gif" lazyload class title="image-20231024164413501">
 
-<p>这里就表示前23位为网络号，后9位为主机号。</p>
-<p>子网掩码是现代的一种划分网络号的办法，上古时期还有一种：</p>
-<img src="/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-IP%E5%8D%8F%E8%AE%AE/image-20231024154054368.png" srcset="/img/loading.gif" lazyload class title="image-20231024154054368">
+<p>在上图中:</p>
+<p>IP地址关注的是主机A的地址和主机B的地址</p>
+<p>MAC地址则先关注的是主机A的地址和中间节点1的地址,然后关注中间节点1的地址和中间节点2的地址…….</p>
+<hr>
+<p>以太网数据帧的类型有这么三种：</p>
+<img src="/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%8D%8F%E8%AE%AE%E5%92%8CDNS%E5%8D%8F%E8%AE%AE/image-20231024165717671.png" srcset="/img/loading.gif" lazyload class title="image-20231024165717671">
 
-<h2 id="特殊的IP地址"><a href="#特殊的IP地址" class="headerlink" title="特殊的IP地址"></a>特殊的IP地址</h2><p>1.IP地址中的主机号全部位0,就成了网络号。</p>
-<p>2.IP地址中的主机号全部设为1,就成了广播地址。例如:192.168.0.255,子网掩码:255.255.255.0,此时这个地址就是广播地址了,往这个地址发送UDP(TCP无法和广播地址握手)数据报,那么这个局域网中所有设备都会接收到。</p>
-<p>3.127.*的IP地址用于本机环回地址,通常为127.0.0.1。</p>
+<p>根据载荷中的不同数据可以分为IP数据报、ARP数据报、RAPP数据报。</p>
+<p>一个以太网数据帧的载荷部分最大的长度也就1500字节,才1kb多,是一个非常小的数字,而这都跟设备的硬件有关。</p>
+<h1 id="二、DNS"><a href="#二、DNS" class="headerlink" title="二、DNS"></a>二、DNS</h1><p>DNS全称域名解析系统,如果在没有DNS的情况下上网,我们需要输入以串数字,例如:192.168.10.15,这种数字的记忆方式非常不便于人们的记忆和传播,因此就使用单词来替代IP地址,例如:<a target="_blank" rel="noopener" href="http://www.bilibili.com这样的方式来替代上述的数字形式.这样的方式单词格式称为域名./">www.bilibili.com这样的方式来替代上述的数字形式。这样的方式单词格式称为域名。</a></p>
+<p>为了保证域名的唯一性,域名往往是分级的。例如上述的域名,其中com是一级域名,bilibili是二级域名,www是三级域名,而域名的方式显然是给人看的,在底层会将其转化为IP地址。</p>
+<p>早起的DNS是一个文件,每个域名都会对应一个IP地址,一旦新网站出现,就得去修改这个文件(hosts文件),可世界上每天有那么多网站被创建和销毁,并且又有那么多主机上的hosts文件需要修改,因此就使用了一个DNS服务器来解决。</p>
+<p>每当创建一个新的网站都需要想这个DNS服务器去报备一下,后续客户端通过先访问DNS服务器查询到IP地址再去访问要去的地方。</p>
+<img src="/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%8D%8F%E8%AE%AE%E5%92%8CDNS%E5%8D%8F%E8%AE%AE/image-20231024171611705.png" srcset="/img/loading.gif" lazyload class>
+
+<p>全世界那么多主机都要上网,DNS服务器如何承受这么大的请求量?——开源节流</p>
+<p>1、每个电脑上再域名解析的时候进行缓存,下次访问的时候可以先看看缓存中有没有</p>
+<p>2、全世界会搭建很多的”DNS镜像服务器”并从美国的DNS服务器同步数据</p>
 
                 
               </div>
@@ -388,8 +370,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>网络原理-IP协议</div>
-      <div>http://example.com/2023/10/24/网络原理-IP协议/</div>
+      <div>网络原理-以太网协议和DNS协议</div>
+      <div>http://example.com/2023/10/24/网络原理-以太网协议和DNS协议/</div>
     </div>
     <div class="license-meta">
       
@@ -433,18 +415,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%8D%8F%E8%AE%AE%E5%92%8CDNS%E5%8D%8F%E8%AE%AE/" title="网络原理-以太网协议和DNS协议">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">网络原理-以太网协议和DNS协议</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/10/18/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-%E4%BC%A0%E8%BE%93%E5%B1%82/" title="网络原理-传输层">
-                        <span class="hidden-mobile">网络原理-传输层</span>
+                      <a href="/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-IP%E5%8D%8F%E8%AE%AE/" title="网络原理-IP协议">
+                        <span class="hidden-mobile">网络原理-IP协议</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
