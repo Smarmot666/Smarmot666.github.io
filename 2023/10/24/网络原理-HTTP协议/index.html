@@ -16,22 +16,30 @@
   <meta name="author" content="郑政祺">
   <meta name="keywords" content="">
   
-    <meta name="description" content="应用层是借助传输层提供的服务来实现自己的功能的，在应用层存在许多现成的协议，不过，很多时候程序猿也可以自定义协议，那协议究竟是什么？ 自定义协议在这引入一个场景：在B站上搜索英雄联盟。 在这我们的请求是：英雄联盟，而服务器的响应是一大堆视频和比赛咨询信息啥的。 在这之间发生了什么呢？**首先我们需要知道，我们的代码中包含了各种各样的对象，当我们传输数据的时候需要将其进行序列化，将其变为文本数据或者">
+    <meta name="description" content="HTTP是应用层最常用到的协议,当使用浏览器打开网站或者使用手机APP加载数据,也都基本使用到了HTTP。 HTTP协议HTTP协议全称为超文本传输协议,除了能传输字符串,还能传输图片、视频、音频等。 当我们在访问网页的时候,浏览器会从服务器上下载数据,这些数据都会放在HTTP响应中,然后浏览器再根据这个HTTP响应显示出网页信息。 抓包抓包工具本质上是一个代理工具,即我们将构造好的请求首先发送给">
 <meta property="og:type" content="article">
-<meta property="og:title" content="网络原理-自定义协议">
-<meta property="og:url" content="http://example.com/2023/10/17/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-%E5%BA%94%E7%94%A8%E5%B1%82%E5%8D%8F%E8%AE%AE/index.html">
+<meta property="og:title" content="网络原理-HTTP协议">
+<meta property="og:url" content="http://example.com/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-HTTP%E5%8D%8F%E8%AE%AE/index.html">
 <meta property="og:site_name" content="机智的土拨鼠">
-<meta property="og:description" content="应用层是借助传输层提供的服务来实现自己的功能的，在应用层存在许多现成的协议，不过，很多时候程序猿也可以自定义协议，那协议究竟是什么？ 自定义协议在这引入一个场景：在B站上搜索英雄联盟。 在这我们的请求是：英雄联盟，而服务器的响应是一大堆视频和比赛咨询信息啥的。 在这之间发生了什么呢？**首先我们需要知道，我们的代码中包含了各种各样的对象，当我们传输数据的时候需要将其进行序列化，将其变为文本数据或者">
+<meta property="og:description" content="HTTP是应用层最常用到的协议,当使用浏览器打开网站或者使用手机APP加载数据,也都基本使用到了HTTP。 HTTP协议HTTP协议全称为超文本传输协议,除了能传输字符串,还能传输图片、视频、音频等。 当我们在访问网页的时候,浏览器会从服务器上下载数据,这些数据都会放在HTTP响应中,然后浏览器再根据这个HTTP响应显示出网页信息。 抓包抓包工具本质上是一个代理工具,即我们将构造好的请求首先发送给">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-10-17T07:16:34.000Z">
-<meta property="article:modified_time" content="2023-10-24T12:09:01.417Z">
+<meta property="og:image" content="http://example.com/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-HTTP%E5%8D%8F%E8%AE%AE/image-20231026095917111.png">
+<meta property="og:image" content="http://example.com/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-HTTP%E5%8D%8F%E8%AE%AE/image-20231026100823647.png">
+<meta property="og:image" content="http://example.com/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-HTTP%E5%8D%8F%E8%AE%AE/image-20231026102857023.png">
+<meta property="og:image" content="http://example.com/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-HTTP%E5%8D%8F%E8%AE%AE/image-20231026201501207.png">
+<meta property="og:image" content="http://example.com/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-HTTP%E5%8D%8F%E8%AE%AE/0a4186518794179065b76398fe6fea1e.png">
+<meta property="og:image" content="http://example.com/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-HTTP%E5%8D%8F%E8%AE%AE/0209bb1d5fc6f2de5d8b775f60cc840c.png">
+<meta property="og:image" content="http://example.com/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-HTTP%E5%8D%8F%E8%AE%AE/image-20231026204500191.png">
+<meta property="article:published_time" content="2023-10-24T12:11:37.000Z">
+<meta property="article:modified_time" content="2023-10-26T13:50:57.261Z">
 <meta property="article:author" content="郑政祺">
 <meta property="article:tag" content="JavaEE">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-HTTP%E5%8D%8F%E8%AE%AE/image-20231026095917111.png">
   
   
   
-  <title>网络原理-自定义协议 - 机智的土拨鼠</title>
+  <title>网络原理-HTTP协议 - 机智的土拨鼠</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -214,7 +222,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="网络原理-自定义协议"></span>
+            <span id="subtitle" data-typed-text="网络原理-HTTP协议"></span>
           
         </div>
 
@@ -225,8 +233,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-10-17 15:16" pubdate>
-          2023年10月17日 下午
+        <time datetime="2023-10-24 20:11" pubdate>
+          2023年10月24日 晚上
         </time>
       </span>
     
@@ -307,33 +315,54 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">网络原理-自定义协议</h1>
+            <h1 style="display: none">网络原理-HTTP协议</h1>
             
             
               <div class="markdown-body">
                 
-                <p>应用层是借助传输层提供的服务来实现自己的功能的，在应用层存在许多现成的协议，不过，很多时候程序猿也可以自定义协议，那协议究竟是什么？</p>
-<h1 id="自定义协议"><a href="#自定义协议" class="headerlink" title="自定义协议"></a>自定义协议</h1><p>在这引入一个场景：在B站上搜索英雄联盟。</p>
-<p>在这我们的请求是：英雄联盟，而服务器的响应是一大堆视频和比赛咨询信息啥的。</p>
-<p>在这之间发生了什么呢？**首先我们需要知道，我们的代码中包含了各种各样的对象，当我们传输数据的时候需要将其进行序列化，将其变为文本数据或者二进制数据才能传输(简单理解将对象变为一个字符串)**。在我们输入”英雄联盟”的时候，客户端会将”英雄联盟”这个字符串按找某种协议的格式，重新组织，例如转换成”请求:英雄联盟\n”,然后发送给了服务器,此时服务器根据协议(例如:规定了从冒号后面开始读取,然后以\n为结尾)进行解析这个字符串,就得到了”英雄联盟”,之后计算响应,将一大堆视频信息组织整理,例如转换成”响应:视频1,xxxx;视频2,xxxx”，此时客户端再根据协议约定来解析这个响应，提取出里面的信息。</p>
-<p><strong>总得来说，协议就是用来规定通信数据的格式、包含哪些信息，通信双方得遵守这个协议，才能读懂对方的意思</strong>，举个例子，我们都知道GBK编码后的中文字符，然后使用utf8来解读的话，会出现乱码，这就是因为双方没有遵守协议~ <strong>协议的具体格式可以非常灵活，但是要表征通信双方都使用相同的规则!!!</strong></p>
-<h1 id="一些大佬的协议"><a href="#一些大佬的协议" class="headerlink" title="一些大佬的协议"></a>一些大佬的协议</h1><p>虽然说自定义格式可以是任意的，但是为了避免出现离离原上谱的设计方式，大佬门就搞出了一些”通用的协议格式”,我们可以参考这些格式。</p>
-<h2 id="xml"><a href="#xml" class="headerlink" title="xml"></a>xml</h2><p>xml是以成对的标签，来表示”键值对”信息，和html长的差不多，不过<strong>xml中的标签是程序猿自己定义的</strong></p>
-<p><strong>例如：</strong></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">request</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">userId</span>&gt;</span>张三<span class="hljs-tag">&lt;/<span class="hljs-name">userId</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">password</span>&gt;</span>123456<span class="hljs-tag">&lt;/<span class="hljs-name">password</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">request</span>&gt;</span><br></code></pre></td></tr></table></figure>
+                <p>HTTP是应用层最常用到的协议,当使用浏览器打开网站或者使用手机APP加载数据,也都基本使用到了HTTP。</p>
+<h1 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h1><p>HTTP协议全称为超文本传输协议,除了能传输字符串,还能传输图片、视频、音频等。</p>
+<p>当我们在访问网页的时候,浏览器会从服务器上下载数据,这些数据都会放在HTTP响应中,然后浏览器再根据这个HTTP响应显示出网页信息。</p>
+<h1 id="抓包"><a href="#抓包" class="headerlink" title="抓包"></a>抓包</h1><p>抓包工具本质上是一个代理工具,即我们将构造好的请求首先发送给抓包工具,抓包工具然后解析请求,然后发送给服务器,最后再将服务器的响应返回。在这使用Fiddler抓包工具。</p>
+<img src="/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-HTTP%E5%8D%8F%E8%AE%AE/image-20231026095917111.png" srcset="/img/loading.gif" lazyload class title="image-20231026095917111">
 
-<p><strong>优点：xml能非常清晰的把数据结构化表示出来。</strong></p>
-<p><strong>缺点：表示数据需要引入大量标签，比较繁琐，传输的数据也多，会占用不少带宽。</strong></p>
-<h2 id="json"><a href="#json" class="headerlink" title="json"></a>json</h2><p>json本质上也是”键值对”,相比xml更简洁一些，使用{}表示键值对。json是当前主流使用的一种网络传输数据的格式，其对换行并不敏感，在传输的时候会对json进行压缩,去掉不必要的换行来降低带宽(会影响可读性)。</p>
-<p><strong>例如：</strong></p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;Zhangsan&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;age&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">18</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;hobbies&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;sleep&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;read&quot;</span><span class="hljs-punctuation">]</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+<p>当我们打开工具会出现如下信息:</p>
+<img src="/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-HTTP%E5%8D%8F%E8%AE%AE/image-20231026100823647.png" srcset="/img/loading.gif" lazyload class title="image-20231026100823647">
 
-<p><strong>优点：相比xml，数据简洁，可读性好。</strong></p>
-<p><strong>缺点：依旧需要花费一定的带宽来传输”键”的数据。</strong></p>
-<h2 id="protobuffer"><a href="#protobuffer" class="headerlink" title="protobuffer"></a>protobuffer</h2><p>protobuffer是谷歌提出的一套二进制的数据序列化方式。使用二进制的方式，约定某几个字节，表示什么什么属性，不必传输”键”的数据，通过位置和长度来区分每个属性。我们需要使用一个proto文件来编写，然后使用protobuf编译器将其转换。</p>
-<p><strong>优点：不用传输”键”，节省带宽，最大化效率。</strong></p>
-<p><strong>缺点：二进制数据，无法肉眼观察，使用比较复杂。</strong></p>
+<h1 id="认识HTTP请求-x2F-响应"><a href="#认识HTTP请求-x2F-响应" class="headerlink" title="认识HTTP请求&#x2F;响应"></a>认识HTTP请求&#x2F;响应</h1><p>HTTP请求是文本协议,不同于IP、TCP、UDP协议是二进制协议,因此我们可以通过抓包工具清楚的看出协议中的内容。</p>
+<p>一个HTTP请求&#x2F;响应由四部分组成:首行、报头(请求头&#x2F;响应头)、空行、正文。</p>
+<img src="/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-HTTP%E5%8D%8F%E8%AE%AE/image-20231026102857023.png" srcset="/img/loading.gif" lazyload class title="image-20231026102857023">
 
+<h2 id="首行"><a href="#首行" class="headerlink" title="首行"></a>首行</h2><p>在请求报文和响应报文中,首行具有一定的区别。</p>
+<h3 id="在请求报文中"><a href="#在请求报文中" class="headerlink" title="在请求报文中:"></a>在请求报文中:</h3><p>首行由方法+URL+版本号这三部分组成,中间由空格分隔。</p>
+<img src="/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-HTTP%E5%8D%8F%E8%AE%AE/image-20231026201501207.png" srcset="/img/loading.gif" lazyload class title="image-20231026201501207">
+
+<p><strong>方法:</strong> 方法描述的是语义,表示这次请求要干什么。例如: GET:表示从服务器获取xxx , POST: 表示想服务器传输xxx。</p>
+<img src="/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-HTTP%E5%8D%8F%E8%AE%AE/0a4186518794179065b76398fe6fea1e.png" srcset="/img/loading.gif" lazyload class>
+
+<p>在这么多的方法里面,GET和POST方法最为常用。比如当获取网页信息的时候一般使用GET,而登录或者上传资源的时候使用POST。</p>
+<p>虽然HTTP协议设计指出是希望程序员能够遵守这里规则,但是事与愿违,程序员不遵守也不影响,可以将一些参数放到其他位置。</p>
+<hr>
+<p>**URL:**资源定位符,用来描述网络上的资源,俗称网址。在URL中有特定的格式：</p>
+<img src="/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-HTTP%E5%8D%8F%E8%AE%AE/0209bb1d5fc6f2de5d8b775f60cc840c.png" srcset="/img/loading.gif" lazyload class>
+
+<p><strong>服务器地址</strong>可以是域名或者IP地址。</p>
+<p><strong>带层次的文件路径</strong>表示要访问服务器上的哪个资源</p>
+<p><strong>查询字符串</strong>也叫query string,表示访问服务器的时候带上哪些参数,使用键值对的格式,键和值之间使用&#x3D;,键值对之间使用&amp;分隔,查询字符串以?开始。虽然知道了查询字符串的格式,但是我们并不能知道里面的内容和含义,因为程序员可以自定义。</p>
+<p><strong>片段标识符</strong>一般用在文档中,当你带上这个参数的时候,文档会直接展示那一页&#x2F;段。</p>
+<img src="/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-HTTP%E5%8D%8F%E8%AE%AE/image-20231026204500191.png" srcset="/img/loading.gif" lazyload class title="image-20231026204500191">
+
+<p>虽然规定了格式是这样,但是如果省略了某几个参数也不碍事。</p>
+<p>当已经请求了当前域名的主页,此时这个主页如果又去请求当前域名的内容,此时就可以不带上域名&#x2F;ip，会默认为前面的域名。</p>
+<p>如果端口不写,会根据协议来自动添加端口号,如http协议自动添加的就是80,https添加的就是443。</p>
+<p>如果省略带层次的文件路径,那么就相当于访问的是根目录,通常对应到服务器的主页。</p>
+<p>查询字符串也是可以没有的,因为可以将内容写到正文中。</p>
+<p>总之,http是一个非常灵活的协议。</p>
+<hr>
+<p>**版本号:**表示当前http是啥版本,最新已经到了3.0,但是广为使用的还是1.0和1.1。</p>
+<h3 id="在响应报文中"><a href="#在响应报文中" class="headerlink" title="在响应报文中:"></a>在响应报文中:</h3><h2 id="报头"><a href="#报头" class="headerlink" title="报头"></a>报头</h2><h2 id="空行"><a href="#空行" class="headerlink" title="空行"></a>空行</h2><p>空行相当于是一个分隔符,分隔了报头(header)和正文(body),也就描述了正文部分是从哪里开始的。</p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>在请求报文中的正文部分,也可以带有一些参数,用来针对资源的补充说明,起到查询字符串的作用。通常使用键值对的形式构成,其中的一些特殊符号会经过URLencode处理,而敏感信息则进行加密处理。</p>
+<h1 id="GET方法-VS-POST方法"><a href="#GET方法-VS-POST方法" class="headerlink" title="GET方法 VS POST方法"></a>GET方法 VS POST方法</h1>
                 
               </div>
             
@@ -357,8 +386,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>网络原理-自定义协议</div>
-      <div>http://example.com/2023/10/17/网络原理-应用层协议/</div>
+      <div>网络原理-HTTP协议</div>
+      <div>http://example.com/2023/10/24/网络原理-HTTP协议/</div>
     </div>
     <div class="license-meta">
       
@@ -370,7 +399,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年10月17日</div>
+          <div>2023年10月24日</div>
         </div>
       
       
@@ -402,9 +431,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/10/18/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-%E4%BC%A0%E8%BE%93%E5%B1%82/" title="网络原理-UPD和TCP">
+                      <a href="/2023/10/30/Servlet%E7%9A%84%E5%88%9B%E5%BB%BA/" title="Servlet的创建">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">网络原理-UPD和TCP</span>
+                        <span class="hidden-mobile">Servlet的创建</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -412,8 +441,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/10/13/JavaEE-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" title="JavaEE-网络编程">
-                        <span class="hidden-mobile">JavaEE-网络编程</span>
+                      <a href="/2023/10/24/%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86-%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%8D%8F%E8%AE%AE%E5%92%8CDNS%E5%8D%8F%E8%AE%AE/" title="网络原理-以太网协议和DNS协议">
+                        <span class="hidden-mobile">网络原理-以太网协议和DNS协议</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
