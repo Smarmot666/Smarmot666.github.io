@@ -1,0 +1,852 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="郑政祺">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、JVM的内存区域划分一个进程在运行的时候,会向操作系统申请到内存资源,从来存放程序运行的相关数据。 JVM本质上就是一个java进程,在运行的时候也会从操作系统那搞一块内存，供Java代码执行使用。 JVM又把申请的一块内存根据不同的用途划分出了不同区域。   每一个线程中都独有一份自己的栈空间和程序计数器(PC) **栈:**存放方法调用关系,局部变量。 **程序计数器(PC):**记录当前">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM">
+<meta property="og:url" content="http://example.com/2023/11/14/JVM/index.html">
+<meta property="og:site_name" content="机智的土拨鼠">
+<meta property="og:description" content="一、JVM的内存区域划分一个进程在运行的时候,会向操作系统申请到内存资源,从来存放程序运行的相关数据。 JVM本质上就是一个java进程,在运行的时候也会从操作系统那搞一块内存，供Java代码执行使用。 JVM又把申请的一块内存根据不同的用途划分出了不同区域。   每一个线程中都独有一份自己的栈空间和程序计数器(PC) **栈:**存放方法调用关系,局部变量。 **程序计数器(PC):**记录当前">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2023/11/14/JVM/image-20231114150935223.png">
+<meta property="og:image" content="http://example.com/2023/11/14/JVM/image-20231114154740988.png">
+<meta property="og:image" content="http://example.com/2023/11/14/JVM/image-20231114182821085.png">
+<meta property="og:image" content="http://example.com/2023/11/14/JVM/image-20231114195645704.png">
+<meta property="og:image" content="http://example.com/2023/11/14/JVM/image-20231115115526286.png">
+<meta property="og:image" content="http://example.com/2023/11/14/JVM/image-20231115120523947.png">
+<meta property="og:image" content="http://example.com/2023/11/14/JVM/image-20231115121506810.png">
+<meta property="og:image" content="http://example.com/2023/11/14/JVM/image-20231115122610167.png">
+<meta property="article:published_time" content="2023-11-14T06:47:15.000Z">
+<meta property="article:modified_time" content="2023-11-15T04:37:56.708Z">
+<meta property="article:author" content="郑政祺">
+<meta property="article:tag" content="JavaEE">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2023/11/14/JVM/image-20231114150935223.png">
+  
+  
+  
+  <title>JVM - 机智的土拨鼠</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"oAwajAVTVUgZ9ebLvxNJKM57-gzGzoHsz","app_key":"70Qaojemcj4gUsoRJiaibMRk","server_url":"https://oawajavt.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>机智的土拨鼠</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A1%B5.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="JVM"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-11-14 14:47" pubdate>
+          2023年11月14日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          30 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">JVM</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="一、JVM的内存区域划分"><a href="#一、JVM的内存区域划分" class="headerlink" title="一、JVM的内存区域划分"></a>一、JVM的内存区域划分</h1><p>一个进程在运行的时候,会向操作系统申请到内存资源,从来存放程序运行的相关数据。</p>
+<p>JVM本质上就是一个java进程,在运行的时候也会从操作系统那搞一块内存，供Java代码执行使用。</p>
+<p>JVM又把申请的一块内存根据不同的用途划分出了不同区域。</p>
+<img src="/2023/11/14/JVM/image-20231114150935223.png" srcset="/img/loading.gif" lazyload class title="image-20231114150935223">
+
+<p><strong>每一个线程中都独有一份自己的栈空间和程序计数器(PC)</strong></p>
+<p>**栈:**存放方法调用关系,局部变量。</p>
+<p>**程序计数器(PC):**记录当前线程执行的下一条指令的内存地址。</p>
+<p>**堆:**存放对象的实例,即new出来的对象都在这里。</p>
+<p>**方法区(元数据区):**存放类对象,常量池,静态成员。</p>
+<h1 id="二、JVM类加载机制"><a href="#二、JVM类加载机制" class="headerlink" title="二、JVM类加载机制"></a>二、JVM类加载机制</h1><p>类加载本质上就是将.class文件(硬盘)加载到内存(方法区)中。</p>
+<p>Java程序最开始在编写的时候是一个.java文件,然后通过编译生成.class(字节码)文件,运行java程序,JVM就会读取.class文件,把文件的内容放到内存中,构造.class对象。</p>
+<h2 id="类加载的过程"><a href="#类加载的过程" class="headerlink" title="类加载的过程"></a>类加载的过程</h2><img src="/2023/11/14/JVM/image-20231114154740988.png" srcset="/img/loading.gif" lazyload class title="image-20231114154740988">
+
+<ul>
+<li><p>加载:找到.class文件,打开文件,读取文件内容。</p>
+</li>
+<li><p>验证:检查当前.class文件的格式。</p>
+</li>
+<li><p>准备:给类对象分配内存空间。给类对象分配空间并进行默认初始化(一般置为0)。</p>
+</li>
+<li><p>解析:主要针对字符串常量,将常量池中的符号引用替换为直接引用。</p>
+<blockquote>
+<p>符号引用:相对的位置</p>
+<p>直接引用:真是的内存地址</p>
+<p>在.class文件中,由于还未加载到内存中,无法确定内存地址,只能使用一个相对偏移量来表示内存地址。当JVM将.class文件进行加载分配了内存地址，此时字符串常量就有了真实地址,然后将一些引用变量中的”符号引用”替换成直接引用。</p>
+</blockquote>
+</li>
+<li><p>初始化:对类对象进行初始化。初始化静态成员,执行静态代码块,加载父类…..</p>
+</li>
+</ul>
+<h2 id="双亲委派模型"><a href="#双亲委派模型" class="headerlink" title="双亲委派模型"></a>双亲委派模型</h2><p>双亲委派模型描述的是类加载的过程中,如何找.class文件。</p>
+<p>JVM在加载.class文件的时候,需要用到类加载器,在JVM中就自带了三个类加载器。</p>
+<blockquote>
+<p>这三个类加载器存在”父子关系”,这里的父子关系并不是通过继承形成的,而是对象中有一个引用指向”父类”加载器实例</p>
+</blockquote>
+<ul>
+<li>Bootstarp ClassLoader 负责加载标准库中的类(Java标准文档中规定了需要提供哪些基本类)</li>
+<li>Extension ClassLoader 负责加载JVM扩展库中的类(JVM厂商可能还会添加一些类)</li>
+<li>Application ClassLoader 负责加载第三方库的类(mysql、jackson…….以及一些自己写的类)</li>
+</ul>
+<p>双亲委派模型就描述了类加载的流程:</p>
+<img src="/2023/11/14/JVM/image-20231114182821085.png" srcset="/img/loading.gif" lazyload class title="image-20231114182821085">
+
+<p>1.先从Application ClassLoader开始</p>
+<pre><code class="hljs"> 此时并不会立即搜索第三方库的类,而是先把加载任务委派给&quot;父亲&quot;,让父亲先尝试加载
+</code></pre>
+<p>2.到了Extension ClassLoader</p>
+<p>​	此时也不会立即搜索扩展库的类,而是再把加载任务委派给”父亲”,让父亲先尝试加载</p>
+<p>3.到了Bootstrap ClassLoader</p>
+<p>​	此时Bootstrap ClassLoader没有”父亲”了,只好自己去加载类了。</p>
+<p>​	如果找到了这个类,就会进行下一个类的加载,如果没找到了就会回到委派的那个类加载器,即Extension ClassLoader</p>
+<p>4.任务回到Exension ClassLoader</p>
+<p>​	此时只能自己去搜索扩展库的类了。</p>
+<p>​	如果找到了这个类,就会进行下一个类的加载,如果没找到了就会回到委派的那个类加载器,即Application ClassLoader</p>
+<p>5.任务回到Application ClassLoader</p>
+<p>​	此时只能自己去搜索第三方库的类了。</p>
+<p>​	如果找到了这个类,就会进行下一个类的加载,如果没找到了会抛出异常。</p>
+<p><strong>总结:双亲委派模型就是一个找.class文件的过程。</strong>平时如果我们创建一个跟标准库中名字一样的类,使用的时候依旧是标准库中的那一个,因为双亲委派模型机制,<strong>会优先使用标准库的类</strong>,这也是这个机制的意义。</p>
+<h2 id="类加载时机"><a href="#类加载时机" class="headerlink" title="类加载时机"></a>类加载时机</h2><p><strong>类加载使用了懒汉模式,即当使用的时候才会进行加载。</strong></p>
+<p>大致可以分为三个时机:</p>
+<ol>
+<li>构造类的实例</li>
+<li>使用了类的静态方法&#x2F;静态属性</li>
+<li>子类的加载会触发父类</li>
+</ol>
+<p>一旦类被加载好了,后续使用就不必再加载了,直接使用即可。</p>
+<h1 id="三、JVM垃圾回收机制"><a href="#三、JVM垃圾回收机制" class="headerlink" title="三、JVM垃圾回收机制"></a>三、JVM垃圾回收机制</h1><p>在C语言中使用malloc手动申请完内存后需要手动释放,如果光申请而不去释放的话,到达一定程度后,内存被耗尽,程序就会崩溃,但是通过程序猿来手动操作就非常考验个人水平了,无法保证可靠。</p>
+<p>Java为了解决上述问题,就引入了垃圾回收机制,自动的把垃圾释放掉。</p>
+<p>虽然这个垃圾回收(GC)这个机制非常香,但是也是需要付出代价的,即消耗额外的系统资源和性能开销,同时也出现STW问题。</p>
+<blockquote>
+<p>STW问题:</p>
+<p>Stop-The-World 简称 STW，是指在执行垃圾回收的过程冻结所有用户线程的运行，直到垃圾回收线程执行结束。</p>
+</blockquote>
+<p>垃圾回收的主战场在堆区,进行垃圾回收需要两步:判断对象是否为”垃圾”; 释放对象的内存。</p>
+<h2 id="判断对象是否为”垃圾”"><a href="#判断对象是否为”垃圾”" class="headerlink" title="判断对象是否为”垃圾”"></a>判断对象是否为”垃圾”</h2><p>当一个对象,在后续代码中不会被继续使用了,即这个对象已经没有任何引用指向它了,就可以认为是垃圾了。</p>
+<p>如何判断,有如下两种思路:引用计数和可达性分析。</p>
+<h3 id="引用计数"><a href="#引用计数" class="headerlink" title="引用计数"></a>引用计数</h3><p><strong>核心思路</strong>:给每个对象里面安排一个计数器,每当有引用指向它的时候,就把计数器的值+1,每当引用被销毁,计数器的值-1.当计数器为0的时候,表示这个对象为垃圾。</p>
+<p><strong>优点</strong>:简单，好实现。</p>
+<p><strong>缺点</strong>:**空间利用率低,浪费内存空间(**当对象本身比较小的时候,会大大降低空间利用率)；</p>
+<p>​		  <strong>存在循环引用问题,导致对象不能被正确识别为垃圾</strong>。如图:</p>
+<img src="/2023/11/14/JVM/image-20231114195645704.png" srcset="/img/loading.gif" lazyload class title="image-20231114195645704">
+
+<p>此时对象A,B在外部已经没有人指向了,即此时我们无法通过代码再去操作A和B了,按理来说已经成为了垃圾,但此时他们的计数器都不为0,无法正确的被识别为垃圾。</p>
+<p><strong>在Java中没有使用这种方式,但在Python,PHP的虚拟机中就是使用了引用计数的方式来完成的</strong>。</p>
+<h3 id="可达性分析"><a href="#可达性分析" class="headerlink" title="可达性分析"></a>可达性分析</h3><p>在Java中就采用了这个方案。</p>
+<p>**核心思路:**JVM首先会从现有代码中的能直接访问到的引用出发,尝试遍历所有能访问的对象,只要对象能访问到,就会被标记为”可达”。完成整个遍历后,除开可达对象外,其它的也就是不可达对象,也就相当于是垃圾了。</p>
+<p>**优点:**能够很好的解决引用计数中的循环引用问题。</p>
+<p>**缺点:**需要消耗更多的时间。</p>
+<h2 id="释放对象内存"><a href="#释放对象内存" class="headerlink" title="释放对象内存"></a>释放对象内存</h2><p>释放对象内存主要有三种方式:标记清除;复制算法;标记整理。</p>
+<h3 id="标记清除"><a href="#标记清除" class="headerlink" title="标记清除"></a>标记清除</h3><p><strong>标记清除是一种直接释放对象内存的方式</strong>。这种方式简单粗暴,但会遇到如下问题,即当GC对象是离散,空间不连续的时候：</p>
+<img src="/2023/11/14/JVM/image-20231115115526286.png" srcset="/img/loading.gif" lazyload class title="image-20231115115526286">
+
+<p>**此时如果直接释放对象的话,就会引起”内存碎片”**。在申请内存空间的时候都是申请一块连续的内存,当使用标记清除直接释放的话,此时如果申请的内存空间比正GC对象大的话,就无法使用这块已经被回收的内存。</p>
+<p>例如:假设上图中的每个GC对象的大小是1MB,但我们此时要申请一个2MB的内存空间,由于每个GC对象内存的前后的内存被占用了,我们就无法申请到空间.</p>
+<h3 id="复制算法"><a href="#复制算法" class="headerlink" title="复制算法"></a>复制算法</h3><p>复制算法的核心思路是将空间分成两份,把有效对象复制到另一部分内存空间,来避免内存空间。</p>
+<img src="/2023/11/14/JVM/image-20231115120523947.png" srcset="/img/loading.gif" lazyload class title="image-20231115120523947">
+
+<p>先是将左侧有效对象进行复制,放到右侧,然后再释放内存,当用了一段时间后,右侧也会有许多需要GC的对象,此时就将有效对象复制到左侧,循环往复。</p>
+<p>虽然这种方式能有效的解决内存碎片问题,但当需要复制的对象内容比较多,就会引发不小的开销,并且由于会将内存进行划分,也会造成内存利用低的问题。</p>
+<h3 id="标记整理"><a href="#标记整理" class="headerlink" title="标记整理"></a>标记整理</h3><p>标记整理是使用顺序表删除元素的思路。</p>
+<p>每当要GC一个对象,会将后面的对象往前搬运。</p>
+<img src="/2023/11/14/JVM/image-20231115121506810.png" srcset="/img/loading.gif" lazyload class title="image-20231115121506810">
+
+<p>这种方式,不仅可以解决内存碎片问题,也解决了内存利用率低的问题,但是会涉及频繁搬运的问题,这就会带来不小的开销。</p>
+<hr>
+<h3 id="分代回收"><a href="#分代回收" class="headerlink" title="分代回收"></a>分代回收</h3><p>设计JVM的大佬集百家之长,搞了一个综合性的解决方法:分代回收。</p>
+<p>分代回收是基于”一个对象存在的越久,那么它将继续存在的可能性就越高”的事实,然后对每个对象使用”年龄”标记,根据年龄来制定不同的回收策略。</p>
+<img src="/2023/11/14/JVM/image-20231115122610167.png" srcset="/img/loading.gif" lazyload class title="image-20231115122610167">
+
+<p><strong>分代回收将整个堆分成了两部分:新生代和老年代。在新生代中又划分了两个不同的区域:伊甸区和幸存区。</strong></p>
+<p><strong>在新生代中以复制算法为主,在老年代中以标记整理算法为主。</strong></p>
+<p>伊甸区中存放的是新生的对象,在经过一轮的GC后,没有被回收的对象就会被通过复制算法，复制到幸存区中。</p>
+<p>幸存区中又划分了两块不同的空间,用来针对后续的复制算法,当第二轮GC后,没有被回收的对象就会被复制到幸存区中另一块空间。</p>
+<p>如果一个对象在幸存区中存活了好多轮都没有挂,这个对象的年龄就比较大了,就会被复制到老年代中。</p>
+<p><strong>在新生代中每一轮GC留下的对象并不会很多,所以进行复制算法的开销并不会很大,而在老年代中,对象比较重要,所以销毁的也很少，此时标记整理开销也不会很大。</strong></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/JavaEE/">#JavaEE</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>JVM</div>
+      <div>http://example.com/2023/11/14/JVM/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>郑政祺</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年11月14日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/11/06/Servlet%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F/" title="Servlet搭建博客系统">
+                        <span class="hidden-mobile">Servlet搭建博客系统</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"oAwajAVTVUgZ9ebLvxNJKM57-gzGzoHsz","appKey":"70Qaojemcj4gUsoRJiaibMRk","path":"window.location.pathname","placeholder":"写这么好说说吧~","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+    
+      <div class="footer-content">
+         <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+      </div>
+      <div class="music-player">
+     <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=26908739&auto=1&height=66"></iframe>
+       </div>
+  
+  
+    
+    
+      <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+    
+    
+  
+      <!-- 🌸飘落 -->
+      <script src="https://cdn.jsdelivr.net/gh/wallleap/cdn@latest/js/sakura.js"></script>
+      <!-- 雪花飘落 -->
+      <script src="https://cdn.jsdelivr.net/gh/Yafine/cdn@2.5/source/js/snow1.js"></script>
+      <!-- // 烟花 -->
+      <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas--> 
+      <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+      <script src="https://cdn.jsdelivr.net/gh/Yafine/cdn@2.5/source/js/fireworks.js"></script>
+      <!-- // 星星跟随坠落 -->
+      <script src="https://cdn.jsdelivr.net/gh/cungudafa/cdn@2.1.2/js/cursor.js"></script>
+      <!-- 样式二（飘动的彩带） -->
+      <script src="https://cdn.jsdelivr.net/gh/wallleap/cdn@latest/js/piao.js" type="text/javascript"></script>
+       <!--背景切换-->
+       <script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+  
+  
+    
+  </div>
+  
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":250,"height":600},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
