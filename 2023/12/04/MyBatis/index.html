@@ -1,0 +1,1010 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="郑政祺">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="什么是MyBatisMyBatis是一个优秀的持久层框架,用于简化JDBC的开发,免除了几乎所有的 JDBC 代码以及设置参数和获取结果集的工作。 案例引入现在我们要通过java程序来去数据库查询一个表中的数据,当我们使用JDBC来开发的时候,会写特别多的代码。  步骤如下: 1.创建数据源(Datasource) 2.和数据库服务建立连接 3.构造sql语句并执行 4.关闭连接，释放资源  当使">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MyBatis">
+<meta property="og:url" content="http://example.com/2023/12/04/MyBatis/index.html">
+<meta property="og:site_name" content="机智的土拨鼠">
+<meta property="og:description" content="什么是MyBatisMyBatis是一个优秀的持久层框架,用于简化JDBC的开发,免除了几乎所有的 JDBC 代码以及设置参数和获取结果集的工作。 案例引入现在我们要通过java程序来去数据库查询一个表中的数据,当我们使用JDBC来开发的时候,会写特别多的代码。  步骤如下: 1.创建数据源(Datasource) 2.和数据库服务建立连接 3.构造sql语句并执行 4.关闭连接，释放资源  当使">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2023/12/04/MyBatis/image-20231204194140522.png">
+<meta property="og:image" content="http://example.com/2023/12/04/MyBatis/image-20231204194244520.png">
+<meta property="og:image" content="http://example.com/2023/12/04/MyBatis/image-20231204195207822.png">
+<meta property="og:image" content="http://example.com/2023/12/04/MyBatis/image-20231204195225027.png">
+<meta property="og:image" content="http://example.com/2023/12/04/MyBatis/image-20231204203141037.png">
+<meta property="og:image" content="http://example.com/2023/12/04/MyBatis/image-20231204210859686.png">
+<meta property="og:image" content="http://example.com/2023/12/04/MyBatis/image-20231204205656255.png">
+<meta property="og:image" content="http://example.com/2023/12/04/MyBatis/image-20231204212108020.png">
+<meta property="og:image" content="http://example.com/2023/12/04/MyBatis/image-20231204212406688.png">
+<meta property="og:image" content="http://example.com/2023/12/04/MyBatis/image-20231205100408692.png">
+<meta property="og:image" content="http://example.com/2023/12/04/MyBatis/image-20231205103145316.png">
+<meta property="og:image" content="http://example.com/2023/12/04/MyBatis/image-20231205104247097.png">
+<meta property="og:image" content="http://example.com/2023/12/04/MyBatis/image-20231205111748342.png">
+<meta property="og:image" content="http://example.com/2023/12/04/MyBatis/image-20231205112524368.png">
+<meta property="og:image" content="http://example.com/2023/12/04/MyBatis/image-20231205113403926.png">
+<meta property="og:image" content="http://example.com/2023/12/04/MyBatis/image-20231205165650757.png">
+<meta property="og:image" content="http://example.com/2023/12/04/MyBatis/image-20231205114442564.png">
+<meta property="og:image" content="http://example.com/2023/12/04/MyBatis/image-20231205172555733.png">
+<meta property="og:image" content="http://example.com/2023/12/04/MyBatis/image-20231205180422178.png">
+<meta property="og:image" content="http://example.com/2023/12/04/MyBatis/image-20231206151537849.png">
+<meta property="og:image" content="http://example.com/2023/12/04/MyBatis/image-20231206154257076.png">
+<meta property="og:image" content="http://example.com/2023/12/04/MyBatis/image-20231206154518386.png">
+<meta property="og:image" content="http://example.com/2023/12/04/MyBatis/image-20231206174356034.png">
+<meta property="og:image" content="http://example.com/2023/12/04/MyBatis/image-20231206174516741.png">
+<meta property="og:image" content="http://example.com/2023/12/04/MyBatis/image-20231206210721137.png">
+<meta property="article:published_time" content="2023-12-04T10:29:31.000Z">
+<meta property="article:modified_time" content="2023-12-06T13:18:32.172Z">
+<meta property="article:author" content="郑政祺">
+<meta property="article:tag" content="JavaEE">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2023/12/04/MyBatis/image-20231204194140522.png">
+  
+  
+  
+  <title>MyBatis - 机智的土拨鼠</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"oAwajAVTVUgZ9ebLvxNJKM57-gzGzoHsz","app_key":"70Qaojemcj4gUsoRJiaibMRk","server_url":"https://oawajavt.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>机智的土拨鼠</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A1%B5.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="MyBatis"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-12-04 18:29" pubdate>
+          2023年12月4日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          11k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          94 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">MyBatis</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="什么是MyBatis"><a href="#什么是MyBatis" class="headerlink" title="什么是MyBatis"></a>什么是MyBatis</h1><p>MyBatis是一个优秀的持久层框架,用于<strong>简化JDBC的开发</strong>,免除了几乎所有的 JDBC 代码以及设置参数和获取结果集的工作。</p>
+<h2 id="案例引入"><a href="#案例引入" class="headerlink" title="案例引入"></a>案例引入</h2><p>现在我们要通过java程序来去数据库查询一个表中的数据,当我们使用JDBC来开发的时候,会写特别多的代码。</p>
+<blockquote>
+<p>步骤如下:</p>
+<p>1.创建数据源(Datasource)</p>
+<p>2.和数据库服务建立连接</p>
+<p>3.构造sql语句并执行</p>
+<p>4.关闭连接，释放资源</p>
+</blockquote>
+<p>当使用JDBC的时候,会发现有大量重复的代码,最需要修改的也就是构造sql语句,因此可以使用框架来简化操作。</p>
+<p><strong>JDBC代码：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> SQLException &#123;<br>    <span class="hljs-comment">//查询表中的数据 username 为 &quot;admin&quot; 的数据</span><br><br>    <span class="hljs-comment">//1.创建数据源</span><br>    <span class="hljs-type">DataSource</span> <span class="hljs-variable">dataSource</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MysqlDataSource</span>();<br>    ((MysqlDataSource)dataSource).setUrl(<span class="hljs-string">&quot;jdbc:mysql://127.0.0.1:3306/mybatis_test?characterEncoding=utf8&amp;useSSL=false&quot;</span>);<br>    ((MysqlDataSource)dataSource).setUser(<span class="hljs-string">&quot;root&quot;</span>);<br>    ((MysqlDataSource)dataSource).setPassword(<span class="hljs-string">&quot;root&quot;</span>);<br><br>    <span class="hljs-comment">//2.建立连接</span><br>    <span class="hljs-type">Connection</span> <span class="hljs-variable">connection</span> <span class="hljs-operator">=</span> dataSource.getConnection();<br><br>    <span class="hljs-comment">//3.构造SQL并执行</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">sql</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;select * from useinfo where username = ?&quot;</span>;<br>    <span class="hljs-type">PreparedStatement</span> <span class="hljs-variable">statement</span> <span class="hljs-operator">=</span> connection.prepareStatement(sql);<br>    statement.setString(<span class="hljs-number">1</span>, <span class="hljs-string">&quot;admin&quot;</span>);<br>    <span class="hljs-type">ResultSet</span> <span class="hljs-variable">resultSet</span> <span class="hljs-operator">=</span> statement.executeQuery();<br>    <span class="hljs-keyword">while</span>(resultSet.next())&#123;<br>        System.out.println(<span class="hljs-string">&quot;id: &quot;</span> + resultSet.getString(<span class="hljs-string">&quot;id&quot;</span>));<br>        System.out.println(<span class="hljs-string">&quot;username: &quot;</span> + resultSet.getString(<span class="hljs-string">&quot;username&quot;</span>));<br>        System.out.println(<span class="hljs-string">&quot;password: &quot;</span> + resultSet.getString(<span class="hljs-string">&quot;password&quot;</span>));<br>    &#125;<br>    <br>    <span class="hljs-comment">//4.释放资源</span><br>    resultSet.close();<br>    statement.close();<br>    connection.close();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>Mybatis代码：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Mapper</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">UserInfoMapper</span> &#123;<br>    <span class="hljs-meta">@Select(&quot;select * from userinfo where username = #&#123;name&#125;&quot;)</span><br>    <span class="hljs-keyword">public</span> UserInfo <span class="hljs-title function_">queryUserByName</span><span class="hljs-params">(String name)</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>使用MyBatis框架,只需要加上几个注解即可轻松完成JDBC的操作。</p>
+<h1 id="MyBatis创建"><a href="#MyBatis创建" class="headerlink" title="MyBatis创建"></a>MyBatis创建</h1><h2 id="创建工程"><a href="#创建工程" class="headerlink" title="创建工程"></a>创建工程</h2><p>创建springboot项目,导入相关依赖:mybatis,mysql</p>
+<img src="/2023/12/04/MyBatis/image-20231204194140522.png" srcset="/img/loading.gif" lazyload class title="image-20231204194140522">
+
+<img src="/2023/12/04/MyBatis/image-20231204194244520.png" srcset="/img/loading.gif" lazyload class title="image-20231204194244520">
+
+<h2 id="配置数据库连接"><a href="#配置数据库连接" class="headerlink" title="配置数据库连接"></a>配置数据库连接</h2><p>MyBatis中连接数据库,需要设置如下相关参数配置</p>
+<blockquote>
+<ul>
+<li>MySQL驱动类</li>
+<li>url</li>
+<li>username</li>
+<li>password</li>
+</ul>
+</blockquote>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-comment">#数据库连接配置</span><br><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">datasource:</span><br>    <span class="hljs-attr">url:</span> <span class="hljs-string">jdbc:mysql://127.0.0.1:3306/mybatis_test?characterEncoding=utf8&amp;useSSL=false</span><br>    <span class="hljs-attr">username:</span> <span class="hljs-string">root</span><br>    <span class="hljs-attr">password:</span> <span class="hljs-string">root</span><br>    <span class="hljs-attr">driver-class-name:</span> <span class="hljs-string">com.mysql.cj.jdbc.Driver</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意事项：<br>MySQL是5.x之前版本使用”com.mysql.jdbc.Driver”</p>
+<p>MySQL是5.x之后版本使用”com.mysql.cj.jdbc.Driver”</p>
+</blockquote>
+<h1 id="MyBatis使用"><a href="#MyBatis使用" class="headerlink" title="MyBatis使用"></a>MyBatis使用</h1><p>当我们通过MyBatis对数据库进行增删改查操作的时候，有两种实现方式：<strong>注解和XML</strong>。</p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>创建一个实体类，将数据库中的表映射成一个对象类。</p>
+<img src="/2023/12/04/MyBatis/image-20231204195207822.png" srcset="/img/loading.gif" lazyload class title="image-20231204195207822">
+
+<img src="/2023/12/04/MyBatis/image-20231204195225027.png" srcset="/img/loading.gif" lazyload class title="image-20231204195225027">
+
+<blockquote>
+<p>注意事项：</p>
+<p>在Java中通常使用驼峰命名，数据库设计通常使用蛇形命名</p>
+</blockquote>
+<hr>
+<p>为了后续可以清楚的查看sql语句的执行、执行传递参数和结果,可以使用打印日志的方式。</p>
+<p>只需在配置文件中进行配置即可：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">mybatis:</span><br>  <span class="hljs-attr">configuration:</span><br>    <span class="hljs-attr">log-impl:</span> <span class="hljs-string">org.apache.ibatis.logging.stdout.StdOutImpl</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="查询操作"><a href="#查询操作" class="headerlink" title="查询操作"></a>查询操作</h2><p><strong>首先定义一个接口，然后加上@Mapper注解</strong>。<strong>再编写一个查询方法,”具体实现”是在@Select注解中</strong>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Mapper</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">UserInfoMapper</span> &#123;<br>    <span class="hljs-comment">//注解里的是&quot;具体实现&quot;</span><br>    <span class="hljs-meta">@Select(&quot;select * from userinfo where username = #&#123;user.username&#125;&quot;)</span><br>    <span class="hljs-keyword">public</span> UserInfo <span class="hljs-title function_">queryUserByName</span><span class="hljs-params">(<span class="hljs-meta">@Param(&quot;user&quot;)</span>UserInfo userInfo)</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>当我们要指定参数的时候，需要使用#{}的方式。#{}会被看作是一个占位符，里面的内容会在编译后进行转换。</p>
+<p>我们可以对参数进行重命名，使用@Param设置别名。#{…}里面的属性名必须和@Param设置的一样。</p>
+<p>我们可以通过日志来观察程序运行的SQL语句。</p>
+<img src="/2023/12/04/MyBatis/image-20231204203141037.png" srcset="/img/loading.gif" lazyload class title="image-20231204203141037">
+
+<p>通过观察日志，我们可以发现打印出来的结果中有些值并没有被赋值，依旧为null。</p>
+<p><strong>这是因为MyBatis首先会去数据库查询数据，然后得到一个临时表，然后根据临时表中字段的名字对实体类的属性进行映射赋值。</strong></p>
+<img src="/2023/12/04/MyBatis/image-20231204210859686.png" srcset="/img/loading.gif" lazyload class title="image-20231204210859686">
+
+<hr>
+<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p><strong>1.起别名</strong></p>
+<p>起别名就是在写SQL语句的时候，对列进行起别名的操作。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Select(&quot;select id, username, password, age, gender, phone, &quot; +</span><br><span class="hljs-meta">        &quot; delete_flag as deleteFlag,&quot; +</span><br><span class="hljs-meta">        &quot; create_time as createTime,&quot; +</span><br><span class="hljs-meta">        &quot; update_time as updateTime&quot; +</span><br><span class="hljs-meta">        &quot; from userinfo &quot; +</span><br><span class="hljs-meta">        &quot; where username = #&#123;user.username&#125;&quot;)</span><br><span class="hljs-keyword">public</span> UserInfo <span class="hljs-title function_">queryUserByName</span><span class="hljs-params">(<span class="hljs-meta">@Param(&quot;user&quot;)</span>UserInfo userInfo)</span>;<br></code></pre></td></tr></table></figure>
+
+<img src="/2023/12/04/MyBatis/image-20231204205656255.png" srcset="/img/loading.gif" lazyload class title="image-20231204205656255">
+
+<p><strong>2.结果映射</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Select(&quot;select * from userinfo where username = #&#123;user.username&#125;&quot;)</span><br><span class="hljs-meta">@Results(id = &quot;BaseMap&quot;, value = &#123;</span><br><span class="hljs-meta">        @Result(column = &quot;delete_flag&quot;, property = &quot;deleteFlag&quot;),</span><br><span class="hljs-meta">        @Result(column = &quot;create_time&quot;, property = &quot;createTime&quot;),</span><br><span class="hljs-meta">        @Result(column = &quot;update_time&quot;, property = &quot;updateTime&quot;)</span><br><span class="hljs-meta">&#125;)</span><br><span class="hljs-keyword">public</span> UserInfo <span class="hljs-title function_">queryUserByName</span><span class="hljs-params">(<span class="hljs-meta">@Param(&quot;user&quot;)</span>UserInfo userInfo)</span>;<br></code></pre></td></tr></table></figure>
+
+<p><strong>这样写，其实就是告诉程序，把delete_flag的值赋值给属性名为deleteFlag的变量。</strong></p>
+<p>后续的代码可以通过Results的id值进行代码复用。</p>
+<img src="/2023/12/04/MyBatis/image-20231204212108020.png" srcset="/img/loading.gif" lazyload class title="image-20231204212108020">
+
+<p><strong>3.开启驼峰命名</strong></p>
+<p>通常数据库使用蛇形命名，通过下划线分割单词，而Java属性采用小驼峰的命名方式。</p>
+<p><strong>可以通过配置，将蛇形命名自动转换成驼峰命名。</strong></p>
+<img src="/2023/12/04/MyBatis/image-20231204212406688.png" srcset="/img/loading.gif" lazyload class title="image-20231204212406688">
+
+<p>后续会自动进行转换然后映射赋值。</p>
+<hr>
+<h3 id="XML方式"><a href="#XML方式" class="headerlink" title="XML方式"></a>XML方式</h3><p>注解的方式通常是用来完成一些比较简单的SQL语句，当实现复杂的SQL的话，建议使用XML的方式。</p>
+<blockquote>
+<p>XML的方式需要以下两步:</p>
+<p>1、配置数据库连接字符串和MyBatis</p>
+<p>2、持久层代码</p>
+</blockquote>
+<p><strong>配置数据库连接字符串和MyBatis：</strong></p>
+<img src="/2023/12/04/MyBatis/image-20231205100408692.png" srcset="/img/loading.gif" lazyload class title="image-20231205100408692">
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">mybatis:</span><br>  <span class="hljs-attr">configuration:</span><br>    <span class="hljs-attr">log-impl:</span> <span class="hljs-string">org.apache.ibatis.logging.stdout.StdOutImpl</span><br>    <span class="hljs-attr">map-underscore-to-camel-case:</span> <span class="hljs-literal">true</span><br>    <span class="hljs-comment">#配置 mybatis xml的文件路径，在resource/mapper创建所有表的xml文件</span><br>  <span class="hljs-attr">mapper-locations:</span> <span class="hljs-string">classpath:mapper/**Mapper.xml</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>持久层代码：</strong></p>
+<p>mapper接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Mapper</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">UserInfoXMLMapper</span> &#123;<br>    <span class="hljs-keyword">public</span> UserInfo <span class="hljs-title function_">queryUser</span><span class="hljs-params">(<span class="hljs-meta">@Param(&quot;user&quot;)</span>UserInfo userInfo)</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>xml代码：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span>?&gt;</span><br><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">mapper</span> <span class="hljs-keyword">PUBLIC</span> <span class="hljs-string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span> <span class="hljs-string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">namespace</span>=<span class="hljs-string">&quot;com.example.mybatispractice.mapper.UserInfoXMLMapper&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span> = <span class="hljs-string">&quot;queryUser&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;com.example.mybatispractice.dao.UserInfo&quot;</span>&gt;</span><br>        select id, username, password, age, gender, phone,<br>               delete_flag, create_time, update_time<br>                from userinfo where username = #&#123;user.username&#125;<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">mapper</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<img src="/2023/12/04/MyBatis/image-20231205103145316.png" srcset="/img/loading.gif" lazyload class title="image-20231205103145316">
+
+<p>当使用xml的方式，遇到了数据库表字段与实体类属性无法映射的问题的时候，同样也是使用上述的解决方法。只不过使用结果映射的方法有一些略微差别。</p>
+<img src="/2023/12/04/MyBatis/image-20231205104247097.png" srcset="/img/loading.gif" lazyload class title="image-20231205104247097">
+
+<h2 id="添加操作"><a href="#添加操作" class="headerlink" title="添加操作"></a>添加操作</h2><p>添加操作跟查询操作类似。</p>
+<img src="/2023/12/04/MyBatis/image-20231205111748342.png" srcset="/img/loading.gif" lazyload class title="image-20231205111748342">
+
+<p>Insert语句默认返回的是受影响的行数，我们还以通过@Option注解获取到新插入数据的id(拥有自增属性)。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Options(useGeneratedKeys = true, keyProperty = &quot;user.id&quot;)</span><br><span class="hljs-meta">@Insert(&quot;insert into userinfo (username, password, age) &quot; +</span><br><span class="hljs-meta">        &quot;values(#&#123;user.username&#125;, #&#123;user.password&#125;, #&#123;user.age&#125;)&quot;)</span><br><span class="hljs-keyword">public</span> Integer <span class="hljs-title function_">insertUser</span><span class="hljs-params">(<span class="hljs-meta">@Param(&quot;user&quot;)</span>UserInfo userInfo, String s)</span>;<br></code></pre></td></tr></table></figure>
+
+<img src="/2023/12/04/MyBatis/image-20231205112524368.png" srcset="/img/loading.gif" lazyload class title="image-20231205112524368">
+
+<p><strong>XML方式：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> Integer <span class="hljs-title function_">insertUser</span><span class="hljs-params">(<span class="hljs-meta">@Param(&quot;user&quot;)</span>UserInfo userInfo)</span>;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">insert</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;insertUser&quot;</span> <span class="hljs-attr">useGeneratedKeys</span>=<span class="hljs-string">&quot;true&quot;</span> <span class="hljs-attr">keyProperty</span>=<span class="hljs-string">&quot;user.id&quot;</span>&gt;</span><br>    insert into userinfo (username, password, age) values(#&#123;user.username&#125;, #&#123;user.password&#125;, #&#123;user.age&#125;)<br><span class="hljs-tag">&lt;/<span class="hljs-name">insert</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<img src="/2023/12/04/MyBatis/image-20231205113403926.png" srcset="/img/loading.gif" lazyload class title="image-20231205113403926">
+
+<h2 id="删除操作"><a href="#删除操作" class="headerlink" title="删除操作"></a>删除操作</h2><p>删除操作十分简单，只需要注意参数即可。</p>
+<p>接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> Integer <span class="hljs-title function_">deleteUserById</span><span class="hljs-params">(Integer id)</span>;<br></code></pre></td></tr></table></figure>
+
+<p>XML：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">delete</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;deleteUserById&quot;</span>&gt;</span><br>    delete from userinfo where id  &gt;= #&#123;id&#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">delete</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<img src="/2023/12/04/MyBatis/image-20231205165650757.png" srcset="/img/loading.gif" lazyload class title="image-20231205165650757">
+
+<h2 id="修改操作"><a href="#修改操作" class="headerlink" title="修改操作"></a>修改操作</h2><p>现在将id&#x3D;1 的 username和password修改为”admin”</p>
+<p>接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> Integer <span class="hljs-title function_">updateUserById</span><span class="hljs-params">(Integer id, String username, String password)</span>;<br></code></pre></td></tr></table></figure>
+
+<p>XML：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">update</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;updateUserById&quot;</span>&gt;</span><br>    update userinfo set username = #&#123;username&#125;, password = #&#123;password&#125; where id = #&#123;id&#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">update</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>结果:</p>
+<img src="/2023/12/04/MyBatis/image-20231205114442564.png" srcset="/img/loading.gif" lazyload class title="image-20231205114442564">
+
+<h1 id="和"><a href="#和" class="headerlink" title="#{}和${}"></a>#{}和${}</h1><p>#{}和${}都是MyBatis参数赋值的方式，但也存在着一定的区别。</p>
+<h2 id="案例引入-1"><a href="#案例引入-1" class="headerlink" title="案例引入"></a>案例引入</h2><p>接口代码:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Select(&quot;select username, password, age from userinfo where username = #&#123;name&#125;&quot;)</span><br><span class="hljs-keyword">public</span> UserInfo <span class="hljs-title function_">queryUserByName1</span><span class="hljs-params">(String name)</span>;<br></code></pre></td></tr></table></figure>
+
+<p>当我们使用#{}的方式进行参数赋值的时候，MyBatis会采用”预编译”的方式进行处理，即并不是直接在参数后面拼接，而是使用 ? 进行占位。</p>
+<img src="/2023/12/04/MyBatis/image-20231205172555733.png" srcset="/img/loading.gif" lazyload class title="image-20231205172555733">
+
+<p>当我们把#{}修改成${}</p>
+<img src="/2023/12/04/MyBatis/image-20231205180422178.png" srcset="/img/loading.gif" lazyload class title="image-20231205180422178">
+
+<p>程序会进行报错，我们通过观察日志可以发现此处的zhangsan字符串并没有使用引号引起来。</p>
+<blockquote>
+<p>我们可以得出：</p>
+<p>#{}使用的是预编译SQL，通过？占位的方式提前对SQL进行编译，然后把参数填充到SQL语句中，并且#{}会根据参数类型，自动拼接引号。</p>
+<p>${}使用的是即时SQL，直接进行字符替换，一起对SQL进行编译，如果参数是字符串，需要自己手动加上引号。</p>
+</blockquote>
+<h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><p>#{}和${}的区别就是<strong>预编译SQL</strong>和<strong>即时SQL</strong>的区别。</p>
+<p><strong>性能</strong></p>
+<p>一条SQL语句在执行前会经过”SQL语法解析”、”SQL优化”、”SQL编译”这些过程，这些过程都需要耗费一定的时间。</p>
+<p>当我们使用预编译的SQL的方式，编译一次之后会将编译后的SQL语句缓存起来，后面再次执行的时候就可以采用替换参数的形式，省去解析优化的过程，提高效率。</p>
+<p><strong>安全</strong></p>
+<p><strong>安全指的是能防止SQL注入。</strong></p>
+<p>SQL注入是通过操作输入的数据来修改事先定义好的SQL语句。由于没有对用户的输入充分检查，又使用的是字符串拼接的方式，当用户输入参数的时候就可以完成”注入”。</p>
+<p>如图：</p>
+<img src="/2023/12/04/MyBatis/image-20231206151537849.png" srcset="/img/loading.gif" lazyload class title="image-20231206151537849">
+
+<p><strong>由于${}会直接拼接字符串，因此就有可能出现SQL注入的现象。</strong></p>
+<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="${}使用场景"></a>${}使用场景</h2><p>既然${}的使用既不安全，又不高效，那还有存在的必要吗？</p>
+<p>答案是存在一定的适用的场景。</p>
+<p>当参数不再作为一个字符串，即要求不加上’’</p>
+<p>例如：排序场景，like模糊查询场景</p>
+<p><strong>排序</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Select(&quot;select * from userinfo order by username #&#123;pattern&#125;&quot;)</span><br><span class="hljs-keyword">public</span> List&lt;UserInfo&gt; <span class="hljs-title function_">queryAll</span><span class="hljs-params">(String pattern)</span>;<br></code></pre></td></tr></table></figure>
+
+<img src="/2023/12/04/MyBatis/image-20231206154257076.png" srcset="/img/loading.gif" lazyload class title="image-20231206154257076">
+
+<img src="/2023/12/04/MyBatis/image-20231206154518386.png" srcset="/img/loading.gif" lazyload class title="image-20231206154518386">
+
+<p>这个时候我们就需要使用上${}的方式了，即直接拼接。为了防止SQL注入的现象我们可以对传递的参数进行一次校验。</p>
+<p><strong>模糊查询</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Select(&quot;select * from userinfo where username like &#x27;%#&#123;str&#125;&#x27;&quot;)</span><br><span class="hljs-keyword">public</span> List&lt;UserInfo&gt; <span class="hljs-title function_">queryAllByLike</span><span class="hljs-params">(String str)</span><br></code></pre></td></tr></table></figure>
+
+<p>显然我们直接使用#{}的方式是不可以的，因此我们可以使用${}的方式，但会有SQL注入的风险。</p>
+<p>因此我们还可以使用MySQL的内置函数concat()</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">Select(<span class="hljs-string">&quot;select * from userinfo where username like concat(&#x27;%&#x27;, #&#123;str&#125;)&quot;</span>)<br><span class="hljs-keyword">public</span> List&lt;UserInfo&gt; <span class="hljs-title function_">queryAllByLike</span><span class="hljs-params">(String str)</span>;<br></code></pre></td></tr></table></figure>
+
+<h1 id="动态SQL"><a href="#动态SQL" class="headerlink" title="动态SQL"></a>动态SQL</h1><p>动态SQL是MyBatis的强大特性之一，通过在SQL语句中增加一些逻辑判断，完成不同条件下的SQL拼接。</p>
+<p>例如：</p>
+<p>当注册用户信息的时候，往往会涉及到两类字段：必填和非必填。针对非必填字段可以使用动态标签来判断。</p>
+<h2 id="if标签"><a href="#if标签" class="headerlink" title="if标签"></a>if标签</h2><p>和Java里面的if判断相同，都是用作条件判断。</p>
+<p>语法：在sql中使用，if标签里面的test属性为必填项，相当于if中的逻辑判断语句。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">void</span> <span class="hljs-title function_">insertDynamicUser</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-type">UserInfo</span> <span class="hljs-variable">userInfo</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">UserInfo</span>();<br>    userInfo.setUsername(<span class="hljs-string">&quot;laoliu&quot;</span>);<br>    userInfo.setPassword(<span class="hljs-string">&quot;laoliu&quot;</span>);<br>    userInfo.setPhone(<span class="hljs-string">&quot;110&quot;</span>);<br>    userInfo.setAge(<span class="hljs-number">18</span>);<br>    System.out.println(userInfoXMLMapper.insertDynamicUser(userInfo));<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">insert</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;insertDynamicUser&quot;</span>&gt;</span><br>    insert into userinfo (username,<br>                          password,<br>                          age,<br>                          <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;gender != null&quot;</span>&gt;</span>gender,<span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span><br>                          phone)<br>                values(#&#123;username&#125;,<br>                       #&#123;password&#125;,<br>                       #&#123;age&#125;,<br>                       <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;gender != null&quot;</span>&gt;</span>#&#123;gender&#125;,<span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span><br>                       #&#123;phone&#125;)<br><span class="hljs-tag">&lt;/<span class="hljs-name">insert</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>当我们真的不传递gender属性的时候，代码执行的SQL如下：</p>
+<img src="/2023/12/04/MyBatis/image-20231206174356034.png" srcset="/img/loading.gif" lazyload class title="image-20231206174356034">
+
+<p>如果带上了gender参数，此时SQL代码执行如下：</p>
+<img src="/2023/12/04/MyBatis/image-20231206174516741.png" srcset="/img/loading.gif" lazyload class title="image-20231206174516741">
+
+<p>此时带上了参数gender。</p>
+<h2 id="trim标签"><a href="#trim标签" class="headerlink" title="trim标签"></a>trim标签</h2><p>一般配合着if标签使用。</p>
+<p>在trim标签包含着的语句中，可以设置里面的属性，对sql语句进行修改。</p>
+<blockquote>
+<p>标签属性：</p>
+<p>prefix：表示整个语句块，以prefix的值为前缀</p>
+<p>suffix：表示整个语句块，以suffix的值为后缀</p>
+<p>prefixOverrrides：表示整个语句块要去掉的前缀</p>
+<p>suffixOverrides：表示整个语句块要去掉的后缀</p>
+</blockquote>
+<p>一般使用在if标签中某个属性如果没有传参，就会多产生一些符号，可以通过trim标签进行修改。</p>
+<p>例如：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">insert</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;insertDynamicUser&quot;</span>&gt;</span><br>    insert into user<br>    <span class="hljs-tag">&lt;<span class="hljs-name">trim</span> <span class="hljs-attr">prefix</span>=<span class="hljs-string">&quot;(&quot;</span> <span class="hljs-attr">suffix</span>=<span class="hljs-string">&quot;)&quot;</span> <span class="hljs-attr">suffixOverrides</span>=<span class="hljs-string">&quot;,&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;username != null&quot;</span>&gt;</span><br>            username,<br>        <span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;password != null&quot;</span>&gt;</span><br>            password,<br>        <span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">trim</span>&gt;</span><br>    values<br>    <span class="hljs-tag">&lt;<span class="hljs-name">trim</span> <span class="hljs-attr">prefix</span>=<span class="hljs-string">&quot;(&quot;</span> <span class="hljs-attr">suffix</span>=<span class="hljs-string">&quot;)&quot;</span> <span class="hljs-attr">suffixOverrides</span>=<span class="hljs-string">&quot;,&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;username != null&quot;</span>&gt;</span><br>            #&#123;username&#125;,<br>        <span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;password != null&quot;</span>&gt;</span><br>            #&#123;password&#125;,<br>        <span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">trim</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">insert</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>当我们的password未进行传参的时候，此时SQL就会多出来一个逗号，我们需要使用trim标签进行修改。</p>
+<h2 id="where标签"><a href="#where标签" class="headerlink" title="where标签"></a>where标签</h2><p>where标签也是搭配if标签使用的。<strong>如果where标签中没有内容则不会添加where语句，如果里面有内容会自动的删除前缀的and。</strong></p>
+<p>一般使用在where条件语句中非必传。</p>
+<p>例如：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;selectDynamicUser&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;com.example.mybatispractice.dao.UserInfo&quot;</span>&gt;</span><br>    select * from user<br>    <span class="hljs-tag">&lt;<span class="hljs-name">where</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;username != null&quot;</span>&gt;</span><br>           and username = #&#123;username&#125;<br>        <span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;password != null&quot;</span>&gt;</span><br>            and password = #&#123;password&#125;<br>        <span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">where</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>当我们一个参数都不传的时候，就会执行查询所有用户数据。</p>
+<p>上述写法还等价于</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;selectDynamicUser&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;com.example.mybatispractice.dao.UserInfo&quot;</span>&gt;</span><br>    select * from user<br>    <span class="hljs-tag">&lt;<span class="hljs-name">trim</span> <span class="hljs-attr">prefix</span>=<span class="hljs-string">&quot;where&quot;</span> <span class="hljs-attr">prefixOverrides</span>=<span class="hljs-string">&quot;and&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;username != null&quot;</span>&gt;</span><br>           and username = #&#123;username&#125;<br>        <span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;password != null&quot;</span>&gt;</span><br>            and password = #&#123;password&#125;<br>        <span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">trim</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>注意：当trim标签没有内容的时候，此时就不会添加前后缀。</strong></p>
+<p>使用where标签会更加简洁。</p>
+<h2 id="set标签"><a href="#set标签" class="headerlink" title="set标签"></a>set标签</h2><p>使用于update修改语句中，根据传入的用户对象属性来更新用户数据。</p>
+<p><strong>set标签会自动的插入set关键字并删除额外的逗号</strong>。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">update</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;updateDynamicUser&quot;</span>&gt;</span><br>    update user<br>    <span class="hljs-tag">&lt;<span class="hljs-name">set</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;password != null&quot;</span>&gt;</span><br>            password = #&#123;password&#125;,<br>        <span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">set</span>&gt;</span><br>    where username = #&#123;username&#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">update</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>上述写法还等价于</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">update</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;updateDynamicUser&quot;</span>&gt;</span><br>    update user<br>    <span class="hljs-tag">&lt;<span class="hljs-name">trim</span> <span class="hljs-attr">prefix</span>=<span class="hljs-string">&quot;set&quot;</span> <span class="hljs-attr">suffixOverrides</span>=<span class="hljs-string">&quot;,&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">&quot;password != null&quot;</span>&gt;</span><br>            password = #&#123;password&#125;,<br>        <span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">trim</span>&gt;</span><br>    where username = #&#123;username&#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">update</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="foreach标签"><a href="#foreach标签" class="headerlink" title="foreach标签"></a>foreach标签</h2><p>foreach标签会将传入的集合类或数组等容器里面的数据循环取出注入到sql中。</p>
+<blockquote>
+<p>foreach标签有五个属性：</p>
+<p>collection：绑定方法参数中的集合</p>
+<p>item：遍历时的每一个对象</p>
+<p>open：语句块开头字符串</p>
+<p>close：语句块结尾字符串</p>
+<p>separator：每次遍历之间间隔的字符串</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">delete</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;deleteDynamicUser&quot;</span>&gt;</span><br>    delete from user where username in <br>        <span class="hljs-tag">&lt;<span class="hljs-name">foreach</span> <span class="hljs-attr">collection</span>=<span class="hljs-string">&quot;list&quot;</span> <span class="hljs-attr">item</span>=<span class="hljs-string">&quot;username&quot;</span> <span class="hljs-attr">open</span>=<span class="hljs-string">&quot;(&quot;</span> <span class="hljs-attr">close</span>=<span class="hljs-string">&quot;)&quot;</span> <span class="hljs-attr">separator</span>=<span class="hljs-string">&quot;,&quot;</span>&gt;</span><br>                        #&#123;username&#125;<br>        <span class="hljs-tag">&lt;/<span class="hljs-name">foreach</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">delete</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<img src="/2023/12/04/MyBatis/image-20231206210721137.png" srcset="/img/loading.gif" lazyload class title="image-20231206210721137">
+
+<h2 id="include标签"><a href="#include标签" class="headerlink" title="include标签"></a>include标签</h2><p>在xml文件中配置SQL时，有时可能会出现许多重复的代码片段，此时我们可以使用include标签将重复的代码进行封装到一起。</p>
+<blockquote>
+<p><sql>：定义可重用的SQL片段</sql></p>
+<p><include>：通过属性refid，指定包含的SQL片段</include></p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">sql</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;xixi&quot;</span>&gt;</span><br>    username, password, age, gender<br><span class="hljs-tag">&lt;/<span class="hljs-name">sql</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;selectDynamicUser&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;com.example.mybatispractice.dao.UserInfo&quot;</span>&gt;</span><br>    select<br>    <span class="hljs-tag">&lt;<span class="hljs-name">include</span> <span class="hljs-attr">refid</span>=<span class="hljs-string">&quot;xixi&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">include</span>&gt;</span><br>    from userinfo<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/JavaEE/">#JavaEE</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>MyBatis</div>
+      <div>http://example.com/2023/12/04/MyBatis/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>郑政祺</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年12月4日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/11/24/Spring-IoC-DI/" title="Spring IoC&amp;DI">
+                        <span class="hidden-mobile">Spring IoC&amp;DI</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"oAwajAVTVUgZ9ebLvxNJKM57-gzGzoHsz","appKey":"70Qaojemcj4gUsoRJiaibMRk","path":"window.location.pathname","placeholder":"写这么好说说吧~","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+    
+      <div class="footer-content">
+         <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+      </div>
+      <div class="music-player">
+     <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=26908739&auto=1&height=66"></iframe>
+       </div>
+  
+  
+    
+    
+      <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+    
+    
+  
+      <!-- 🌸飘落 -->
+      <script src="https://cdn.jsdelivr.net/gh/wallleap/cdn@latest/js/sakura.js"></script>
+      <!-- 雪花飘落 -->
+      <script src="https://cdn.jsdelivr.net/gh/Yafine/cdn@2.5/source/js/snow1.js"></script>
+      <!-- // 烟花 -->
+      <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas--> 
+      <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+      <script src="https://cdn.jsdelivr.net/gh/Yafine/cdn@2.5/source/js/fireworks.js"></script>
+      <!-- // 星星跟随坠落 -->
+      <script src="https://cdn.jsdelivr.net/gh/cungudafa/cdn@2.1.2/js/cursor.js"></script>
+      <!-- 样式二（飘动的彩带） -->
+      <script src="https://cdn.jsdelivr.net/gh/wallleap/cdn@latest/js/piao.js" type="text/javascript"></script>
+       <!--背景切换-->
+       <script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+  
+  
+    
+  </div>
+  
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":250,"height":600},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
