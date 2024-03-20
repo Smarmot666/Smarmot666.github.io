@@ -16,15 +16,25 @@
   <meta name="author" content="郑政祺">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="article">
+    <meta name="description" content="项目简介 本项目参照RabbitMQ简单模拟实现了一个消息队列。该消息队列提供了虚拟主机、交换机、队列、消息等核心概念，并实现了交换机转发消息的三种模式，旨在实现跨主机&#x2F;服务器的生产者消费者模型。 知识点：网络编程、网络通信、RPC通信、IO流、序列化、并发编程、SpringBoot、SQLite 消息队列 消息队列本质上就是一个队列，只是在队列这种数据结构的基础上提供了更加丰富的功能，为的是实现">
+<meta property="og:type" content="article">
 <meta property="og:title" content="消息队列">
 <meta property="og:url" content="http://example.com/2024/03/16/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/index.html">
 <meta property="og:site_name" content="机智的土拨鼠">
+<meta property="og:description" content="项目简介 本项目参照RabbitMQ简单模拟实现了一个消息队列。该消息队列提供了虚拟主机、交换机、队列、消息等核心概念，并实现了交换机转发消息的三种模式，旨在实现跨主机&#x2F;服务器的生产者消费者模型。 知识点：网络编程、网络通信、RPC通信、IO流、序列化、并发编程、SpringBoot、SQLite 消息队列 消息队列本质上就是一个队列，只是在队列这种数据结构的基础上提供了更加丰富的功能，为的是实现">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2024/03/16/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/image-20240319113617868.png">
+<meta property="og:image" content="http://example.com/2024/03/16/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/image-20240319113936122.png">
+<meta property="og:image" content="http://example.com/2024/03/16/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/image-20240319144648580.png">
+<meta property="og:image" content="http://example.com/2024/03/16/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/image-20240319145825675.png">
+<meta property="og:image" content="http://example.com/2024/03/16/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/image-20240319154910084.png">
+<meta property="og:image" content="http://example.com/2024/03/16/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/image-20240319172959669.png">
 <meta property="article:published_time" content="2024-03-16T13:23:46.000Z">
-<meta property="article:modified_time" content="2024-03-16T13:23:46.465Z">
+<meta property="article:modified_time" content="2024-03-20T01:56:10.924Z">
 <meta property="article:author" content="郑政祺">
+<meta property="article:tag" content="JavaEE">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2024/03/16/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/image-20240319113617868.png">
   
   
   
@@ -234,7 +244,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          12k 字
         
       </span>
     
@@ -245,7 +255,7 @@
         
         
         
-          1 分钟
+          97 分钟
         
       </span>
     
@@ -309,7 +319,169 @@
             
               <div class="markdown-body">
                 
-                
+                <h1>项目简介</h1>
+<p>本项目参照RabbitMQ简单模拟实现了一个消息队列。该消息队列提供了虚拟主机、交换机、队列、消息等核心概念，并实现了交换机转发消息的三种模式，旨在实现跨主机/服务器的生产者消费者模型。</p>
+<p>知识点：网络编程、网络通信、RPC通信、IO流、序列化、并发编程、SpringBoot、SQLite</p>
+<h1>消息队列</h1>
+<p>消息队列本质上就是一个队列，只是在队列这种数据结构的基础上提供了更加丰富的功能，为的是实现生产者消费者模型。</p>
+<p>生产者消费者模型的好处：</p>
+<p><strong>1.解耦合</strong></p>
+<p>当模块A与模块B进行通信的时候，势必要在模块A中添加与模块B通信的代码，当继续添加一个模块C通信的话，那又要在模块A中添加一段代码，此时模块A和模块B、模块C的耦合度很高，如果后续要修改，那么这些模块都需要进行改动代码，并且如果模块A挂了，其他模块立刻就能感知到。</p>
+<p>考虑使用生产者消费者模型。此处模块A为生产者，负责生产数据，模块B、模块C为消费者，负责消费模块A产生的数据。引入一个消息队列，即生产者生产的数据先发送到消息队列，其他消费者直接从消息队列中取数据消费即可。如果再添加一个消费者的时候，生产者模块A不需要进行改动，直接让新的消费者添加订阅消息队列即可。这样就实现了解耦合，而且当模块A挂了，其他消费者也不会立马感知到，最多认为此时消费者还没生产数据。</p>
+<img src="/2024/03/16/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/image-20240319113617868.png" srcset="/img/loading.gif" lazyload class title="image-20240319113617868">
+<img src="/2024/03/16/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/image-20240319113936122.png" srcset="/img/loading.gif" lazyload class title="image-20240319113936122">
+<p><strong>2.削峰</strong></p>
+<p>在某一时刻，模块A接收到大量的请求，交给模块B去处理，如果两个模块都是比较轻量的程序可以还可以正常运行，但如果A是入口程序，B是数据库业务(数据库比较脆弱)，此时大量的请求就会讲给数据库处理，就很有可能导致数据库崩了。</p>
+<p>假设引入消息队列，虽然有很多请求，但是模块A会先将请求放到消息队列中，模块B可以根据自己的节奏来从队列中取消息，这样就削弱请求的峰值(对模块B)，保证程序的正常运行。</p>
+<img src="/2024/03/16/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/image-20240319144648580.png" srcset="/img/loading.gif" lazyload class title="image-20240319144648580">
+<h1>需求分析</h1>
+<h2 id="核心概念">核心概念</h2>
+<p>**虚拟主机：**类似数据库中database，用来隔离交换机、队列、消息。</p>
+<p>**交换机：**实现消息的转发。</p>
+<p>**队列：**用来存储消息。</p>
+<p>**绑定：**用来表示交换机和队列之间的关系。一个交换机可以关联多个队列，一个队列也可以关联多个交换机。</p>
+<p>**消息：**用户自己发送的业务数据。</p>
+<img src="/2024/03/16/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/image-20240319145825675.png" srcset="/img/loading.gif" lazyload class title="image-20240319145825675">
+<h2 id="消息队列服务器">消息队列服务器</h2>
+<p>消息队列服务器要做的事就是根据用户的请求来创建交换机、队列、绑定，发送消息，返回消息。</p>
+<p><strong>消息服务器的核心API：</strong></p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>exchangeDeclare</td>
+<td>在服务器上创建交换机，如果存在就不创建</td>
+</tr>
+<tr>
+<td>exchangeDelete</td>
+<td>销毁服务器上的交换机</td>
+</tr>
+<tr>
+<td>queueDeclare</td>
+<td>在服务器上创建队列，如果存在就不创建</td>
+</tr>
+<tr>
+<td>queueDelete</td>
+<td>销毁服务器上的队列</td>
+</tr>
+<tr>
+<td>queueBind</td>
+<td>在服务器上创建绑定关系</td>
+</tr>
+<tr>
+<td>queueUnbind</td>
+<td>销毁服务器上的绑定关系</td>
+</tr>
+<tr>
+<td>basicPublish</td>
+<td>发布消息</td>
+</tr>
+<tr>
+<td>basicConsume</td>
+<td>订阅消息</td>
+</tr>
+<tr>
+<td>basicAck</td>
+<td>确认消息.当消费者从服务器上消费完了消息可以显示的告诉服务器，以此保证可靠性</td>
+</tr>
+</tbody>
+</table>
+<p>消费一个消息有两种方式：pull(拉)，push(推).如果需要支持pull的方式，需要再提供一个API，用来手动的获取消息。但是在RabbitMQ</p>
+<p>中只支持push推的方式，即消费者订阅了某个队列，服务器会自动的将消息推送给消费者。</p>
+<h2 id="消息队列客户端">消息队列客户端</h2>
+<p>在客户端中也要提供上述的API，虽然名字一样，但代码时完全不同的。当用户调用创建队列的API，此时用户这边就会发起一个网络请求，服务器接收到了这个请求并解析，计算响应，最后将响应返回给客户端，此处所创建的交换机存在于服务器的内存中，而客户端只是完成了一个发送请求，没有真实的创建交换机。而这种交互方式也称作是RPC(远程过程调用协议)。</p>
+<p>除了上述这些API，在客户端这边还有一组特别的API。</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>创建connection</td>
+<td>与服务器进行TCP连接</td>
+</tr>
+<tr>
+<td>关闭connection</td>
+<td>关闭服务器的连接</td>
+</tr>
+<tr>
+<td>创建channel</td>
+<td>创建一个信道channel，即与服务器创建逻辑连接</td>
+</tr>
+<tr>
+<td>关闭channel</td>
+<td>关闭信道channel，即与服务器断开逻辑上的连接</td>
+</tr>
+</tbody>
+</table>
+<p>在客户端与服务器交互的过程中，客户端是通过channel与服务器进行逻辑上的连接/断开。创建一个connection，本质上就是与服务器进行TCP通信，而创建一个channel就是复用这个connection，进行逻辑上的通信，即虽然使用channel中的API发送请求，但本质上还是通过connection中的socket发送请求到服务器中。而服务器也无法区分channel，将返回的响应交给connection，再根据某种规则，将响应返回给对应的channel。</p>
+<p>复用TCP连接，是为了提高通信的效率。</p>
+<h2 id="公共模块">公共模块</h2>
+<p>公共模块所要进行的规定一些网络通信中的参数，对数据进行序列化，以便数据的传输。一个对象实例要想在网络中传输，需要将这个对象进行转换，如转成json格式进行传输或者通过二进制传输；将一个对象存储在硬盘中，也要对对象进行转换。</p>
+<h2 id="持久化模块">持久化模块</h2>
+<p>为了防止服务器重启，依旧能恢复到上次的操作，需要对数据进行持久化，服务器可以根据用户指定的参数，是否进行持久化的操作。</p>
+<p>对数据进行持久化可以存储到两个位置：1.文件上   2.数据库</p>
+<p>由于虚拟主机、交换机、队列、绑定这些数据会经常进行crud，因此我们可以将这些数据存储在数据库中。</p>
+<p>对于消息，可能会比较大，而且也不会对消息进行频繁crud，我们可以存储在文件中。</p>
+<img src="/2024/03/16/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/image-20240319154910084.png" srcset="/img/loading.gif" lazyload class title="image-20240319154910084">
+<h1>模拟实现</h1>
+<h2 id="创建核心类">创建核心类</h2>
+<p>首先创建如下包。</p>
+<img src="/2024/03/16/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/image-20240319172959669.png" srcset="/img/loading.gif" lazyload class title="image-20240319172959669">
+<p>由于交换机、队列、绑定、消息这些对象都是在服务器上操作的，客户端上都不会涉及到，因此就在mqserver中创exchange、queue、binding、message类。</p>
+<p><strong>Exchange：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Data</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Exchange</span> &#123;<br>    <span class="hljs-comment">//标识交换机</span><br>    <span class="hljs-keyword">private</span> String name;<br>    <span class="hljs-comment">//交换机的类型</span><br>    <span class="hljs-comment">//默认为直接交换机</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">ExchangeType</span> <span class="hljs-variable">type</span> <span class="hljs-operator">=</span> ExchangeType.DIRECT;<br>    <span class="hljs-comment">//是否可持久化,即要不要存在硬盘上</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">boolean</span> <span class="hljs-variable">durable</span> <span class="hljs-operator">=</span> <span class="hljs-literal">false</span>;<br>    <span class="hljs-comment">//是否自动删除</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">boolean</span> <span class="hljs-variable">autoDelete</span> <span class="hljs-operator">=</span> <span class="hljs-literal">false</span>;<br>    <span class="hljs-comment">//可选参数</span><br>    <span class="hljs-keyword">private</span> Map&lt;String, Object&gt; arguments = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>交换机的类型有好多种，在这我们只实现3种交换机：direct、fanout、topic。</p>
+<p><strong>ExchangeType：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">ExchangeType</span> &#123;<br>    DIRECT(<span class="hljs-number">0</span>),<br>    FANOUT(<span class="hljs-number">1</span>),<br>    TOPIC(<span class="hljs-number">2</span>);<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> type;<br><br>    ExchangeType(<span class="hljs-type">int</span> type) &#123;<br>        <span class="hljs-built_in">this</span>.type = type;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>MSGQueue：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Data</span><br><span class="hljs-comment">//为了与标准库中Queue区分，这里改叫MSGQueue</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MSGQueue</span> &#123;<br>    <span class="hljs-keyword">private</span> String name;<br>    <span class="hljs-comment">//是否独占(只能被一个消费者使用)</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">boolean</span> <span class="hljs-variable">exclusive</span> <span class="hljs-operator">=</span> <span class="hljs-literal">false</span>;<br>    <span class="hljs-comment">//是否可持久化</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">boolean</span> <span class="hljs-variable">durable</span> <span class="hljs-operator">=</span> <span class="hljs-literal">false</span>;<br>    <span class="hljs-comment">//是否自动删除</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">boolean</span> <span class="hljs-variable">autoDelete</span> <span class="hljs-operator">=</span> <span class="hljs-literal">false</span>;<br>    <span class="hljs-comment">//可选参数</span><br>    <span class="hljs-keyword">private</span> Map&lt;String, Object&gt; arguments = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>Binding：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Data</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Binding</span> &#123;<br>    <span class="hljs-keyword">private</span> String exchangeName;<br>    <span class="hljs-keyword">private</span> String queueName;<br>    <span class="hljs-comment">//用于Topic交换机,跟Message中routingKey进行匹配</span><br>    <span class="hljs-keyword">private</span> String bindingKey;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>Message：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Data</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Message</span> &#123;<br>    <span class="hljs-comment">//消息的基本属性</span><br>    <span class="hljs-keyword">private</span> BasicProperties basicProperties;<br>    <span class="hljs-comment">//存储数据</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">byte</span>[] body;<br>    <span class="hljs-comment">//位置偏移量,便于在文件中取出数据</span><br>    <span class="hljs-comment">//采用[offsetBeg, offsetEnd)区间</span><br>    <span class="hljs-comment">//这两个属性是帮助从文件中读取数据的,不需要进行序列化</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">long</span> offsetBeg;<br>    <span class="hljs-keyword">private</span> <span class="hljs-type">long</span> offsetEnd;<br>    <span class="hljs-comment">//表示此消息在文件中是否有效(采用逻辑删除)</span><br>    <span class="hljs-comment">//0x00 表示无效， 0x01 表示有效</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">byte</span> <span class="hljs-variable">isValid</span> <span class="hljs-operator">=</span> <span class="hljs-number">0x01</span>;<br><br>    <span class="hljs-comment">//通过一个&quot;工厂方法&quot;来创建message对象,随机生成Id</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Message <span class="hljs-title function_">createMessageWithId</span><span class="hljs-params">(BasicProperties basicProperties, String routingKey, <span class="hljs-type">byte</span>[] body)</span>&#123;<br>        <span class="hljs-type">Message</span> <span class="hljs-variable">message</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Message</span>();<br>        <span class="hljs-keyword">if</span>(basicProperties != <span class="hljs-literal">null</span>)&#123;<br>            message.setBasicProperties(basicProperties);<br>        &#125;<br>        message.getBasicProperties().setMessageId(<span class="hljs-string">&quot;M_&quot;</span> + UUID.randomUUID().toString());<br>        message.getBasicProperties().setRoutingKey(routingKey);<br>        message.setBody(body);<br>        <span class="hljs-comment">//此处 offsetBeg,offsetEnd,isValid 作用在持久化操作</span><br>        <span class="hljs-comment">//当进行持久化时,才需要赋值</span><br>        <span class="hljs-keyword">return</span> message;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getMessageId</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.basicProperties.getMessageId();<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setMessageId</span><span class="hljs-params">(String messageId)</span> &#123;<br>        <span class="hljs-built_in">this</span>.basicProperties.setMessageId(messageId);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getRoutingKey</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.basicProperties.getRoutingKey();<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setRoutingKey</span><span class="hljs-params">(String routingKey)</span> &#123;<br>        <span class="hljs-built_in">this</span>.basicProperties.setRoutingKey(routingKey);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isDurable</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.basicProperties.isDurable();<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setDurable</span><span class="hljs-params">(<span class="hljs-type">boolean</span> durable)</span> &#123;<br>        <span class="hljs-built_in">this</span>.basicProperties.setDurable(durable);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>在传输消息的时候，都是通过二进制来传输，所以消息本质上就是一个byte[]，其他都是辅助字段。</strong></p>
+<p><strong>offsetBeg、offsetEnd、isValid字段是用来描述这个消息在文件中是如何存储的，以及该消息是否已经被删除了。</strong></p>
+<p><strong>由于在文件中使用类似数组中的删除元素的操作会大大增加我们程序的运行时间，在此我们选择采用逻辑删除的方式，即通过一个标记字段来表示是否删除。</strong></p>
+<p><strong>BasicProperties：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Data</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">BasicProperties</span> &#123;<br>    <span class="hljs-comment">//为防止重复，使用UUID生成</span><br>    <span class="hljs-keyword">private</span> String MessageId;<br>    <span class="hljs-keyword">private</span> <span class="hljs-type">boolean</span> <span class="hljs-variable">isDurable</span> <span class="hljs-operator">=</span> <span class="hljs-literal">false</span>;<br>    <span class="hljs-comment">//口令</span><br>    <span class="hljs-keyword">private</span> String routingKey;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>后续的操作都是围绕这几个核心概念来增删改查的。</p>
+<h2 id="数据库管理">数据库管理</h2>
+<p>由于MySQL数据库比较重量，在此就选择使用相对轻量的数据库SQLite. MySQL是客户端服务器结构的程序，而SQLite是一个本地的数据库，操作它相当于是直接操作本地文件。</p>
+<p>在Java中使用SQLite，也不需要额外的安装，可以直接使用maven，将相关依赖引入，然后进行配置就可以正常使用了。</p>
+<p><strong>SQLite的依赖：</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.xerial<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>sqlite-jdbc<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.42.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p><strong>application.yml：</strong></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">datasource:</span><br>    <span class="hljs-attr">url:</span> <span class="hljs-string">jdbc:sqlite:./data/meta.db</span><br>    <span class="hljs-attr">username:</span><br>    <span class="hljs-attr">password:</span><br>    <span class="hljs-attr">driver-class-name:</span> <span class="hljs-string">org.sqlite.JDBC</span><br></code></pre></td></tr></table></figure>
+<p>SQLite是把数据存储在当前硬盘的某个指定文件中，在这里就存储在了工作路径的data目录中的meta.db文件了。</p>
+<p>SQLite也不需要指定用户名和密码，毕竟是自己一个人用的，只有本地主机才能使用。</p>
+<p>接下来就是建库和建表。在MySQL中，需要自己手动进行创建database，但在SQLite中，则无需手动建库了，每一个数据库文件就是一个数据库，即当前的meta.db文件就相当于是MySQL中的database。</p>
+<p>为了能够即用即创建表，在这考虑部署的时候就自动创建表，即通过mybatis的update注解来建表并添加一些基础的查询、增加、删除操作。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Mapper</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">MetaMapper</span> &#123;<br>    <span class="hljs-comment">//建表操作</span><br>    <span class="hljs-meta">@Update(&quot;create table if not exists exchange(&quot; +</span><br><span class="hljs-meta">            &quot;name varchar(50) primary key,&quot; +</span><br><span class="hljs-meta">            &quot;type int,&quot; +</span><br><span class="hljs-meta">            &quot;durable boolean,&quot; +</span><br><span class="hljs-meta">            &quot;autoDelete boolean,&quot; +</span><br><span class="hljs-meta">            &quot;arguments varchar(1024))&quot;)</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">createExchangeTable</span><span class="hljs-params">()</span>;<br>    <br>    <span class="hljs-meta">@Update(&quot;create table if not exists queue(&quot; +</span><br><span class="hljs-meta">            &quot;name varchar(50) primary key,&quot; +</span><br><span class="hljs-meta">            &quot;exclusive boolean,&quot; +</span><br><span class="hljs-meta">            &quot;durable boolean,&quot; +</span><br><span class="hljs-meta">            &quot;autoDelete boolean,&quot; +</span><br><span class="hljs-meta">            &quot;arguments varchar(1024))&quot;)</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">createQueueTable</span><span class="hljs-params">()</span>;<br>    <br>    <span class="hljs-meta">@Update(&quot;create table if not exists binding(&quot; +</span><br><span class="hljs-meta">            &quot;exchangeName varchar(50),&quot; +</span><br><span class="hljs-meta">            &quot;queueName varchar(50),&quot; +</span><br><span class="hljs-meta">            &quot;bindingKey varchar(256))&quot;)</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">createBindingTable</span><span class="hljs-params">()</span>;<br><br>    <span class="hljs-comment">//基础添加、删除、查询操作</span><br>    <span class="hljs-meta">@Insert(&quot;insert into exchange values(#&#123;name&#125;, #&#123;type&#125;, #&#123;durable&#125;, #&#123;autoDelete&#125;, #&#123;arguments&#125;)&quot;)</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">insertExchange</span><span class="hljs-params">(Exchange exchange)</span>;<br><br>    <span class="hljs-meta">@Delete(&quot;delete from exchange where name = #&#123;exchangeName&#125;&quot;)</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">deleteExchange</span><span class="hljs-params">(String exchangeName)</span>;<br><br>    <span class="hljs-meta">@Select(&quot;select * from exchange&quot;)</span><br>    <span class="hljs-keyword">public</span> List&lt;Exchange&gt; <span class="hljs-title function_">selectAllExchanges</span><span class="hljs-params">()</span>;<br><br>    <span class="hljs-meta">@Insert(&quot;insert into queue values(#&#123;name&#125;, #&#123;exclusive&#125;, #&#123;durable&#125;, #&#123;autoDelete&#125;, #&#123;arguments&#125;)&quot;)</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">insertQueue</span><span class="hljs-params">(MSGQueue msgQueue)</span>;<br><br>    <span class="hljs-meta">@Delete(&quot;delete from queue where name = #&#123;queueName&#125;&quot;)</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">deleteQueue</span><span class="hljs-params">(String queueName)</span>;<br><br>    <span class="hljs-meta">@Select(&quot;select * from queue&quot;)</span><br>    <span class="hljs-keyword">public</span> List&lt;MSGQueue&gt; <span class="hljs-title function_">selectAllQueues</span><span class="hljs-params">()</span>;<br><br>    <span class="hljs-meta">@Insert(&quot;insert into binding values(#&#123;exchangeName&#125;, #&#123;queueName&#125;, #&#123;bindingKey&#125;)&quot;)</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">insertBinding</span><span class="hljs-params">(Binding binding)</span>;<br><br>    <span class="hljs-meta">@Delete(&quot;delete from binding where exchangeName = #&#123;exchangeName&#125; and queueName = #&#123;queueName&#125;&quot;)</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">deleteBinding</span><span class="hljs-params">(String exchangeName, String queueName)</span>;<br><br>    <span class="hljs-meta">@Select(&quot;select * from binding&quot;)</span><br>    <span class="hljs-keyword">public</span> List&lt;Binding&gt; <span class="hljs-title function_">selectAllBindings</span><span class="hljs-params">()</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>由于SQLite中也不支持HashMap这种数据结构，因此使用String来存储。</p>
+<p>Mybatis在写入数据的时候，会自动的调用对象的getter方法，而在读出数据的时候，会自动调用setter方法，因此为了能够将arguments这个HashMap类型的数据存入到数据库中，我们需要转成字符串。</p>
+<p>在此使用jackson来处理，引入相关依赖即可。</p>
+<p><strong>jackson依赖：</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jackson-databind<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.9.6<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br></code></pre></td></tr></table></figure>
+<p><strong>getter和setter：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> String <span class="hljs-title function_">getArguments</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-type">ObjectMapper</span> <span class="hljs-variable">objectMapper</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectMapper</span>();<br>    <span class="hljs-keyword">try</span> &#123;<br>        objectMapper.writeValueAsString(arguments);<br>    &#125; <span class="hljs-keyword">catch</span> (JsonProcessingException e) &#123;<br>        e.printStackTrace();<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&#123;&#125;&quot;</span>;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setArguments</span><span class="hljs-params">(String arguments)</span> &#123;<br>    <span class="hljs-type">ObjectMapper</span> <span class="hljs-variable">objectMapper</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectMapper</span>();<br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-built_in">this</span>.arguments = objectMapper.readValue(arguments, <span class="hljs-keyword">new</span> <span class="hljs-title class_">TypeReference</span>&lt;Map&lt;String, Object&gt;&gt;() &#123;&#125;);<br>    &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>        e.printStackTrace();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>为了使程序的结构更加清晰，程序员更方便的操作数据库，考虑创建一个DataBaseManager类来封装数据库的相关操作。</p>
+<p><strong>DataBaseManager：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//封装数据库操作</span><br><span class="hljs-comment">//DataBaseManager不交给Spring管理,由程序员手动管理</span><br><span class="hljs-meta">@Slf4j</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">DataBaseManager</span> &#123;<br>    <span class="hljs-comment">//从Spring上下文中手动获取MetaMapper的Bean</span><br>    <span class="hljs-keyword">private</span> MetaMapper metaMapper;<br><br>    <span class="hljs-comment">//带有业务逻辑的初始化操作</span><br>    <span class="hljs-comment">//完成建库建表操作</span><br>    <span class="hljs-comment">//如果不存在表就进行创建，并添加默认初始数据</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">init</span><span class="hljs-params">()</span>&#123;<br>        metaMapper = MqBlogApplication.context.getBean(MetaMapper.class);<br>        <span class="hljs-keyword">if</span>(!checkDBExists())&#123;<br>            <span class="hljs-comment">//创建data目录</span><br>            <span class="hljs-type">File</span> <span class="hljs-variable">file</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(<span class="hljs-string">&quot;./data&quot;</span>);<br>            file.mkdirs();<br>            <span class="hljs-comment">//建表并初始化数据</span><br>            createTable();<br>            createDefaultData();<br>            log.info(<span class="hljs-string">&quot;[DataBaseManager] 数据库初始化完成&quot;</span>);<br>        &#125;<span class="hljs-keyword">else</span>&#123;<br>            log.info(<span class="hljs-string">&quot;[DataBaseManager] 数据库已经初始化&quot;</span>);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">//删除数据库目录</span><br>    <span class="hljs-comment">//删除目录前,需要保证目录是空的</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">deleteDB</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-type">File</span> <span class="hljs-variable">file</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(<span class="hljs-string">&quot;./data/meta.db&quot;</span>);<br>        <span class="hljs-comment">//删除目录里面的文件</span><br>        <span class="hljs-type">boolean</span> <span class="hljs-variable">isSuccess</span> <span class="hljs-operator">=</span> file.delete();<br>        <span class="hljs-keyword">if</span>(isSuccess)&#123;<br>            log.info(<span class="hljs-string">&quot;[DataBaseManager] 删除数据库文件成功&quot;</span>);<br>        &#125;<span class="hljs-keyword">else</span>&#123;<br>            log.info(<span class="hljs-string">&quot;[DataBaseManager] 删除数据库文件失败&quot;</span>);<br>        &#125;<br>        <span class="hljs-comment">//删除目录</span><br>        file = <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(<span class="hljs-string">&quot;./data&quot;</span>);<br>        isSuccess = file.delete();<br>        <span class="hljs-keyword">if</span>(isSuccess)&#123;<br>            log.info(<span class="hljs-string">&quot;[DataBaseManager] 删除数据库目录成功&quot;</span>);<br>        &#125;<span class="hljs-keyword">else</span> &#123;<br>            log.info(<span class="hljs-string">&quot;[DataBaseManager] 删除数据库目录失败&quot;</span>);<br>        &#125;<br><br>    &#125;<br><br>    <span class="hljs-comment">//判断数据库(meta.db)是否存在</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">checkDBExists</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-type">File</span> <span class="hljs-variable">DBFile</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(<span class="hljs-string">&quot;./data/meta.db&quot;</span>);<br>        <span class="hljs-keyword">return</span> DBFile.exists();<br>    &#125;<br><br>    <span class="hljs-comment">//对 Exchange,Queue,Binding 进行建表</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">createTable</span><span class="hljs-params">()</span> &#123;<br>        metaMapper.createExchangeTable();<br>        metaMapper.createQueueTable();<br>        metaMapper.createBindingTable();<br>        log.info(<span class="hljs-string">&quot;[DataBaseManager] 创建表完成&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-comment">//RabbitMQ初始带有一个匿名交换机, 类型为 Direct</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">createDefaultData</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-type">Exchange</span> <span class="hljs-variable">exchange</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Exchange</span>();<br>        exchange.setName(<span class="hljs-string">&quot;&quot;</span>);<br>        exchange.setType(ExchangeType.DIRECT);<br>        exchange.setDurable(<span class="hljs-literal">true</span>);<br>        exchange.setAutoDelete(<span class="hljs-literal">false</span>);<br>        metaMapper.insertExchange(exchange);<br>        log.info(<span class="hljs-string">&quot;[DataBaseManager] 初始数据构造完成&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-comment">//增删查操作</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">insertExchange</span><span class="hljs-params">(Exchange exchange)</span>&#123;<br>        metaMapper.insertExchange(exchange);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">deleteExchange</span><span class="hljs-params">(String exchangeName)</span>&#123;<br>        metaMapper.deleteExchange(exchangeName);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> List&lt;Exchange&gt; <span class="hljs-title function_">selectAllExchanges</span><span class="hljs-params">()</span>&#123;<br>        List&lt;Exchange&gt; exchanges = metaMapper.selectAllExchanges();<br>        <span class="hljs-keyword">return</span> exchanges;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">insertQueue</span><span class="hljs-params">(MSGQueue queue)</span>&#123;<br>        metaMapper.insertQueue(queue);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">deleteQueue</span><span class="hljs-params">(String queueName)</span>&#123;<br>        metaMapper.deleteQueue(queueName);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> List&lt;MSGQueue&gt; <span class="hljs-title function_">selectAllQueues</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> metaMapper.selectAllQueues();<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">insertBinding</span><span class="hljs-params">(Binding binding)</span>&#123;<br>        metaMapper.insertBinding(binding);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">deleteBinding</span><span class="hljs-params">(String exchangeName, String queueName)</span>&#123;<br>        metaMapper.deleteBinding(exchangeName, queueName);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> List&lt;Binding&gt; <span class="hljs-title function_">selectAllBindings</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> metaMapper.selectAllBindings();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="文件管理">文件管理</h2>
+<h2 id="封装硬盘">封装硬盘</h2>
+<h2 id="内存管理">内存管理</h2>
+<h2 id="虚拟主机">虚拟主机</h2>
+<h2 id="服务器">服务器</h2>
+
                 
               </div>
             
@@ -317,6 +489,13 @@
             <div>
               <div class="post-metas my-3">
   
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/JavaEE/">#JavaEE</a>
+      
+    </div>
   
 </div>
 
