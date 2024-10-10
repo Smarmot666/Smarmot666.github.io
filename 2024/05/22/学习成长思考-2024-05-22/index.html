@@ -16,22 +16,22 @@
   <meta name="author" content="郑政祺">
   <meta name="keywords" content="">
   
-    <meta name="description" content="前言： 本人每天晚上&#x2F;早上抽空学习一下Redis，更新可能会比较慢，但是会持续坚持下来，如果觉得还行，就点个关注，后续会继续更新Redis这个功能强大、好用、免费的软件~ 下一篇会介绍Redis的特性、安装等。 一、认识Redis Redis是一款开源、在内存中存储的被数以万计的开发者作为数据库、缓存、流引擎、消息中间者的软件(官网原话，但是自从官网更新了就没写了，现在Redis的官网主要突出就是">
+    <meta name="description" content="记录一下个人成长的学习记录，在学习、生活过程中遇到的比较难得，震撼的事。 今天上午度过的非常平静，我在自己的工位上寻找的bug，然后再提交给前端的同学，跟平常一样，本以为又是一个普通的一天~ 中午吃过饭，突然画风一转，突然我对面写前端的同学出去接了个电话，然后跑着自己的电脑和显示器到会议室了，后面出来的时候已经背上了包，原来是经历的裁员……以前没有经历过这种大场面的我，突然惊呆了，明明前几天才在一">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Redis介绍">
-<meta property="og:url" content="http://example.com/2024/04/11/Redis%E4%BB%8B%E7%BB%8D/index.html">
+<meta property="og:title" content="学习成长思考_2024_05_22">
+<meta property="og:url" content="http://example.com/2024/05/22/%E5%AD%A6%E4%B9%A0%E6%88%90%E9%95%BF%E6%80%9D%E8%80%83-2024-05-22/index.html">
 <meta property="og:site_name" content="机智的土拨鼠">
-<meta property="og:description" content="前言： 本人每天晚上&#x2F;早上抽空学习一下Redis，更新可能会比较慢，但是会持续坚持下来，如果觉得还行，就点个关注，后续会继续更新Redis这个功能强大、好用、免费的软件~ 下一篇会介绍Redis的特性、安装等。 一、认识Redis Redis是一款开源、在内存中存储的被数以万计的开发者作为数据库、缓存、流引擎、消息中间者的软件(官网原话，但是自从官网更新了就没写了，现在Redis的官网主要突出就是">
+<meta property="og:description" content="记录一下个人成长的学习记录，在学习、生活过程中遇到的比较难得，震撼的事。 今天上午度过的非常平静，我在自己的工位上寻找的bug，然后再提交给前端的同学，跟平常一样，本以为又是一个普通的一天~ 中午吃过饭，突然画风一转，突然我对面写前端的同学出去接了个电话，然后跑着自己的电脑和显示器到会议室了，后面出来的时候已经背上了包，原来是经历的裁员……以前没有经历过这种大场面的我，突然惊呆了，明明前几天才在一">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-04-11T13:49:54.000Z">
-<meta property="article:modified_time" content="2024-04-11T13:51:17.655Z">
+<meta property="article:published_time" content="2024-05-22T12:47:13.000Z">
+<meta property="article:modified_time" content="2024-05-22T13:31:12.414Z">
 <meta property="article:author" content="郑政祺">
-<meta property="article:tag" content="Redis">
+<meta property="article:tag" content="思考记录">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Redis介绍 - 机智的土拨鼠</title>
+  <title>学习成长思考_2024_05_22 - 机智的土拨鼠</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -214,7 +214,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Redis介绍"></span>
+            <span id="subtitle" data-typed-text="学习成长思考_2024_05_22"></span>
           
         </div>
 
@@ -225,8 +225,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-04-11 21:49" pubdate>
-          2024年4月11日 晚上
+        <time datetime="2024-05-22 20:47" pubdate>
+          2024年5月22日 晚上
         </time>
       </span>
     
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.3k 字
+          498 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
         
-          11 分钟
+          5 分钟
         
       </span>
     
@@ -307,40 +307,16 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Redis介绍</h1>
+            <h1 style="display: none">学习成长思考_2024_05_22</h1>
             
             
               <div class="markdown-body">
                 
-                <h1>前言：</h1>
-<p>本人每天晚上/早上抽空学习一下Redis，更新可能会比较慢，但是会持续坚持下来，如果觉得还行，就点个关注，后续会继续更新Redis这个功能强大、好用、免费的软件~</p>
-<p>下一篇会介绍Redis的特性、安装等。</p>
-<h1>一、认识Redis</h1>
-<p>Redis是一款开源、在内存中存储的被数以万计的开发者作为数据库、缓存、流引擎、消息中间者的软件(官网原话，但是自从官网更新了就没写了，现在Redis的官网主要突出就是一个Fast)。</p>
-<p>由于Redis是在内存中存储数据的，因此它的速度肯定是比较快的，至少大于硬盘，即与之相比，MySQL的效率就远不及Redis了。</p>
-<p>作为数据库：由于Redis的存储优势，因此他天生就比MySQL关系型数据库访问的速度要快很多。但也因为他的内存存储，也使得它无法存储大量的数据。</p>
-<p>作为缓存：由于Redis是在内存中存储数据，而内存的特点就是快，因此可以用来作为缓存使用。</p>
-<p>作为消息中间者：Redis的初心就是用来作为一个“消息中间件”的，但是由于还有其他更好用的消息队列(RocketMQ、RabbitMQ、Kafka)，所以一般很少使用。</p>
-<p>上述介绍了这么多，其实就是在讲，Redis因为自身的存储优势，就主打一个快~</p>
-<p>Redis是一个C/S结构的程序，其他进程要想和Redis进行通信就得通过网络，这个效率远不及直接从内存中读取数据了，因此在单机程序中，若单单是为了追求效率，盲目使用Redis，反而会适得其反。</p>
-<p>Redis真正的主要作战的领域是分布式~~</p>
-<h1>二、分布式系统</h1>
-<p>分布式听着很高大上，但是往往能不使用就不使用，因为比较复杂，需要根据业务场景来考虑是否要使用分布式。</p>
-<h2 id="为什么要引入分布式">为什么要引入分布式</h2>
-<p>传统的单机部署所面临的问题是，随着用户的增多，请求量增大，一台机器的性能(显卡、CPU、硬盘的性能)是有限的。</p>
-<p>如果遇到这种问题往往是两种解决思路：</p>
-<p><strong>1）节流</strong></p>
-<p>节流指的是通过程序猿自己，去对程序优化，而这就非常考验程序猿的水平功底了</p>
-<p><strong>2）开源</strong></p>
-<p>开源指的是去升级主机的硬件设备，但是一台主机的性能也是有限的，就只能引入多台主机了。不过随着引入多台主机，程序系统的复杂度会大大增加，出BUG的概率也就会大大增加~~</p>
-<h2 id="分布式案例">分布式案例</h2>
-<p>当海量的用户请求去访问服务器的时候(分布式)，通过负载均衡，来分配请求到主机节点上。</p>
-<p>例如有1w个请求，主机有2台，每台主机的承受能力为5k请求，此时就可以通过负载均衡的方式，将1w个请求分到这2台主机上，以至于程序不会挂掉~~</p>
-<p>当然我们也可以针对每台服务器的性能进行定制化，比如某一台机器的硬盘容量很大，就可以将这个主机用作是数据库服务器，对于其他也是同理，具体怎么处理还是需要根据业务需求的~</p>
-<h1>三、微服务架构</h1>
-<p>如果一个应用服务器的功能很多，就会非常重量，对于开发人员就会不好维护，为了解决这个问题，就可以将这个复杂的服务器拆分成更多的，功能单一的更小的服务器，这就是微服务了。</p>
-<p>微服务的本质是解决代码维护，也就是“人”的问题。</p>
-<p>引入了微服务虽然解决了人的代价，但是需要付出性能的代价(拆分出来多个服务，而每个服务之间是通过网络进行通信的)，此外微服务还会提高系统的复杂度，会带来更多的问题，需要一系列手段来提高可用性~</p>
+                <p>记录一下个人成长的学习记录，在学习、生活过程中遇到的比较难得，震撼的事。</p>
+<p>今天上午度过的非常平静，我在自己的工位上寻找的bug，然后再提交给前端的同学，跟平常一样，本以为又是一个普通的一天~</p>
+<p>中午吃过饭，突然画风一转，突然我对面写前端的同学出去接了个电话，然后跑着自己的电脑和显示器到会议室了，后面出来的时候已经背上了包，原来是经历的裁员……以前没有经历过这种大场面的我，突然惊呆了，明明前几天才在一起开过会，讨论过bug，今天突然说走就走了。</p>
+<p>下午的时候，更震惊我的来了，一整个下午的时间，不断的有人抱着显示和电脑去会议室…….有的不是HDOS部门的，可能是其他部门，也都陆陆续续的进进出出，仿佛如流水线一样。最突然的是最近跟我对接的前端同学，突然被叫走了…..还有我觉得非常厉害的产品大佬，以及一个有着阿里开发经验的大佬也被裁了，原来职场真的这么无情，有的大佬可是从创业初期跟着干的啊…..突然颠覆了我对技术的认知。</p>
+<p>后来晚上团队一起约了一个饭局，算是散伙饭。坐在一起的大佬们互相敬酒，相互吐露着公司初期遇到的各种事情，谈论着曾经的辉煌，思考自己的决策是否是错误的，是否会后悔，哎，不免令人嘘唏…….</p>
 
                 
               </div>
@@ -353,7 +329,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Redis/">#Redis</a>
+        <a href="/tags/%E6%80%9D%E8%80%83%E8%AE%B0%E5%BD%95/">#思考记录</a>
       
     </div>
   
@@ -365,8 +341,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Redis介绍</div>
-      <div>http://example.com/2024/04/11/Redis介绍/</div>
+      <div>学习成长思考_2024_05_22</div>
+      <div>http://example.com/2024/05/22/学习成长思考-2024-05-22/</div>
     </div>
     <div class="license-meta">
       
@@ -378,7 +354,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年4月11日</div>
+          <div>2024年5月22日</div>
         </div>
       
       
@@ -410,9 +386,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/05/22/%E5%AD%A6%E4%B9%A0%E6%88%90%E9%95%BF%E6%80%9D%E8%80%83-2024-05-22/" title="学习成长思考_2024_05_22">
+                      <a href="/2024/07/23/2024-7-23/" title="2024723">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">学习成长思考_2024_05_22</span>
+                        <span class="hidden-mobile">2024723</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -420,8 +396,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/03/26/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="设计模式">
-                        <span class="hidden-mobile">设计模式</span>
+                      <a href="/2024/04/11/Redis%E4%BB%8B%E7%BB%8D/" title="Redis介绍">
+                        <span class="hidden-mobile">Redis介绍</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
